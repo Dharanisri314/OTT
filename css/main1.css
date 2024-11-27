@@ -1,0 +1,358 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: arial;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    background-color: rgb(33, 33, 33);
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: 100% 100%;
+    animation: slider 10s linear infinite;
+}
+
+   
+.name{
+    font-size: 40px;
+    padding-left: 20px;
+ }
+
+header ul{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 380px;
+}
+header ul li{
+    list-style: none;
+}
+header ul li  a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding:10px 15px;
+}
+header ul li a:hover{
+    border-bottom: 2px solid rgb(233, 173, 53);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: black;
+    object-fit: contain;
+}
+
+header h1 {
+    font-size: 24px;
+    color: white;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+}
+
+header ul li {
+    margin-right: 20px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+#search-input{
+    width: 150%;
+    height: 3.5em;
+    border: none;
+    outline: none;
+    background-color: #f2f2f2;
+    border-radius: 30px;
+    color: gray;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#search-bg{
+    width:50px;
+    height: 50px;
+    background-color: green;
+    position: absolute;
+    top: 43px;
+    left: 34.9%;
+    border-radius: 50px;
+    /* border: 1px black solid; */
+}
+#search-img{
+    position: absolute;
+    top: 45px;
+    left: 835px;
+}
+/* Logout */
+
+#logout {
+    width: 7.5%; /* Full width of the parent container */
+    height: 60px; /* Set a reasonable height */
+    background-color: white; /* White background */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    border: none; /* No border for the container */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for the container */
+#logout:hover {
+    background-color:rgb(233, 173, 53);/* Yellow background on hover */
+    color: black; /* Black text on hover */
+}
+
+/* Styling the button */
+#logout button {
+    font-size: 16px; /* Moderate text size */
+    color: black; /* Black text */
+    background: none; /* No background for the button */
+    border: none; /* No border */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 17px;
+}
+
+.carousel {
+    display: flex;
+    padding: 20px;
+    gap: 15px;
+    overflow-x: scroll;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 5px;
+    background: #ddd;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+
+.movie-card {
+        width: 220px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .movie-card img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .movie-card h3 {
+        padding: 15px;
+        font-size: 18px;
+        color: #555;
+    }
+    
+    .movie-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+.movie-card {
+    flex: 0 0 auto;
+    width: 200px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #222;
+    color: white;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 10px;
+}
+
+.movie-card img {
+    width: 100%;
+    border-bottom: 1px solid #444;
+    transition: filter 0.3s;
+}
+
+.movie-card:hover img {
+    filter: brightness(1.2);
+}
+
+.movie-card h3 {
+    padding: 10px;
+    font-size: 18px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 20px;body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    } 
+    
+    main {
+        margin: 20px;
+    }
+    
+    .section-container {
+        margin-bottom: 50px;
+        font-size: 25px;
+    }
+    
+    .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding: 10px;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+    
+    .carousel::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for Chrome, Safari, Edge */
+    }
+    
+    .movie-card {
+        flex: 0 0 auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 300px;
+        scroll-snap-align: start;
+        overflow: hidden;
+        text-align: center;
+        background-color: black;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .movie-card img {
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .movie-card h3 {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #333;/* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            
+        }
+        
+        /* Movie Card Styling */
+        .movie-card {
+            flex: 0 0 auto;
+            width: 200px;
+            height: 300px;
+            border: 1px solid #444;
+            border-radius: 10px;
+            background-color: #222;
+            color: white;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 10px;
+        }
+        
+        .movie-card img {
+            width: 100%;
+            height: 80%; /* Adjust for aspect ratio */
+            border-bottom: 1px solid #444;
+            transition: transform 0.3s ease;
+        }
+        
+        .movie-card h3 {
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+        }
+        
+        /* Hover Effect: Shake and Zoom */
+        .movie-card:hover img {
+            animation: shake 0.3s ease-in-out infinite alternate; /* Shake effect */
+        }
+        
+        .movie-card:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+        }
+     
+        /* Carousel Styling */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 20px;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        
+        .carousel::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, and Edge */
+        }
+        
+        .carousel .movie-card {
+            scroll-snap-align: start;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1000px) {
+            header ul {
+                flex-direction: column;
+                position: fixed;
+                top: 100px;
+                height: calc(100vh - 100px);
+                width: 50%;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        
+            #search-input {
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            header #logo {
+                font-size: 14px;
+            }
+        
+            #search-input {
+                width: 150px;
+            }
+        }
+        
+    }
+    
+    scroll-behavior: smooth;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+.section-container>h2{
+    font-size: 30px;
+}
