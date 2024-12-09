@@ -1,153 +1,675 @@
+
 *{
     margin: 0;
     padding: 0;
-    background-origin: padding-box;
+    box-sizing: border-box;
+    font-family: arial;
+    font-family: Arial, Helvetica, sans-serif;
 }
-body{
-    background-color: black;
-    color:white;
+body {
+    background-color:black;
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+    background-size: 100% 100%;
+    animation: slider 10s linear infinite;
 }
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: black;/* General styles for the movie card */
-    .movie-card {
-        flex: 0 0 auto;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        width: 200px;
-        overflow: hidden;
-        text-align: center;
-        background-color: #f9f9f9;
-        transition: transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* On hover: Scale the card, add shadow, and darken the border */
-    .movie-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        border-color: #333;
-    }
-    
-    /* Movie image styling */
-    .movie-card img {
-        width: 100%;
-        height: auto;
-        border-bottom: 1px solid #ddd;
-        transition: filter 0.3s;
-    }
-    
-    /* On hover: Slightly brighten the image */
-    .movie-card:hover img {
-        filter: brightness(1.1);
-    }
-    
-    /* Movie title styling */
-    .movie-card h3 {
-        margin: 10px 0;
-        font-size: 16px;
-        color: #333;
-        transition: color 0.3s;
-    }
-    
-    /* On hover: Change the title color */
-    .movie-card:hover h3 {
-        color: #007BFF;
-    }
-    
-    height: 40px;
 
+   
+.name{
+    font-size: 40px;
+    padding-left: 20px;
+ }
+
+header ul{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 380px;
 }
-.navbar .logo{
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
+header ul li{
+    list-style: none;
 }
-.navbar a{
-    margin: 0 15px;
-    color: white;
+header ul li  a{
     text-decoration: none;
-    padding: 100px;
-    font-size: 15px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding:10px 15px;
 }
-.navbar .search{
-    display: flex;
-    align-items: center;
-} 
-.navbar input[type="text"]{
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-} 
-.navbar .user-icon{
-    width: 20px;
-    height: 20px;
-    margin-left: 15px;
-    background-color: white;
-    border-radius: 50px;
-    display:inline-block;
-} 
+header ul li a:hover{
+    border-bottom: 2px solid rgb(233, 173, 53);
+}
 
-/* carousel styling */
-/* 
-.carousel{
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #222;
-    margin: 20px;
-    border-radius: 10px;
-}
-.carousel .arrow{
-    font-size: 30px;
-    cursor:pointer
+    background-color: black;
+    object-fit: contain;
 }
 
-.carousel .carousel-content{
-    flex: 1;
-    margin: 0 20px;
-    height: 150px;
-    background-color: #444;
-    border-radius: 10px;
+header h1 {
+    font-size: 24px;
+    color: white;
 }
-.category{
-    margin: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-.movie-row{
+
+header ul {
     display: flex;
-    gap:20px;
-    padding:0 20px;
-    overflow-x: auto;
+    list-style: none;
 }
-.movie{
-    width: 215px;
-    /* flex: 0 0 auto; */
-/* }
-.movie img{
-    width: 100%;
+
+header ul li {
+    margin-right: 20px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+#search-input{
+    width: 150%;
+    height: 3.5em;
+    border: none;
+    outline: none;
+    background-color: #f2f2f2;
+    border-radius: 30px;
+    color: gray;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#search-bg{
+    width:45px;
+    height: 50px;
+    background-color: green;
+    position: absolute;
+    top: 6px;
+    left: 9%;
+    border-radius: 50px;
+    /* border: 1px black solid; */
+}
+#search-img{
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    font-size: 30px;
+}
+
+ /* Search Bar Container  */
+header form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: -10px;
+} 
+
+/* Search Input */
+#search-input {
+    width: 310px;
+    height: 50px;
+    border: 2px solid rgb(233, 173, 53); /* Yellow border */
+    border-radius: 30px;
+    background-color: #fff; /* White background */
+    color: black; /* Black text */
+    font-size: 23px;
+    padding: 0 15px; /* Padding for comfortable typing */
+    transition: all 0.3s ease; /* Smooth focus animation */
+}
+
+/* Input Focus Style */
+#search-input:focus {
+    outline: none;
+    border-color: #ffa726; /* Orange border on focus */
+    box-shadow: 0 0 5px #ffa726; /* Glow effect */
+}
+
+/* Search Button */
+#search-btn {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+/* Search Button Hover Effect */
+#search-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Search Icon */
+#search-img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1); /* Makes the icon white */
+    transition: transform 0.2s ease;
+}
+
+/* Hover Effect for Icon */
+#search-btn:hover #search-img {
+    transform: scale(1.2);
+}
+
+/* Logout */
+
+#logout {
+    width: 7.5%; /* Full width of the parent container */
+    height: 60px; /* Set a reasonable height */
+    background-color: white; /* White background */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    border: none; /* No border for the container */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for the container */
+#logout:hover {
+    background-color:rgb(233, 173, 53);/* Yellow background on hover */
+    color: black; /* Black text on hover */
+}
+
+/* Styling the button */
+#logout button {
+    font-size: 16px; /* Moderate text size */
+    color: black; /* Black text */
+    background: none; /* No background for the button */
+    border: none; /* No border */
+    font-weight: bold; /* Bold text */
+    text-transform: uppercase; /* Uppercase text */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 17px;
+}
+
+.carousel {
+    display: flex;
+    padding: 20px;
+    gap: 15px;
+    overflow-x: scroll;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 5px;
+    background: #ddd;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: #888;
     border-radius: 10px;
+}
+
+
+.movie-card {
+        width: 220px;
+        border-radius: 10px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .movie-card img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .movie-card h3 {
+        padding: 15px;
+        font-size: 18px;
+        color: #555;
+    }
+    
+    .movie-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+.movie-card {
+    flex: 0 0 auto;
+    width: 200px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #222;
+    color: white;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin: 10px;
+}
+
+.movie-card img {
+    width: 100%;
+    border-bottom: 1px solid #444;
+    transition: filter 0.3s;
+}
+
+.movie-card:hover img {
+    filter: brightness(1.2);
+}
+
+.movie-card h3 {
+    padding: 10px;
+    font-size: 18px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 20px;body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    } 
+    
+    main {
+        margin: 20px;
+    }
+    
+    .section-container {
+        margin-bottom: 50px;
+        font-size: 25px;
+    }
+    .section-container>h2{
+        font-size: 30px;
+    }
+    
+    .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding: 10px;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+    
+    .carousel::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for Chrome, Safari, Edge */
+    }
+    
+    .movie-card {
+        flex: 0 0 auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 300px;
+        scroll-snap-align: start;
+        overflow: hidden;
+        text-align: center;
+        background-color: black;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .movie-card img {
+        width: 100%;
+        height: 450px;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .movie-card h3 {
+        margin: 10px 0;
+        font-size: 30px;
+        color: #ffa726;/* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            
+        }
+        
+        /* Movie Card Styling */
+        .movie-card {
+            flex: 0 0 auto;
+            width: 200px;
+            height: 300px;
+            border: 1px solid #444;
+            border-radius: 10px;
+            background-color: #222;
+            color: white;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 10px;
+        }
+        
+        .movie-card img {
+            width: 100%;
+            height: 80%; /* Adjust for aspect ratio */
+            border-bottom: 1px solid #444;
+            transition: transform 0.3s ease;
+        }
+        
+        .movie-card h3 {
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+        }
+        
+        /* Hover Effect: Shake and Zoom */
+        .movie-card:hover img {
+            animation: shake 0.3s ease-in-out infinite alternate; /* Shake effect */
+        }
+        
+        .movie-card:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+        }
+     
+        /* Carousel Styling */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 20px;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+        
+        .carousel::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, and Edge */
+        }
+        
+        .carousel .movie-card {
+            scroll-snap-align: start;
+        }
+        
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+    
+        .movie-card>img{
+            height: 450px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1000px) {
+            header ul {
+                flex-direction: column;
+                position: fixed;
+                top: 100px;
+                height: calc(100vh - 100px);
+                width: 50%;
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        
+            #search-input {
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            header #logo {
+                font-size: 14px;
+            }
+        
+            #search-input {
+                width: 150px;
+            }
+        }
+        
+    }
+    
+    scroll-behavior: smooth;
+}
+
+footer {
+    background-color: black;
+    padding-top: 50px;
+    color: white;
+}
+
+.container {
+    width: 1180px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-content {
+    width: 33.3%;
+    text-align: center;
+}
+
+h4 {
+    font-size: 35px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+/* Links (Quick Links) */
+.list {
+    list-style: none;
+    padding: 0;
+}
+
+.list li {
+    margin-bottom: 10px;
+}
+
+.list li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.list li a:hover {
+    color: rgb(233, 173, 53);
+}
+
+/* Social Icons */
+.social-icons {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 아이콘들 사이에 간격 */
+    padding: 0;
+    margin: 0;
+}
+
+.social-icons li {
+    display: inline-block;
+}
+
+.social-icons a {
+    text-decoration: none;
+    color: white;
+    font-size: 30px; /* 아이콘 크기 */
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: rgb(233, 173, 53); /* 마우스 오버 시 색상 변경 */
+}
+
+/* Bottom Bar */
+.bottom-bar {
+    background-color: rgb(233, 173, 53);
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 50px;
+    color: black;
+    font-size: 16px;
+}
+/* Style for movie card */
+.movie-card {
+    position: relative;
+    width: 300px; /* Adjust size as needed */
+    margin: 20px;
+    overflow: hidden;
+    border: 2px solid rgb(233, 173, 53);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Image within the movie card */
+.movie-card img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Description inside the movie card */
+.movie-card .description {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    visibility: hidden;  /* Initially hidden */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show the description when hovering over the movie card */
+.movie-card:hover .description {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Optionally, you can also scale the image slightly when hovering */
+.movie-card:hover img {
+    transform: scale(1.1);
+}
+.movie-card {
+    position: relative;
+    width: 300px; /* Adjust size as needed */
+    margin: 20px;
+    overflow: hidden;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Image within the movie card */
+.movie-card img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+/* Description inside the movie card */
+.movie-card .description {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    visibility: hidden;  /* Initially hidden */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show the description when hovering over the movie card */
+.movie-card:hover .description {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Optionally, you can also scale the image slightly when hovering */
+.movie-card:hover img {
+    transform: scale(1.1);
+}
+/* Styling for the movie card */
+.movie-card {
+    position: relative;
+    width: 200px; /* Adjust the width of the movie card */
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* Movie image styling */
+.movie-card img {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+}
+
+/* Movie name and description */
+.movie-card h3, .movie-card p {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color:white;
+    margin: 0;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 4px;
+    font-size: 14px;
+    visibility: hidden; /* Initially hidden */
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    max-width: 90%;
+}
+
+/* Show description on hover */
+.movie-card:hover img {
+    opacity: 0.7; /* Fade out image on hover */
+}
+
+.movie-card:hover h3, .movie-card:hover p {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Styling for movie name */
+.movie-card h3 {
+    font-size: 35px;
+    font-weight: bold;
+    bottom: 150px; /* Adjust to display movie name above description */
+}
+
+/* Styling for description */
+.movie-card p {
+    font-size: 20px;
+    bottom: 10px; /* Adjust to position description at the bottom of the card */
+} 
+/* .slider{
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+figure{
+    position: relative;
+    left:0;
+}
+.slider{
+    position:relative
 } */
 
-body{
-    background-color: rgb(33, 33, 33);
-    width: 100%;
-    overflow-x: hidden;
-    background: fixed;
-    background-size: 100% 100% ;
-    animation: slider 10s linear infinite;
-}
 
-@keyframes slider{
-    0%{background-image: url("./assete/images/Amaran.jpg")}
-    30%{background-image: url("./assete/images/brother.jpg");}
-    60%{background-image: url("./assete/images/oh\ may.jpg");}
-    100%{background-image: url("./assete/images/sita_raman.jpg");}
-}
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,312 +1,876 @@
 {
-   "thriller":[
-  {
-    "movie_name": "Vikram",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMjM4MThmMzEtN2VkYy00ZjdlLWJlMWUtNDY0NTUxMmM5YzRkXkEyXkFqcGc@._V1_.jpg"
+  "thiller": [
+    {
+      "id": 1,
+      "title": "Vikram",
+      "genre": "genre: Family/Action/Drama",
+      "poster": " poster:Vikram",
+      "movie_name": "Vikram",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMjM4MThmMzEtN2VkYy00ZjdlLWJlMWUtNDY0NTUxMmM5YzRkXkEyXkFqcGc@._V1_.jpg",
+      "release_date": "release-date:2024",
+      "stream_url": "https://example.com/interstellar-stream",
+      "play_time": "play-time:2h 25m",
+      "rating": "rating:6.5 / 10",
+      "description": "A fast-paced action thriller featuring intense combat and espionage, following a series of dangerous operations by an undercover officer."
+    },
+    {
+      "id": 2,
+      "title": "Ratsasan",
+      "genre": "Family/Action/Drama",
+      "poster": "Vikram",
+      "movie_name": "Ratsasan",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMjgzMzMxMzUtNzUyYi00NTkxLWI1NTAtMjZhNmMxMGQ4YjBmXkEyXkFqcGc@._V1_.jpg",
+      "release_date": "2024",
+      "stream_url": "https://example.com/interstellar-stream",
+      "play_time": "2h 25m",
+      "rating": "6.5 / 10",
+      "description": " A psychological thriller about a police officer chasing a brutal serial killer, filled with gripping twists and turns."
+    },
+    {
+      "title": "Kaithi",
+      "genre": "Action/Thriller/Crime",
+      "poster": "Kaithi",
+      "movie_name": "Kaithi",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BOGI1MDIxM2MtYWUwMC00MjI0LWFkYzYtMDU0ODM2Nzk0MDJkXkEyXkFqcGc@._V1_QL75_UX480_.jpg",
+      "release_date": "2019",
+      "stream_url": "https://example.com/kaithi-stream",
+      "play_time": "2h 25m",
+      "rating": "9.0 / 10",
+      "description": "A gripping thriller about a convict forced to help police officers in a high-stakes situation involving a drug cartel."
+    },
+    {
+      "title": "Aramm",
+      "genre": "Drama/Social",
+      "poster": "Aramm",
+      "movie_name": "Aramm",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BODZlYzhiYWUtMzk1My00ZGNlLWEwOWUtMDI3ZWUwNTZhNDA5XkEyXkFqcGc@._V1_QL75_UY281_CR12,0,190,281_.jpg",
+      "release_date": "2017",
+      "stream_url": "https://example.com/aramm-stream",
+      "play_time": "2h",
+      "rating": "8.4 / 10",
+      "description": "A compelling thriller that follows a district collector's battle to save lives in a rural village struck by a water crisis."
+    },
+    {
+      "title": "Valimai",
+      "genre": "Action/Thriller",
+      "poster": "Valimai",
+      "movie_name": "Valimai",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BODRhYjlmNjktNTA4OS00NmU1LWIwOTctYmMyNThiMDYwZDJmXkEyXkFqcGc@._V1_.jpg",
+      "release_date": "2022",
+      "stream_url": "https://example.com/valimai-stream",
+      "play_time": "2h 58m",
+      "rating": "6.1 / 10",
+      "description": "A high-octane thriller centered around an officer confronting a gang involved in organized crime and corruption."
+    },
+    {
+      "title": "Soorarai Pottru",
+      "genre": "Drama/Biography",
+      "poster": "Soorarai Pottru",
+      "movie_name": "Soorarai Pottru",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BZTU5NTNmMjAtODM0Mi00YzU5LTk1OWQtZWU1NzZhMzBjYjY1XkEyXkFqcGc@._V1_QL75_UX190_CR0,18,190,281_.jpg",
+      "release_date": "2020",
+      "stream_url": "https://example.com/soorarai-pottru-stream",
+      "play_time": "2h 29m",
+      "rating": "9.1 / 10",
+      "description": "Based on real-life events, this drama-thriller showcases a man's struggle to start a budget airline while facing powerful opposition."
+    },
+    {
+      "title": "Psycho",
+      "genre": "Psychological Thriller",
+      "poster": "Psycho",
+      "movie_name": "Psycho",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNjYxZjMyMGMtZjQ4Yi00NzJjLWE4M2EtYmVjNzFhOGI0MmQyXkEyXkFqcGc@._V1_QL75_UX480_.jpg",
+      "release_date": "2020",
+      "stream_url": "https://example.com/psycho-stream",
+      "play_time": "2h 24m",
+      "rating": "6.4 / 10",
+      "description": "A psychological thriller about a man searching for his kidnapped girlfriend while encountering a dangerous and disturbed individual."
+    },
+    {
+      "title": "Kolaigaran",
+      "genre": "Crime/Thriller",
+      "poster": "Kolaigaran",
+      "movie_name": "Kolaigaran",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BZjc3ZTk4MmYtMDc3ZC00ODQ2LWI5YTAtZDAwYWM3YmVlZWUxXkEyXkFqcGc@._V1_.jpg",
+      "release_date": "2019",
+      "stream_url": "https://example.com/kolaigaran-stream",
+      "play_time": "1h 50m",
+      "rating": "7.1 / 10",
+      "description": "A riveting thriller involving a complex murder investigation that reveals shocking truths about the people involved."
+    },
+    {
+      "title": "Karnan",
+      "genre": "Drama/Action",
+      "poster": "Karnan",
+      "movie_name": "Karnan",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNWU2MmE0YTQtYzM3Mi00YzU0LWFjYTYtMTY1MWRlM2UzZjc2XkEyXkFqcGc@._V1_QL75_UX480_.jpg",
+      "release_date": "2021",
+      "stream_url": "https://example.com/karnan-stream",
+      "play_time": "2h 38m",
+      "rating": "8.2 / 10",
+      "description": "A powerful action-packed drama about a man who battles oppressive forces to protect his village, focusing on themes of justice, power, and human struggle."
+    },
+    {
+      "title": "Vikram Vedha",
+      "genre": "Action/Thriller/Crime",
+      "poster": "Vikram Vedha",
+      "movie_name": "Vikram Vedha",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BOTI0ODVlYjYtYTQ5Yi00OTlmLWI5NjEtYjM5ZWEyMDQ5ZjA5XkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg",
+      "release_date": "2017",
+      "stream_url": "https://example.com/vikram-vedha-stream",
+      "play_time": "2h 32m",
+      "rating": "8.6 / 10",
+      "description": "A gripping thriller where a cop and a gangster face off in a battle of wits. The film explores the blurred lines between good and evil."
+    },
+    {
+      "title": "Miruthan",
+      "genre": "Horror/Action/Thriller",
+      "poster": "Miruthan",
+      "movie_name": "Miruthan",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BM2M4NDdhMmUtZmRlNS00MzNmLTgxNDctYTczOGQ0ZWEwOTkzXkEyXkFqcGc@._V1_.jpg",
+      "release_date": "2016",
+      "stream_url": "https://example.com/miruthan-stream",
+      "play_time": "2h 11m",
+      "rating": "6.2 / 10",
+      "description": " A Tamil zombie film where the protagonist must battle a zombie outbreak in order to save his loved ones."
+    },
+    {
+      "title": "Papanasam",
+      "genre": "Drama/Thriller",
+      "poster": "Papanasam",
+      "movie_name": "Papanasam",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BZDAxZjUyYjItZWRlNy00MWE1LTkwNWYtNzk3NTVhNTkzYzQ3XkEyXkFqcGc@._V1_.jpg",
+      "release_date": "2015",
+      "stream_url": "https://example.com/papanasam-stream",
+      "play_time": "2h 40m",
+      "rating": "8.1 / 10",
+      "description": "A tense thriller about a father who will go to great lengths to protect his family, even if it means resorting to crime. "
+    },
+    {
+      "title": "Thadam",
+      "genre": "Crime/Thriller",
+      "poster": "Thadam",
+      "movie_name": "Thadam",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BY2Y2NTQwODUtODJmOC00NTc0LTgxZWQtNDRkNDg4N2EyNDE1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+      "release_date": "2019",
+      "stream_url": "https://example.com/thadam-stream",
+      "play_time": "2h 15m",
+      "rating": "7.8 / 10",
+      "description": "A gripping crime thriller about two identical men with contrasting personalities, centered around a murder mystery and the investigation that ensues."
+    },
+    {
+      "title": "Black",
+      "genre": "Drama",
+      "poster": "Black",
+      "movie_name": "Black",
+      "release_date": "2005",
+      "stream_url": "https://example.com/black-stream",
+      "play_time": "2h 24m",
+      "rating": "8.2 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg",
+      "description": "A heartwarming drama about a young girl with cerebral palsy who, with the help of an inspiring teacher, overcomes challenges and grows through determination."
+    },
+    {
+      "title": "Trip",
+      "genre": "Sci-Fi/Thriller",
+      "poster": "Trip",
+      "movie_name": "Trip",
+      "release_date": "2021",
+      "stream_url": "https://example.com/trip-stream",
+      "play_time": "2h 2m",
+      "rating": "5.0 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMzdmNDliOWItNWE3YS00NjNhLThiODAtNzhkODVlOGFlYzI2XkEyXkFqcGc@._V1_.jpg",
+      "description": "A comedy thriller about a group of friends who set out on a trip that quickly turns into an adventure, filled with unexpected twists."
+    }
+  ],
+  "horror": [
+    {
+      "title": "Demonte Colony 2",
+      "genre": "Horror/Thriller",
+      "poster": "Demonte Colony 2",
+      "movie_name": "Demonte Colony 2",
+      "release_date": "2024-08-15",
+      "stream_url": "https://example.com/demonte-colony2-stream",
+      "play_time": "2h 22m",
+      "rating": "7.5 / 10",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBt_YaPGBkERaQ0CMjuVyGa0Pjt-bQrZANaw&s",
+      "description": "A horror film that continues the eerie tale from the first installment, revolving around supernatural occurrences and unsettling events."
+    },
+    {
+      "title": "Airaa",
+      "genre": "Horror/Thriller",
+      "poster": "Airaa",
+      "movie_name": "Airaa",
+      "release_date": "2019",
+      "stream_url": "https://example.com/airaa-stream",
+      "play_time": "2h 22m",
+      "rating": "5.2 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMjk2NzcwNmItNGM2Yy00N2Q1LWI2MmYtYzQyMDFhZGYxYWU0XkEyXkFqcGc@._V1_.jpg",
+      "description": "A supernatural thriller that follows a young woman as she encounters terrifying and mysterious forces in her life, drawing her into a chilling plot."
+    },
+    {
+      "title": "Diary",
+      "genre": "Crime/Thriller",
+      "poster": "Diary",
+      "movie_name": "Diary",
+      "release_date": "2022",
+      "stream_url": "https://example.com/diary-stream",
+      "play_time": "2h 3m",
+      "rating": "7.2 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNTAyZGYyNTEtOGFiYy00NzBhLWExZTYtNTRjZTgzMDc5ODQ5XkEyXkFqcGc@._V1_.jpg",
+      "description": "A suspense-filled mystery where a police officer investigates a series of strange occurrences linked to a diary that seems to predict the future."
+    },
+    {
+      "movie_name": "Lift",
+      "title": "Lift",
+      "genre": "Horror/Thriller",
+      "poster": "Lift",
+      "release_date": "2021",
+      "stream_url": "https://www.hotstar.com",
+      "play_time": "2h 14m",
+      "rating": "6.3 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNWY5MDYzNDEtOWJlMS00M2Y5LWI4NDYtZjMwMmIwZWZiYmM2XkEyXkFqcGc@._V1_.jpg",
+      "description": "A psychological thriller set in a high-rise building, where a mysterious entity seems to control the elevator, trapping the people inside in terrifying situations."
+    },
+    {
+      "movie_name": "Pisasu",
+      "title": "Pisasu",
+      "genre": "Horror/Drama",
+      "poster": "Pisasu",
+      "release_date": "2014",
+      "stream_url": "https://www.hotstar.com",
+      "play_time": "1h 54m",
+      "rating": "7.8 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNDMxOGI3YmEtZDUzMS00Y2E4LWE3YzctZGRjZWQ1NThmM2FjXkEyXkFqcGc@._V1_.jpg",
+      "description": " A horror thriller about a young man who encounters a vengeful spirit and struggles to survive its haunting attacks while uncovering its tragic past."
+    },
+    {
+      "movie_name": "Maya",
+      "title": "Maya",
+      "genre": "Horror/Thriller",
+      "poster": "Maya",
+      "release_date": "2015",
+      "stream_url": "https://www.primevideo.com",
+      "play_time": "2h 22m",
+      "rating": "7.6 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMTAzMzQzODY5NDleQTJeQWpwZ15BbWU4MDI0NjE2MDYx._V1_.jpg",
+      "description": "A psychological thriller that follows a young woman who becomes entangled in a series of terrifying events, blurring the line between reality and illusion."
+    },
+    {
+      "title": "Pizza III: The Mummy",
+      "genre": "Horror/Thriller",
+      "poster": "Pizza III",
+      "movie_name": "Pizza III: The Mummy",
+      "release_date": "2023",
+      "stream_url": "https://www.netflix.com",
+      "play_time": "2h 10m",
+      "rating": "7.4 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMmYxMDkwYzQtMTU0Yy00NjY4LTgzMTYtYTQ3ZmUyMTVhNWQ0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+      "description": "The third installment in the horror-thriller Pizza series, where the protagonist confronts supernatural forces in a new terrifying scenario."
+    },
+    {
+      "title": "U Turn",
+      "genre": "Thriller/Crime",
+      "poster": "U Turn",
+      "movie_name": "U Turn",
+      "release_date": "2022",
+      "stream_url": "https://www.hotstar.com",
+      "play_time": "2h 30m",
+      "rating": "7.8 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BZjBkMGZkNGYtZWY2OS00ODM1LTk4MTgtODM3ZDM1Y2I4MTg5XkEyXkFqcGc@._V1_.jpg",
+      "description": "A thriller revolving around a mysterious murder that takes place at a busy road junction, where the protagonist unravels shocking truths."
+    },
+    {
+      "title": "Nenjam Marappathillai",
+      "genre": "Horror/Thriller",
+      "poster": "Nenjam Marappathillai",
+      "movie_name": "Nenjam Marappathillai",
+      "release_date": "2021",
+      "stream_url": "https://www.sonyliv.com",
+      "play_time": "2h 21m",
+      "rating": "6.4 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNGYwMDcxMTEtOTE3ZC00OTQxLWI3OTgtYzMxZjNiZWQ3N2VlXkEyXkFqcGc@._V1_.jpg",
+      "description": "A supernatural thriller with elements of horror and suspense, following a woman who must confront ghostly forces after a series of tragic events."
+    },
+    {
+      "title": "Sync",
+      "genre": "Horror/Thriller",
+      "poster": "Sync",
+      "movie_name": "Sync",
+      "release_date": "2023",
+      "stream_url": "https://www.netflix.com",
+      "play_time": "1h 40m",
+      "rating": "7.0 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BZjc1NDc1MzMtNzY5Mi00ZjdiLThjZTUtZGYyNjMxN2ZlN2NkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+      "description": "A psychological horror film that focuses on the dangers of technology and its impact on people's lives, as the characters uncover terrifying secrets."
+    },
+    {
+      "title": "Asvins",
+      "genre": "Horror/Fantasy",
+      "poster": "Asvins",
+      "movie_name": "Asvins",
+      "release_date": "2023",
+      "stream_url": "https://www.amazon.com",
+      "play_time": "2h 10m",
+      "rating": "6.8 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BODFjYTc3ZDItMDE2My00YjZlLTllZTAtNjcwNjdjNDgyODU2XkEyXkFqcGc@._V1_.jpg",
+      "description": "A gripping tale of suspense and drama, centered around the mysterious characters who navigate through a series of tragic and unusual events."
+    },
+    {
+      "title": "Katteri",
+      "genre": "Horror/Thriller",
+      "poster": "Katteri",
+      "movie_name": "Katteri",
+      "release_date": "2021",
+      "stream_url": "https://www.hotstar.com",
+      "play_time": "1h 58m",
+      "rating": "6.0 / 10",
+      "image_url": "https://popcornsg.s3.amazonaws.com/movies/650/10637-40711-Katterijpg",
+      "description": "A horror-comedy movie that blends the paranormal with humor, set in a remote village plagued by supernatural events."
+    },
+    {
+      "title": "Bramayagam",
+      "genre": "Horror/Thriller",
+      "poster": "Bramayagam",
+      "movie_name": "Bramayagam",
+      "release_date": "2023",
+      "stream_url": "https://www.sunnxt.com",
+      "play_time": "2h 20m",
+      "rating": "6.5 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BYTYyMjI0MjgtOWU3NS00ZTQ2LThjMzItZTQxZGE4MDE5NzMwXkEyXkFqcGc@._V1_QL75_UX480_.jpg",
+      "description": "A suspenseful drama that deals with the investigation of a bizarre incident, leading the characters to explore the unknown and the unexplained."
+    },
+    {
+      "title": "Estate",
+      "genre": "Horror/Thriller",
+      "poster": "Estate",
+      "movie_name": "Estate",
+      "release_date": "2023",
+      "stream_url": "https://www.sunnxt.com",
+      "play_time": "2h 5m",
+      "rating": "6.2 / 10",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Estate_%282022_film%29.jpg",
+      "description": " A thriller revolving around a mysterious estate and its dark secrets, as the protagonist delves into its chilling history."
+    },
+    {
+      "title": "Game Over",
+      "genre": "Horror/Thriller",
+      "poster": "Game Over",
+      "movie_name": "Game Over",
+      "release_date": "2019",
+      "stream_url": "https://www.netflix.com",
+      "play_time": "1h 40m",
+      "rating": "7.1 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNzk0OGE2NTUtN2ZkMi00ZTczLTg5NDMtMDkyMzkxYmRjNzFjXkEyXkFqcGc@._V1_.jpg",
+      "description": "A psychological thriller that explores the mental struggles of a woman as she faces challenges both in the real world and her nightmares."
+    }
+  ],
+  "action": [
+    {
+      "title": "Vada Chennai",
+      "genre": "Crime/Drama",
+      "poster": "Vada Chennai",
+      "movie_name": "Vada Chennai",
+      "release_date": "2018",
+      "stream_url": "https://www.hotstar.com",
+      "play_time": "2h 50m",
+      "rating": "8.4 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNzA2YmU4ODYtMmQ4OS00ZDJmLTg5NmItNzczNGZmYmVlZTU0XkEyXkFqcGc@._V1_.jpg",
+      "description": " A gripping gangster drama about a young man's journey through North Chennai's violent underworld and the consequences of his choices.."
   },
   {
-    "movie_name": "Ratsasan",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMjgzMzMxMzUtNzUyYi00NTkxLWI1NTAtMjZhNmMxMGQ4YjBmXkEyXkFqcGc@._V1_.jpg"
+      "title": "Asuran",
+      "genre": "Action/Drama",
+      "poster": "Asuran",
+      "movie_name": "Asuran",
+      "release_date": "2019",
+      "stream_url": "https://www.netflix.com",
+      "play_time": "2h 19m",
+      "rating": "8.5 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNjFlNjk5NWMtMWMzNS00N2E5LWE2MzItMmI3MjBiY2M0MGFiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+      "description": "A rural action-drama about a father's fight to protect his family from powerful adversaries, while tackling caste discrimination and social injustice."
   },
-  {
-    "movie_name": "Kaithi",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BOGI1MDIxM2MtYWUwMC00MjI0LWFkYzYtMDU0ODM2Nzk0MDJkXkEyXkFqcGc@._V1_QL75_UX480_.jpg"
-  },
-  {
-    "movie_name": "Aramm",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BODZlYzhiYWUtMzk1My00ZGNlLWEwOWUtMDI3ZWUwNTZhNDA5XkEyXkFqcGc@._V1_.jpg"
-  },
-  { 
-    "movie_name": "Valimai",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BODRhYjlmNjktNTA4OS00NmU1LWIwOTctYmMyNThiMDYwZDJmXkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Soorarai Pottru",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQD2_BEJgrVZU-aQWWtapp6gyb1NPAaEJDq2Q&s"
-  },
-  {
-    "movie_name": "Psycho",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNjYxZjMyMGMtZjQ4Yi00NzJjLWE4M2EtYmVjNzFhOGI0MmQyXkEyXkFqcGc@._V1_QL75_UX480_.jpg"
-  },
-  {
-    "movie_name": "Kolaigaran",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BOTBmMDZjNzktZjc1ZS00MTcyLTg5Y2UtN2FkMWU2MDJiZTdiXkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Karnan",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNWU2MmE0YTQtYzM3Mi00YzU0LWFjYTYtMTY1MWRlM2UzZjc2XkEyXkFqcGc@._V1_QL75_UX480_.jpg"
-  },
-  {
-    "movie_name": "Vikram vedha",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BOTI0ODVlYjYtYTQ5Yi00OTlmLWI5NjEtYjM5ZWEyMDQ5ZjA5XkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg"
-  },
-  {
-    "movie_name": "Miruthan",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BM2M4NDdhMmUtZmRlNS00MzNmLTgxNDctYTczOGQ0ZWEwOTkzXkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Papanasam",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BZDAxZjUyYjItZWRlNy00MWE1LTkwNWYtNzk3NTVhNTkzYzQ3XkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Thadam",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BY2Y2NTQwODUtODJmOC00NTc0LTgxZWQtNDRkNDg4N2EyNDE1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
-  },
-  {
-    "movie_name": "Black",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Trip",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMzdmNDliOWItNWE3YS00NjNhLThiODAtNzhkODVlOGFlYzI2XkEyXkFqcGc@._V1_.jpg"
-  }
-],
-"horror":[
-  {
-    "movie_name": "Demonte Colony 2",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBt_YaPGBkERaQ0CMjuVyGa0Pjt-bQrZANaw&s"
-  },
-  {
-    "movie_name":"Airaa",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMjk2NzcwNmItNGM2Yy00N2Q1LWI2MmYtYzQyMDFhZGYxYWU0XkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Diary",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNTAyZGYyNTEtOGFiYy00NzBhLWExZTYtNTRjZTgzMDc5ODQ5XkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Lift",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNWY5MDYzNDEtOWJlMS00M2Y5LWI4NDYtZjMwMmIwZWZiYmM2XkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Pisasu",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNDMxOGI3YmEtZDUzMS00Y2E4LWE3YzctZGRjZWQ1NThmM2FjXkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Maya",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMTAzMzQzODY5NDleQTJeQWpwZ15BbWU4MDI0NjE2MDYx._V1_.jpg"
-  },
-  {
-    "movie_name": "Pizza III",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMmYxMDkwYzQtMTU0Yy00NjY4LTgzMTYtYTQ3ZmUyMTVhNWQ0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
-  },
-  {
-    "movie_name": "U Turn",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BZjBkMGZkNGYtZWY2OS00ODM1LTk4MTgtODM3ZDM1Y2I4MTg5XkEyXkFqcGc@._V1_.jpg"
-   },
-   {
-    "movie_name": "Nenjam Marappathillai",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNGYwMDcxMTEtOTE3ZC00OTQxLWI3OTgtYzMxZjNiZWQ3N2VlXkEyXkFqcGc@._V1_.jpg"
-   },
-   {
-    "movie_name": "Sync",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BZjc1NDc1MzMtNzY5Mi00ZjdiLThjZTUtZGYyNjMxN2ZlN2NkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
-   },
-   {
-    "movie_name": "Asvins",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BODFjYTc3ZDItMDE2My00YjZlLTllZTAtNjcwNjdjNDgyODU2XkEyXkFqcGc@._V1_.jpg"
-   },
-   {
-    "movie_name": "Katteri",
-    "image_url": "https://popcornsg.s3.amazonaws.com/movies/650/10637-40711-Katterijpg"
-   },
-   {
-    "movie_name": "Bramayagam",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BYTYyMjI0MjgtOWU3NS00ZTQ2LThjMzItZTQxZGE4MDE5NzMwXkEyXkFqcGc@._V1_QL75_UX480_.jpg"
-   },
-   {
-    "movie_name": "Estate",
-    "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Estate_%282022_film%29.jpg"
-   },
-   {
-     "movie_name": "Game Over",
-     "image_url": "https://m.media-amazon.com/images/M/MV5BNzk0OGE2NTUtN2ZkMi00ZTczLTg5NDMtMDkyMzkxYmRjNzFjXkEyXkFqcGc@._V1_.jpg"
-   }
-],
-"action":[
-  {
-    "movie_name": "Vada Chennai",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNzA2YmU4ODYtMmQ4OS00ZDJmLTg5NmItNzczNGZmYmVlZTU0XkEyXkFqcGc@._V1_.jpg"
-  }, 
-  {
-    "movie_name": "Asuran",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNjFlNjk5NWMtMWMzNS00N2E5LWE2MzItMmI3MjBiY2M0MGFiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
-  }, 
-  {
-    "movie_name": "Sarpatta Parambarai",
-    "image_url": "https://resizing.flixster.com/79azmZWaNtQ8HorqCqwPtqipqbk=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p20388422_p_v13_ac.jpg"
-  },
-  {
-    "movie_name": "Thunivu",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BODYxMzUzYjktZjc0Yi00NzYwLWI0MDItZGE5ZThiOGEyMzJiXkEyXkFqcGc@._V1_.jpg"
-  }, 
-  {
-    "movie_name": "Jailer",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9RPV_hOOq5uZE6WPWwxFKYrhNZ2i8oniVwg&s"
-  }, 
-  {
-    "movie_name": "Vettaiyan",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMjc2MGY3NGEtZGYyZC00MmIyLThjMjMtZGZhYmYzNzJhYTJjXkEyXkFqcGc@.V1_QL75_UX145.jpg"
-  }, 
-  {
-    "movie_name": "Leo",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BZTRhNzIxOGEtZDY1Zi00MGQ1LWFiMDUtYTY5NzE4YjY4NDI1XkEyXkFqcGc@._V1_.jpg"
-  }, 
-  {
-    "movie_name": "Jigarthanda Double X",
-    "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdyO2NnXnXxfXsQMdgCfLw_mWRgr_tQzPc6XfcqY_14ow3bjNdGvFab0hCCCIlL9J91INj"
-  }, 
-  {
-    "movie_name": "Master",
-    "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRswG6NZHowsW-JNXViNEDWtLlhbU2hezeURZYUP-h_Azckt1z5pLLBcua_SPRUXLCzuDs6Yw"
-  }, 
-  {
-    "movie_name": "Beast",
-    "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQCaeMM1WoEb5Rf6xL7MkwSOz7AsvUu8IF4uj7HeF3M-zaZBaPRmilpjpAfZK4_WQ7CVzuT"
-  }, 
-  {
-    "movie_name": "Captain Miller",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BOWI5OGYwNWUtZWE4ZC00NzgwLWExMjMtYmQwZDIyOWM3NTEwXkEyXkFqcGc@._V1_.jpg"
-  }, 
-  {
-    "movie_name": "Thani Oruvan",
-    "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSIo6arI5yPMNpFRTF1Qgy-khg7yThN1zhtNzyRLbjMhUobuQNytamBUEM1i8qJUTI1K2Zq"
-  }, 
-  {
-    "movie_name": "Mahaan",
-    "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRZzjhzt0OjAkJ8gOLrc15d8boAx7Eqg8cIuBAbQduKpYV-R1e8--ZX7_vnKWY747nlf2xmow"
-  }, 
-  {
-    "movie_name": "Maharaja",
-    "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTpbkEsutNLSiwujaN7Dq5ZVsde1LJ-F7yaP7uwMTQ8UWVxSM5yxPGq40OwI-rHUrKYNx46"
-  }, 
-  {
-    "movie_name": "Raayan",
-    "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e4/Raayan_poster.jpg"
-  }
-],
-"comedy":[
-  {
-    "movie_name": "kalakalappu 2",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgt8h-CFEFPA98aSmsIQAcT0M-r0EQ2myZwg&s"
-  }, 
-  {
-    "movie_name": "Mark Antony",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNjI5MThiNGEtNzBlOS00MzY4LWE5NGQtYmJjNGExYThhMDZmXkEyXkFqcGc@._V1_.jpg"
-  }, 
-  {
-    "movie_name": "Remo",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMmYwZjc3MTYtZjg4Ni00MWY3LThiNzctN2ZkOTVlMTMyOWMwXkEyXkFqcGc@._V1_.jpg"
-  }, 
-  {
-    "movie_name": "Don",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BZWYxZjE5MDctMjFkMy00NDA5LTkxY2EtOGU5YjVhZjliNmZlXkEyXkFqcGc@._V1_.jpg"
-  }, 
-  {
-    "movie_name": "Doctor",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt0frOrnLgcANTtvmCGgZ9-hRqNu0JO-7q9-SPgpYjhPWwQu_I0PwVWThhF4G_El-bdxJw"
-  }, 
-  {
-    "movie_name": "Comali",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNjc4YWRlYjMtMzgyOS00OWI1LTk0ZjUtMjE5MTBjYjliMTM2XkEyXkFqcGc@._V1_QL75_UX820_.jpg"
-  }, 
-  {
-    "movie_name": "Zombie",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMjU4YmUwMzQtNjFhOS00NWEwLThhOTUtMWY2MGZhODE3YzljXkEyXkFqcGc@.V1.jpg"
-  }, 
-  {
-    "movie_name": "Gurkha",
-    "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSKV-RRYedQBLcBYh--QEc9Dzt-BQ0veLXYIVn7_kF7rnLM17oYzDbvup2zwXnrUExPs8Wn"
-  }, 
-  {
-    "movie_name": "DD Returns",
-    "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSXK-RL9t-96yvGlix6l6MvQL1DwuBGsWZPao3OJuRsofUg6Ie61ZITd8RaXxFfrhvjZVQRBw"
-  }, 
-  {
-    "movie_name": "Maragadha Naanayam",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv4aiZpeZk_Y-QDn8UpjZrP6sz4f6opSYtHg&s"
-  }, 
-  {
-    "movie_name": "Dhilluku Dhuddu 2",
-    "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQppEfm-U2xtdZSjhShSP5I9tLpDb_QAgVJ6oDvTF-KhnwYhaSKJwO_h7gMPbLMMU38NyJO"
-  }, 
-  {
-    "movie_name": "Dhilluku Dhuddu",
-    "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQFt_rXZGImbiZJ1TKpCta7WK24ZsLd_9XO5qijCRNvNqr-ujhDCdEe-ViTOc26Gq9CWnXFyA"
-  }, 
-  {
-    "movie_name": "Naai Sekar Returns",
-    "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzoPS0Fg5lPhEmp3Zi5QxMUTGkw02tXZ9lI_2lTtAUBWfvaw6s2XRaopcoH40qGmyfC29CIQ"
-  }, 
-  {
-    "movie_name": "Dikkiloona",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMzgwYjA5ZDktOWVjZi00ZDM5LTk2ZDctYjgyNjQzZTIyNGZhXkEyXkFqcGc@.V1.jpg"
-  }, 
-  {
-    "movie_name": "Varalaru Mukkiyam",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BYjkzNmQ5YzItNjY4Ni00NjUzLWJlMzEtOGFhMTI2YjM1N2M4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
-  }
-],
-"romance":[
-  {
-    "movie_name": "Adiyae",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BNjBjMmE0OGEtNGY2Ny00OTUxLWEzZWEtNDhhMjExNTUzOGMyXkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Star",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BOWZiYzU2NDQtMDE5Yi00ZTE5LTljMmQtNjc0MGIxZmFiZjBhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
-  },
-  {
-    "movie_name": "Thiruchitrambalam",
-    "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSlCZsI24nQ7UhiCORtJY740JAjZaslgx_WZQgAMIIkDVgxL6pJjh0ZJqmSW92opfYbSUlY"
-  },
-  {
-    "movie_name": "Sita Ramam",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BYWE0NDNiNzEtNThmMi00NjZlLTk3NDAtYzIzOWNmNWQyYTI3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
-  },
-  {
-    "movie_name": "Hey Sinamika",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9MwVbHejIZWty99t0eXGok4VX-xFKZxJN82rhVgoypySjF8ghuEJISDypOSz5rIUNciektQ"
-  },
-  {
-    "movie_name": "Love Today",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2Q3_aETC2drQ3iIcPI6r4YRBAqeiJFZJncw&s"
-  },
-  {
-    "movie_name": "Romeo",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHZbhbCPzXKO4ZTkUM_9hpAUzD4FkIDs6mJc-6ZtLO08GXCtYthKSCVJJt8Zn3CmkvgGQY_w"
-  },
-  {
-    "movie_name": "O Kadhal Kanmani",
-    "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTbbOVbgHzKYQTJ0AfZqNcZa2PMpD3NW0J48mk0L5zqXlFxrW_0F0BdcH7WWXDx2RaiBYu2_w"
-  },
-  {
-    "movie_name": "Sivakumarin Sabadham",
-    "image_url": "https://m.media-amazon.com/images/M/MV5BMjg3MmViNTQtYTZjNC00NDljLThhNzQtOGEyM2M0YjVkYWQ3XkEyXkFqcGc@._V1_.jpg"
-  },
-  {
-    "movie_name": "Kannum Kannum Kollaiyadithaal",
-    "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ5PqyIUIeI5Bscnj8YfZ9ky-oyU8nU256c4IDFKEBz1Dl-x2icWRvZrsIpPePoBx_5pgMr-w"
-  },
-  {
-    "movie_name": "Rasavathi",
-    "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSHsd6czWHtX4RmfgMyWNlHd0EBXradBpIbURIb4RR81S14rEjwakDvIiStx44GN9poAGk36A"
-  },
-  {
-    "movie_name": "Saba Nayagan",
-    "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRGKf3Bt26jjhe9TS1LbSnH4TdyPcAy1Vn23aZQ8zjOjv5Zg2PGYaClnOXBxtDJeHKlVYj7Ww"
-  },
-  {
-    "movie_name": "Jeeva",
-    "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ0K9svVxnAvKsDU0WfW1ziZrnyiXa9Y9n1kWQ-AOJobl_uBxMjiZjc0ufJYqRqxFhwoJp9"
-  },
-  {
-    "movie_name": "Kaathuvaakula Rendu Kaadhal",
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEl9Y6o0zPek-zhD1nRBsRyvozaYwYuOue34WxtJRuPMoQLGw-BRSJfuIOHyz8AcjsU4pwQ"
-  },
-  {
-    "movie_name": "Anegan",
-    "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSe_gsrXGoy4sf8fFUKy4agw3qUctwETgxnLre9wJgs94BC1XHJfK-888OXAQHdXaDRKTJFEw"
-}
-]
+    {
+        "title": "Sarpatta Parambarai",
+        "genre": "Sports/Drama",
+        "poster": "Sarpatta Parambarai",
+        "movie_name": "Sarpatta Parambarai",
+        "release_date": "2021",
+        "stream_url": "https://www.amazon.in/Prime-Video",
+        "play_time": "2h 34m",
+        "rating": "8.5 / 10",
+        "image_url": "https://resizing.flixster.com/79azmZWaNtQ8HorqCqwPtqipqbk=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p20388422_p_v13_ac.jpg",
+      "description": "A 1970s boxing drama about the rivalry between two boxing clans in Chennai, inspired by real events, highlighting the power of sport in a turbulent era."
+    },
+    {
+        "title": "Thunivu",
+        "genre": "Action/Thriller",
+        "movie_name": "Thunivu",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 28m",
+        "rating": "(TBD)",
+       "image_url": "https://m.media-amazon.com/images/M/MV5BODYxMzUzYjktZjc0Yi00NzYwLWI0MDItZGE5ZThiOGEyMzJiXkEyXkFqcGc@._V1_.jpg",
+       "description": " A gripping heist thriller that follows a daring robbery by a group of criminals, who must outwit law enforcement and navigate treacherous betrayals."
+    },
+    {
+        "title": "Jailer",
+        "genre": "Action/Thriller",
+        "movie_name": "Jailer",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 50m",
+        "rating": "7.9 / 10",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9RPV_hOOq5uZE6WPWwxFKYrhNZ2i8oniVwg&s",
+      "description": "A high-octane action thriller that centers around a veteran jailer and his battle against a group of notorious criminals who threaten his family and life."
+    },
+    {
+        "title": "Vettaiyan",
+        "genre": "Action/Drama",
+        "movie_name": "Vettaiyan",
+        "release_date": "2012",
+        "stream_url": "(TBD)",
+        "play_time": "2h 34m",
+        "rating": "6.5 / 10",
+       "image_url": "https://m.media-amazon.com/images/M/MV5BMjc2MGY3NGEtZGYyZC00MmIyLThjMjMtZGZhYmYzNzJhYTJjXkEyXkFqcGc@.V1_QL75_UX145.jpg",
+      "description": "A crime thriller set in the backdrop of rural Tamil Nadu, focusing on a man seeking revenge against a corrupt political system that has wronged him."
+    },
+    {
+        "title": "Leo",
+        "genre": "Action/Thriller",
+        "movie_name": "Leo",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 50m",
+        "rating": "7.8 / 10",
+       "image_url": "https://m.media-amazon.com/images/M/MV5BZTRhNzIxOGEtZDY1Zi00MGQ1LWFiMDUtYTY5NzE4YjY4NDI1XkEyXkFqcGc@._V1_.jpg",
+      "description": "An intense action-packed movie following a man's quest for redemption and justice, battling enemies and uncovering secrets from his past."
+    },
+    {
+        "title": "Jigarthanda Double X",
+        "genre": "Action/Drama/Thriller",
+        "movie_name": "Jigarthanda Double X",
+        "release_date": "2024",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "(TBD)",
+      "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQdyO2NnXnXxfXsQMdgCfLw_mWRgr_tQzPc6XfcqY_14ow3bjNdGvFab0hCCCIlL9J91INj",
+       "description": "The sequel to the hit film Jigarthanda,this movie is a mix of thriller and action as it follows new twists in the dark world of cinema and crime."
+    },
+    {
+        "title": "Master",
+        "genre": "Action/Thriller",
+        "movie_name": "Master",
+        "release_date": "2021",
+        "stream_url": "(TBD)",
+        "play_time": "2h 58m",
+        "rating": "8.1 / 10",
+       "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRswG6NZHowsW-JNXViNEDWtLlhbU2hezeURZYUP-h_Azckt1z5pLLBcua_SPRUXLCzuDs6Yw",
+      "description": "A mass-action entertainer about a professor who is sent to a juvenile school to reform its students, but soon faces off against a ruthless criminal mastermind."
+    },
+    {
+        "title": "Beast",
+        "genre": "Action/Thriller",
+        "movie_name": "Beast",
+        "release_date": "2022",
+        "stream_url": "(TBD)",
+        "play_time": "2h 35m",
+        "rating": "6.8 / 10",
+      "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQCaeMM1WoEb5Rf6xL7MkwSOz7AsvUu8IF4uj7HeF3M-zaZBaPRmilpjpAfZK4_WQ7CVzuT",
+      "description": "An action-packed thriller that follows a spy who is sent on a mission to rescue hostages from a hijacked mall, with intense combat and explosive sequences."
+    },
+    {
+        "title": "Captain Miller",
+        "genre": "Action/Adventure/Drama",
+        "movie_name": "Captain Miller",
+        "release_date": "2024",
+        "stream_url": "(TBD)",
+        "play_time": "2h 45m",
+        "rating": "(TBD)",
+        "image_url": "https://m.media-amazon.com/images/M/MV5BOWI5OGYwNWUtZWE4ZC00NzgwLWExMjMtYmQwZDIyOWM3NTEwXkEyXkFqcGc@._V1_.jpg",
+       "description": "A gripping historical-action film about a fearless leader and warrior, set against the backdrop of a significant battle in Indian history."
+    },
+    {
+        "title": "Thani Oruvan",
+        "genre": "Action/Thriller",
+        "movie_name": "Thani Oruvan",
+        "release_date": "2015",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "8.4 / 10",
+      "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSIo6arI5yPMNpFRTF1Qgy-khg7yThN1zhtNzyRLbjMhUobuQNytamBUEM1i8qJUTI1K2Zq",
+      "description": "A stylish action thriller about a cop who tries to catch a mastermind criminal using intelligence and strategy, while dealing with personal stakes."
+    },
+    {
+        "title": "Mahaan",
+        "genre": "Action/Drama",
+        "movie_name": "Mahaan",
+        "release_date": "2022",
+        "stream_url": "https://www.amazon.in/Prime-Video",
+        "play_time": "2h 40m",
+        "rating": "7.8 / 10",
+      "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRZzjhzt0OjAkJ8gOLrc15d8boAx7Eqg8cIuBAbQduKpYV-R1e8--ZX7_vnKWY747nlf2xmow",
+      "description": "A family drama turned action-thriller, where the protagonist leaves his past life behind, only to be pulled back into it by the need to protect his family."
+    },
+    {
+        "title": "Maharaja",
+        "genre": "Action/Drama",
+        "movie_name": "Maharaja",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "(TBD)",
+      "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTpbkEsutNLSiwujaN7Dq5ZVsde1LJ-F7yaP7uwMTQ8UWVxSM5yxPGq40OwI-rHUrKYNx46",
+     "description": " A tale of power, politics, and the struggle for supremacy within a royal family, with themes of betrayal, love, and revenge."
+    },
+    {
+        "title": "Raayan",
+        "genre": "Action/Drama",
+        "movie_name": "Raayan",
+        "release_date": "(TBD)",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "7.0 / 10",
+      "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e4/Raayan_poster.jpg",
+      "description": "A drama that follows the journey of a man who fights to overcome social and personal adversities, with a deep emotional connection to his roots and heritage."
+    }
+  ],
+  "comedy": [
+    {
+        "title": "Kalakalappu 2",
+        "genre": "Comedy/Drama",
+        "poster": "Kalakalappu 2",
+        "movie_name": "Kalakalappu 2",
+        "release_date": "2018",
+        "stream_url": "https://www.netflix.com",
+        "play_time": "2h 12m",
+        "rating": "6.5 / 10",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgt8h-CFEFPA98aSmsIQAcT0M-r0EQ2myZwg&s",
+       "description": "A comedy film that revolves around a series of hilarious misunderstandings and family dynamics, filled with quirky characters and lighthearted moments."
+    },
+    {
+        "title": "Mark Antony",
+        "genre": "Action/Thriller",
+        "poster": "Mark Antony",
+        "movie_name": "Mark Antony",
+        "release_date": "2023",
+        "stream_url": "https://www.netflix.com",
+        "play_time": "2h 30m",
+        "rating": "7.8 / 10",
+        "image_url": "https://m.media-amazon.com/images/M/MV5BNjI5MThiNGEtNzBlOS00MzY4LWE5NGQtYmJjNGExYThhMDZmXkEyXkFqcGc@._V1_.jpg",
+        "description": "A thrilling action-packed film where a young man takes on a powerful criminal syndicate while uncovering secrets about his own past."
+    },
+    {
+        "title": "Remo",
+        "genre": "Romantic/Comedy",
+        "movie_name": "Remo",
+        "release_date": "2016",
+        "stream_url": "(TBD)",
+        "play_time": "2h 28m",
+        "rating": "6.5 / 10",
+       "image_url": "https://m.media-amazon.com/images/M/MV5BMmYwZjc3MTYtZjg4Ni00MWY3LThiNzctN2ZkOTVlMTMyOWMwXkEyXkFqcGc@._V1_.jpg",
+      "description": "A light-hearted romantic comedy about a man who disguises himself as a woman to win the heart of the woman he loves, but things get complicated."
+    },
+    {
+        "title": "Don",
+        "genre": "Comedy/Drama",
+        "movie_name": "Don",
+        "release_date": "2022",
+        "stream_url": "(TBD)",
+        "play_time": "2h 40m",
+        "rating": "7.3 / 10",
+       "image_url": "https://m.media-amazon.com/images/M/MV5BZWYxZjE5MDctMjFkMy00NDA5LTkxY2EtOGU5YjVhZjliNmZlXkEyXkFqcGc@._V1_.jpg",
+      "description": "A college student who transforms into a feared criminal mastermind to protect his loved ones, leading to a journey full of action and drama."
+    },
+    {
+        "title": "Doctor",
+        "genre": "Action/Comedy/Thriller",
+        "movie_name": "Doctor",
+        "release_date": "2021",
+        "stream_url": "https://www.amazon.in/Prime-Video",
+        "play_time": "2h 30m",
+        "rating": "7.8 / 10",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt0frOrnLgcANTtvmCGgZ9-hRqNu0JO-7q9-SPgpYjhPWwQu_I0PwVWThhF4G_El-bdxJw",
+      "description": "A medical thriller with a mix of humor, where a doctor embarks on a mission to rescue a kidnapped girl while confronting several criminals in his path."
+    },
+    {
+        "title": "Comali",
+        "genre": "Comedy/Drama",
+        "movie_name": "Comali",
+        "release_date": "2019",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "7.0 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BNjc4YWRlYjMtMzgyOS00OWI1LTk0ZjUtMjE5MTBjYjliMTM2XkEyXkFqcGc@._V1_QL75_UX820_.jpg",
+      "description": "A comedy-drama where a man who wakes up from a coma after 16 years finds himself struggling to adapt to the technological and cultural changes in society."
+    },
+    {
+        "title": "Zombie",
+        "genre": "Comedy/Horror",
+        "movie_name": "Zombie",
+        "release_date": "2021",
+        "stream_url": "(TBD)",
+        "play_time": "2h 15m",
+        "rating": "6.1 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMjU4YmUwMzQtNjFhOS00NWEwLThhOTUtMWY2MGZhODE3YzljXkEyXkFqcGc@.V1.jpg",
+      "description": "A comedy-horror movie where a group of friends must survive a zombie apocalypse in a small town, leading to a series of both scary and funny situations."
+    },
+    {
+        "title": "Gurkha",
+        "genre": "Comedy/Action",
+        "movie_name": "Gurkha",
+        "release_date": "2020",
+        "stream_url": "(TBD)",
+        "play_time": "2h 20m",
+        "rating": "5.9 / 10",
+       "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSKV-RRYedQBLcBYh--QEc9Dzt-BQ0veLXYIVn7_kF7rnLM17oYzDbvup2zwXnrUExPs8Wn",
+      "description": " A high-energy action film about a soldier on a mission to protect his loved ones from an enemy force, mixing action with intense emotional moments."
+    },
+    {
+        "title": "DD Returns",
+        "genre": "Comedy/Horror",
+        "movie_name": "DD Returns",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 10m",
+        "rating": "6.0 / 10",
+      "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSXK-RL9t-96yvGlix6l6MvQL1DwuBGsWZPao3OJuRsofUg6Ie61ZITd8RaXxFfrhvjZVQRBw",
+      "description": "A sequel to the hit film DD, this movie continues the comedy and thrill as the characters deal with new misadventures and mysteries."
+    },
+    {
+        "title": "Maragadha Naanayam",
+        "genre": "Comedy/Action/Fantasy",
+        "movie_name": "Maragadha Naanayam",
+        "release_date": "2017",
+        "stream_url": "(TBD)",
+        "play_time": "2h 20m",
+        "rating": "7.3 / 10",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv4aiZpeZk_Y-QDn8UpjZrP6sz4f6opSYtHg&s",
+      "description": " A fantasy-adventure movie that follows a group of treasure hunters as they search for a mythical gem, encountering various hurdles along the way."
+    },
+    {
+        "title": "Dhilluku Dhuddu 2",
+        "genre": "Comedy/Horror",
+        "movie_name": "Dhilluku Dhuddu 2",
+        "release_date": "2019",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "5.7 / 10",
+       "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQppEfm-U2xtdZSjhShSP5I9tLpDb_QAgVJ6oDvTF-KhnwYhaSKJwO_h7gMPbLMMU38NyJO",
+       "description": "A comedy-horror film where the protagonist gets caught in a terrifying yet funny situation involving ghosts and paranormal activities."
+    },
+    {
+      "title": "Dhilluku Dhuddu",
+      "genre": "Comedy/Horror",
+      "movie_name": "Dhilluku Dhuddu",
+      "release_date": "2016",
+      "stream_url": "(TBD)",
+      "play_time": "2h 15m",
+      "rating": "5.9 / 10",
+      "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQFt_rXZGImbiZJ1TKpCta7WK24ZsLd_9XO5qijCRNvNqr-ujhDCdEe-ViTOc26Gq9CWnXFyA",
+      "description": "A comedy-horror film that mixes laughs with thrills as a man confronts a series of supernatural events at a mysterious haunted location."
+    },
+    {
+        "title": "Naai Sekar Returns",
+        "genre": "Comedy/Action",
+        "movie_name": "Naai Sekar Returns",
+        "release_date": "2022",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "6.1 / 10",
+      "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzoPS0Fg5lPhEmp3Zi5QxMUTGkw02tXZ9lI_2lTtAUBWfvaw6s2XRaopcoH40qGmyfC29CIQ",
+      "description": ">A comedy-thriller about a man with a unique ability who gets entangled in a series of bizarre and funny situations while dealing with mysterious forces."
+    },
+    {
+        "title": "Dikkiloona",
+        "genre": "Sci-Fi/Comedy",
+        "movie_name": "Dikkiloona",
+        "release_date": "2020",
+        "stream_url": "https://www.hotstar.com/in/movies/dikkiloona/1260059372",
+        "play_time": "2h 20m",
+        "rating": "5.9 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMzgwYjA5ZDktOWVjZi00ZDM5LTk2ZDctYjgyNjQzZTIyNGZhXkEyXkFqcGc@.V1.jpg",
+      "description": "A science-fiction comedy about a man who gets caught in a time-travel mishap and has to fix his past mistakes while navigating a series of comedic events."
+    },
+    {
+        "title": "Varalaru Mukkiyam",
+        "genre": "Comedy/Drama",
+        "movie_name": "Varalaru Mukkiyam",
+        "release_date": "2022",
+        "stream_url": "(TBD)",
+        "play_time": "2h 15m",
+        "rating": "6.0 / 10",
+       "image_url": "https://m.media-amazon.com/images/M/MV5BYjkzNmQ5YzItNjY4Ni00NjUzLWJlMzEtOGFhMTI2YjM1N2M4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+      "description": "A fun-filled romantic comedy about a man who navigates complex relationships and family situations, filled with humor and charm."
+    }
+  ],
+  "romance": [
+    {
+    
+        "title": "Adiyae",
+        "genre": "Drama/Romance",
+        "poster": "Adiyae",
+        "movie_name": "Adiyae",
+        "release_date": "2023",
+        "stream_url": "https://www.examplestreaming.com",
+        "play_time": "2h 15m",
+        "rating": "7.5 / 10",
+       "image_url": "https://m.media-amazon.com/images/M/MV5BNjBjMmE0OGEtNGY2Ny00OTUxLWEzZWEtNDhhMjExNTUzOGMyXkEyXkFqcGc@._V1_.jpg",
+      "description": "A Tamil film exploring complex emotions and relationships, with a captivating title that hints at deep personal connections."
+    },
+    {
+        "title": "Star",
+        "genre": "Drama/Action",
+        "movie_name": "Star",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "6.8 / 10",
+       "image_url": "https://m.media-amazon.com/images/M/MV5BOWZiYzU2NDQtMDE5Yi00ZTE5LTljMmQtNjc0MGIxZmFiZjBhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+       "description": " A romantic drama blending love with historical elements, widely praised for its emotional depth and storytelling."
+    },
+    {
+        "title": "Thiruchitrambalam",
+        "genre": "Drama/Romance",
+        "movie_name": "Thiruchitrambalam",
+        "release_date": "2022",
+        "stream_url": "https://www.hotstar.com/in/movies/thiruchitrambalam/1260059241",
+        "play_time": "2h 20m",
+        "rating": "7.8 / 10",
+      "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSlCZsI24nQ7UhiCORtJY740JAjZaslgx_WZQgAMIIkDVgxL6pJjh0ZJqmSW92opfYbSUlY",
+      "description": "A modern romantic comedy that delves into love and relationships in the digital age, blending humor with heartfelt moments."
+    },
+    {
+        "title": "Sita Ramam",
+        "genre": "Romance/Drama",
+        "movie_name": "Sita Ramam",
+        "release_date": "2022",
+        "stream_url": "https://www.amazon.in/Prime-Video",
+        "play_time": "2h 33m",
+        "rating": "8.4 / 10",
+       "image_url": "https://m.media-amazon.com/images/M/MV5BYWE0NDNiNzEtNThmMi00NjZlLTk3NDAtYzIzOWNmNWQyYTI3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+       "description": "A heartwarming family and romantic drama that explores love, sacrifice, and destiny, set against a poignant backdrop of emotions and historical events."
+    },
+    {
+        "title": "Hey Sinamika",
+        "genre": "Romantic Comedy/Drama",
+        "movie_name": "Hey Sinamika",
+        "release_date": "2022",
+        "stream_url": "(TBD)",
+        "play_time": "2h 22m",
+        "rating": "6.0 / 10",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9MwVbHejIZWty99t0eXGok4VX-xFKZxJN82rhVgoypySjF8ghuEJISDypOSz5rIUNciektQ",
+      "description": " A breezy romantic heist film filled with surprises, blending love, adventure, and unexpected twists."
+    },
+    {
+        "title": "Love Today",
+        "genre": "Romantic Comedy/Drama",
+        "movie_name": "Love Today",
+        "release_date": "2022",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "8.0 / 10",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2Q3_aETC2drQ3iIcPI6r4YRBAqeiJFZJncw&s",
+      "description": "A modern romantic comedy-drama revolving around a unique love triangle, where emotions and relationships collide in a digital age."
+    },
+    {
+        "title": "Romeo",
+        "genre": "Romantic Action/Drama",
+        "movie_name": "Romeo",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 25m",
+        "rating": "6.5 / 10",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHZbhbCPzXKO4ZTkUM_9hpAUzD4FkIDs6mJc-6ZtLO08GXCtYthKSCVJJt8Zn3CmkvgGQY_w",
+      "description": "A celebrated urban romance, exploring love, relationships, and societal pressures. The film delves into the emotional conflicts of modern love."
+    },
+    {
+        "title": "O Kadhal Kanmani",
+        "genre": "Romance/Drama",
+        "movie_name": "O Kadhal Kanmani",
+        "release_date": "2015",
+        "stream_url": "https://www.amazon.in/Prime-Video",
+        "play_time": "2h 15m",
+        "rating": "8.2 / 10",
+      "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTbbOVbgHzKYQTJ0AfZqNcZa2PMpD3NW0J48mk0L5zqXlFxrW_0F0BdcH7WWXDx2RaiBYu2_w",
+      "description": "A family drama-comedy centered around traditions and a young protagonist's journey to uphold them."
+    },
+    {
+        "title": "Sivakumarin Sabadham",
+        "genre": "Romantic Comedy/Drama",
+        "movie_name": "Sivakumarin Sabadham",
+        "release_date": "2021",
+        "stream_url": "(TBD)",
+        "play_time": "2h 24m",
+        "rating": "6.0 / 10",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMjg3MmViNTQtYTZjNC00NDljLThhNzQtOGEyM2M0YjVkYWQ3XkEyXkFqcGc@._V1_.jpg",
+      "description": "A romantic heist drama that blends charm and unexpected twists, showcasing the adventures of con artists in love."
+    },
+    {
+        "title": "Kannum Kannum Kollaiyadithaal",
+        "genre": "Romantic Comedy/Thriller",
+        "movie_name": "Kannum Kannum Kollaiyadithaal",
+        "release_date": "2020",
+        "stream_url": "https://www.netflix.com/in/title/81277332",
+        "play_time": "2h 39m",
+        "rating": "8.1 / 10",
+       "image_url": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ5PqyIUIeI5Bscnj8YfZ9ky-oyU8nU256c4IDFKEBz1Dl-x2icWRvZrsIpPePoBx_5pgMr-w",
+      "description": "Not much is widely known about this title, but it could relate to a story involving strong emotions or cultural themes."
+    },
+    {
+        "title": "Rasavathi",
+        "genre": "Romantic Drama",
+        "movie_name": "Rasavathi",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 10m",
+        "rating": "6.5 / 10",
+      "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSHsd6czWHtX4RmfgMyWNlHd0EBXradBpIbURIb4RR81S14rEjwakDvIiStx44GN9poAGk36A",
+      "description": "Likely a tale of heroism or a person of influence. Its title suggests a narrative centered on leadership or impactful storytelling."
+    },
+    {
+        "title": "Saba Nayagan",
+        "genre": "Action/Drama",
+        "movie_name": "Saba Nayagan",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 30m",
+        "rating": "6.5 / 10",
+       "image_url": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRGKf3Bt26jjhe9TS1LbSnH4TdyPcAy1Vn23aZQ8zjOjv5Zg2PGYaClnOXBxtDJeHKlVYj7Ww",
+      "description": "A sports drama highlighting the life and struggles of a young cricketer who dreams of playing for the national team."
+    },
+    {
+        "title": "Jeeva",
+        "genre": "Action/Drama",
+        "movie_name": "Jeeva",
+        "release_date": "2023",
+        "stream_url": "(TBD)",
+        "play_time": "2h 25m",
+        "rating": "6.8 / 10",
+       "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ0K9svVxnAvKsDU0WfW1ziZrnyiXa9Y9n1kWQ-AOJobl_uBxMjiZjc0ufJYqRqxFhwoJp9",
+      "description": "A quirky romantic comedy-drama that navigates a love triangle, filled with emotional challenges and misunderstandings."
+    },
+    {
+        "title": "Kaathuvaakula Rendu Kaadhal",
+        "genre": "Romantic Comedy",
+        "movie_name": "Kaathuvaakula Rendu Kaadhal",
+        "release_date": "2022",
+        "stream_url": "https://www.hotstar.com/in/movies/kaathuvaakula-rendu-kaadhal/1260071277",
+        "play_time": "2h 38m",
+        "rating": "6.7 / 10",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoEl9Y6o0zPek-zhD1nRBsRyvozaYwYuOue34WxtJRuPMoQLGw-BRSJfuIOHyz8AcjsU4pwQ",
+      "description": "A thrilling romance with a reincarnation twist, the film explores a love story that transcends time, connecting emotions and relationships across different timelines."
+    },
+    {
+        "title": "Anegan",
+        "genre": "Action/Thriller/Romance",
+        "movie_name": "Anegan",
+        "release_date": "2015",
+        "stream_url": "https://www.hotstar.com/in/movies/aneghan/1260070720",
+        "play_time": "2h 47m",
+        "rating": "7.3 / 10",
+       "image_url": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSe_gsrXGoy4sf8fFUKy4agw3qUctwETgxnLre9wJgs94BC1XHJfK-888OXAQHdXaDRKTJFEw",
+      "description": "Anegan is a multi-lifetime love story that blends romance, mystery, and suspense, exploring the connection between past and present relationships."
+    }
+  ]
 }
