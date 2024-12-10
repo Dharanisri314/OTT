@@ -27,7 +27,7 @@ body {
 header ul{
     display: flex;
     justify-content: flex-end;
-    margin-right: 380px;
+    
 }
 header ul li{
     list-style: none;
@@ -719,18 +719,19 @@ h4 {
 }
 
 
-
 /* Styling for the username display */
 #usernameDisplay {
     font-size: 20px;         /* Set font size */
     font-weight: bold;       /* Make the text bold */
-    color: #333;             /* Set text color */
-    background-color: #f0f0f0; /* Light background color */
-    padding: 10px 20px;      /* Add padding around the text */
+    color:black;             /* Set text color */
+    background-color: white; /* Light background color */
+    padding: 10px;   /* Add padding around the text */
     border-radius: 5px;      /* Rounded corners */
     display: inline-block;   /* Inline block display to adjust with content */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
     margin-top: 10px;        /* Add some margin at the top */
+    text-align: center;   
+    margin-right: 40px;   /* Align the text horizontally inside the element */
 }
 
 /* Optional: Hover effect */
@@ -739,8 +740,16 @@ h4 {
     cursor: pointer;           /* Pointer cursor when hovering */
 }
 
+/* Aligning the parent container or header (if applicable) */
 
+/* If you want the text aligned to the left or right within the header */
+header.left-aligned #usernameDisplay {
+    text-align: left;
+}
 
+header.right-aligned #usernameDisplay {
+    text-align: right;
+}
 
 
 

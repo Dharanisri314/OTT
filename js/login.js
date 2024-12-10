@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log("Logged in as:", user.email);
                     alert("Login Successful");
                     // Redirect or show a success message
-                    window.location.href = '/main.html'; // Example redirection after login
+                    window.location.href = "../html/main1.html"; // Example redirection after login
                 })
                 .catch((error) => {
                     const errorCode = error.code;

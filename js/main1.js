@@ -129,18 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 const images = document.querySelectorAll(".carousel-image");
 const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');

@@ -96,7 +96,7 @@ else if (!/^[A-Z][a-zA-Z\s]*$/.test(usernameValue)) {
                     // Signed up successfully
                     const user = userCredential.user;
                     console.log('User created successfully:', user.email);
-                    window.location.href = '/main.html'; // Example redirection
+                    window.location.href = "../html/main1.html"; // Example redirection
                 })
                 .catch((error) => {
                     // Handle Firebase-specific errors
