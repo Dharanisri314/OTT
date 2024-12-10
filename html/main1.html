@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,17 +14,17 @@
 <body>
     <header>
         <div class="name">Film <span style="color: rgb(233, 173, 53); font-weight: bold;">k</span>i <span style="color: rgb(233, 173, 53);font-weight: bold;">shamiksha</span></div>
-        <form>
+        <form id="search-form">
             <input type="text" name="search" id="search-input" placeholder="Search">
-            <button id="search-btn">
+            <button type="button" id="search-btn">
                 <div id="search-bg"></div>
                 <img src="/assets/images/search-img1.png" alt="Search" width="35px" id="search-img">
             </button>
         </form>
         <ul>
-            <li><a href="#Home">HOME</a></li>
-            <li><a href="#Thriller" id="thriller">Thriller</a></li>
-            <li><a href="#Horrow" id="horrow">Horrow</a></li>
+            <li><a href="#Home" id="Home">Home</a></li>
+            <li><a href="#Thriller"id="Thriller" >Thriller</a></li>
+            <li><a href="#Horror" id="horrow">Horror</a></li>
             <li><a href="#Action" id="thriller">Action</a></li>
             <li><a href="#Comedy" id="comedy">Comedy</a></li>
             <li><a href="#Romance" id="romance">Romance</a></li>
@@ -36,18 +35,45 @@
         </div>
     </header>
     <main>
-        <!-- <div>
-            <div class="slider">
-                <figure>
-                    <div class="slied">
-                        <h1>Gamber satu</h1>
-                        <img src="/assets/images/Amaran.jpg" alt="">
-                    </div>
-                </figure>
-            </div>
-        </div> -->
-        - <img src="/assets/images/premalu1.jpg" width="2400px" height="900px" alt="Main banner"> 
-        <div id="mainContainer"></div>
+
+        <div class="slider-container">
+    <h1 id="prevButton">❮</h1>
+    <div class="movie_slide_container" id="movieSlideContainer">
+        <div class="slide carousel-image">
+            <img src="/assets/images/Amaran.jpg" width="2500px" height="1000px" alt="First">
+        </div>
+        <div class="slide carousel-image">
+            <img src="/assets/images/sita_raman.jpg" width="2500px"  height="1000px" alt="">
+        </div>
+        <div class="slide carousel-image">
+            <img src="/assets/images/" width="2500px"  height="1000px" alt="">
+        </div>
+        <div class="slide carousel-image">
+            <img src="/assets/images/k5.jpg" width="2500px"  height="1000px" alt="">
+        </div>
+        <div class="slide carousel-image">
+            <img src="/assets/images/premalu3.jpg" width="2500px"  height="1000px" alt="">
+        </div>
+        <div class="slide carousel-image">
+            <img src="/assets/images/hey4.jpg" width="2500px"  height="1000px" alt="">
+        </div>
+        <div class="slide carousel-image">
+            <img src="/assets/images/100-days-love.jpg" width="2500px"  height="1000px" alt="">
+        </div>
+        <div class="slide carousel-image">
+            <img src="/assets/images/oh may.jpg" width="2500px"  height="1000px" alt="">
+        </div>
+        <div class="slide carousel-image">
+            <img src="/assets/images/svp.jpg" width="2500px"  height="1000px" alt="">
+        </div>
+    </div>
+    <h1 id="nextButton">❯</h1>
+</div>
+
+        
+       
+        <div id="mainContainer"></div> 
+       
     </main>
     <footer>
         <div class="container">
@@ -127,6 +153,9 @@
     <!-- Include your other JS for movie display and functionality -->
     <script type="module" src="/js/main1.js" defer></script>
     <script type="module" src="/js/login.js" defer></script>
+
+
 </body>
 
 </html>
+

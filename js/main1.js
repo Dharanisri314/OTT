@@ -1,114 +1,189 @@
 
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('search-input');
+    const movieContainer = document.getElementById('mainContainer'); // The container where movie sections are created
 
-function createSection(sectionName, movies) {
-    // Create section container
-    const sectionContainer = document.createElement("div");
-    sectionContainer.classList.add("section-container");
+    // Function to fetch and display all movies initially
+    function displayAllMovies() {
+        fetch("../assets/json/main1.json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok: " + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Iterate through each section and display all movies
+                Object.keys(data).forEach(sectionName => {
+                    const movies = data[sectionName];
+                    createSection(sectionName, movies);
+                });
+            })
+            .catch(error => console.error("Error fetching the movie data:", error));
+    }
 
-    // Section title
-    const sectionTitle = document.createElement("h2");
-    sectionTitle.textContent = sectionName.charAt(0).toUpperCase() + sectionName.slice(1);
-    sectionContainer.appendChild(sectionTitle);
+    // Function to filter and display matching movies based on search query
+    function filterMovies(query) {
+        // Clear the current results
+        movieContainer.innerHTML = '';
 
-    // Carousel container
-    const carousel = document.createElement("div");
-    carousel.classList.add("carousel");
+        // Fetch the movie data again to filter
+        fetch("../assets/json/main1.json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok: " + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Iterate through each section and filter the movies
+                Object.keys(data).forEach(sectionName => {
+                    const movies = data[sectionName];
 
-    movies.forEach(movie => {
-        // Create movie card
-        const movieCard = document.createElement("div");
-        movieCard.classList.add("movie-card");
+                    // Filter movies based on the first letter for partial search
+                    const filteredMovies = movies.filter(movie => 
+                        movie.movie_name.toLowerCase().startsWith(query.toLowerCase()) || // Matches the start of movie name
+                        movie.description.toLowerCase().includes(query.toLowerCase()) // Matches the description anywhere
+                    );
 
-        // Movie image
-        const movieImage = document.createElement("img");
-        movieImage.src = movie.image_url;
-        movieImage.alt = movie.movie_name;
+                    // Create and display section with filtered movies
+                    if (filteredMovies.length > 0) {
+                        createSection(sectionName, filteredMovies);
+                    }
+                });
+            })
+            .catch(error => console.error("Error fetching the movie data:", error));
+    }
 
-        // Movie name
-        const movieName = document.createElement("h3");
-        movieName.classList.add("movie-title"); // Added class for movie title
-        movieName.textContent = movie.movie_name;
+    // Function to create and display a section with movies
+    function createSection(sectionName, movies) {
+        const sectionContainer = document.createElement("div");
+        sectionContainer.id = `${sectionName.charAt(0).toUpperCase() + sectionName.slice(1)}`;
+        sectionContainer.classList.add("section-container");
 
-        // Movie description
-        const movieDescription = document.createElement("p");
-        movieDescription.textContent = movie.description;
+        const sectionTitle = document.createElement("h2");
+        sectionTitle.textContent = sectionName.charAt(0).toUpperCase() + sectionName.slice(1);
+        sectionContainer.appendChild(sectionTitle);
 
-        // Append image, name, and description to movie card
-        movieCard.appendChild(movieImage);
-        movieCard.appendChild(movieName);
-        movieCard.appendChild(movieDescription);
+        const carousel = document.createElement("div");
+        carousel.classList.add("carousel");
 
-        // Append movie card to carousel
-        carousel.appendChild(movieCard);
-    });
+        movies.forEach(movie => {
+            const movieCard = document.createElement("div");
+            movieCard.classList.add("movie-card");
 
-    // Append carousel to section container
-    sectionContainer.appendChild(carousel);
+            const movieImage = document.createElement("img");
+            movieImage.src = movie.image_url;
+            movieImage.alt = movie.movie_name;
 
-    // Append section container to main container
-    document.getElementById("mainContainer").appendChild(sectionContainer);
+            const movieName = document.createElement("h3");
+            movieName.classList.add("movie-title");
+            movieName.textContent = movie.movie_name;
 
-    // Attach click event listeners after cards are created
-    attachMovieCardListeners();
-}
+            const movieDescription = document.createElement("p");
+            movieDescription.textContent = movie.description;
 
-// Fetch JSON data and populate movies
-document.addEventListener("DOMContentLoaded", () => {
-    fetch("../assets/json/main1.json")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok: " + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Iterate through each section (thriller, horror, action, etc.)
-            Object.keys(data).forEach(sectionName => {
-                const movies = data[sectionName];
-                createSection(sectionName, movies);
+            // Add the click event listener to the movie card for redirection
+            movieCard.addEventListener("click", function () {
+                window.location.href = `movie-details.html?title=${encodeURIComponent(movie.movie_name)}`;
             });
-        })
-        .catch(error => console.error("Error fetching the movie data:", error));
-});
 
-// Attach click event listeners to movie cards
-function attachMovieCardListeners() {
-    document.querySelectorAll(".movie-card").forEach(card => {
-        card.addEventListener("click", () => {
-            const movieTitle = card.querySelector(".movie-title").textContent;
-            // Redirect to next.html with the movie title as a query parameter
-            window.location.href = `movie-details.html?title=${encodeURIComponent(movieTitle)}`;
+            movieCard.appendChild(movieImage);
+            movieCard.appendChild(movieName);
+            movieCard.appendChild(movieDescription);
+
+            carousel.appendChild(movieCard);
         });
-    });
-}
 
-     // Real-time search functionality
-     const searchInput = document.getElementById("search-input");
+        sectionContainer.appendChild(carousel);
+        movieContainer.appendChild(sectionContainer);
+    }
 
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value.trim().toLowerCase();
-         filterMovies(query);
-     });
+    // Initially display all movies when the page loads
+    displayAllMovies();
 
- // Function to filter movies based on search query
-function filterMovies(query) {
-    const filteredMovies = {};
-
-     if (query === "") {
-         renderSections(allMovies); // If search query is empty, show all movies
-         return;
-  }
-
-    Object.keys(allMovies).forEach(sectionName => {
-        const filtered = allMovies[sectionName].filter(movie =>
-            movie.movie_name.toLowerCase().includes(query)
-        );
-        if (filtered.length > 0) {
-            filteredMovies[sectionName] = filtered;
+    // Event listener for search input (real-time search functionality)
+    searchInput.addEventListener("input", function () {
+        const query = searchInput.value.trim();
+        if (query.length > 0) {
+            filterMovies(query); // Trigger real-time search
+        } else {
+            // If the search input is cleared, display all movies again
+            movieContainer.innerHTML = ''; // Clear the container
+            displayAllMovies(); // Display all movies
         }
     });
 
-     renderSections(filteredMovies); // Render filtered sections
- }
+    // Optional: You can add a form submit handler if you are using a form element for search
+    const searchForm = document.getElementById('search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent form submission
+            const query = searchInput.value.trim();
+            if (query.length > 0) {
+                filterMovies(query); // Trigger real-time search on form submission
+            }
+        });
+    }
+});
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const images = document.querySelectorAll(".carousel-image");
+const prevButton = document.getElementById('prevButton');
+const nextButton = document.getElementById('nextButton');
+let currentIndex = 0;
+
+function updateCarousel() {
+    images.forEach((img, index) => {
+        img.classList.remove("center", "left", "right");
+
+        if (index === currentIndex) {
+            img.classList.add("center");
+        } else if (index === (currentIndex - 1 + images.length) % images.length) {
+            img.classList.add("left");
+        } else if (index === (currentIndex + 1) % images.length) {
+            img.classList.add("right");
+        }
+    });
+
+    // Automatically scroll the carousel
+    const container = document.querySelector(".movie_slide_container");
+    const offset = -currentIndex * (images[0].offsetWidth); // Calculate offset based on the image width
+    container.style.transform = `translateX(${offset}px)`;
+}
+
+// Move to the next image
+function rotateCarousel() {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateCarousel();
+}
+
+// Move to the previous image
+function prevCarousel() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateCarousel();
+}
+
+// Next and Previous button functionality
+nextButton.addEventListener('click', rotateCarousel);
+prevButton.addEventListener('click', prevCarousel);
+
+// Automatically rotate the carousel every 3 seconds
+setInterval(rotateCarousel, 3000);
+
+// Initial setup
+updateCarousel();
 
