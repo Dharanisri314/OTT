@@ -1,4 +1,6 @@
 
+// F
+
 // Function to display movie details
 function displayMovieDetails() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -22,7 +24,7 @@ function displayMovieDetails() {
         .then(data => {
             console.log('Fetched movie data:', data);  // Log fetched data
 
-            const genres = ['action', 'comedy', 'romance', 'horror', 'thiller'];
+            const genres = ['action', 'comedy', 'romance', 'horror', 'thriller'];
             let movie = null;
             let movieGenre = '';
 
@@ -127,4 +129,3 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
 
 // Call the function to display movie details when the page loads (if applicable)
 displayMovieDetails();
-
