@@ -1,0 +1,140 @@
+/* Global reset and base styles */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Root variable setup for design consistency */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #50e3c2;
+    --background-color: #f4f4f9;
+    --border-color: #ddd;
+    --box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px;
+    --font-size-base: 16px;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+}
+
+/* Body styling */
+body {
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    background: linear-gradient(120deg, var(--background-color), #ffffff);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 0;
+}
+
+/* Container for video and elements */
+.video-container {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    transition: transform 0.3s ease-out;
+}
+
+.video-container:hover {
+    transform: scale(1.03);
+}
+
+/* Styling for the video element */
+video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease-out;
+}
+
+video:hover {
+    transform: scale(1.03) rotate(2deg); /* Slight zoom and rotate effect */
+}
+
+/* Optional Title styling */
+.video-title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover animations for the container */
+.video-container:hover .video-title {
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+/* Buttons or action items */
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    font-size: var(--font-size-lg);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Accessibility enhancements */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .video-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .video-title {
+        font-size: var(--font-size-lg);
+    }
+
+    video {
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .video-title {
+        font-size: 1.2rem;
+    }
+
+    video {
+        border-radius: 8px;
+    }
+}
+

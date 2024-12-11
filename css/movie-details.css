@@ -376,7 +376,9 @@ p {
     height: auto;
   }
 }
-
+strong{
+  color:rgb(233, 173, 53);
+}
 
 
 
