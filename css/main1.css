@@ -703,6 +703,7 @@ header.right-aligned #usernameDisplay {
     justify-content: center;
     margin-bottom: 20px;
     margin-left: 30px;
+    margin-top: 20px;
 }
 
 .input-container {
@@ -721,7 +722,7 @@ header.right-aligned #usernameDisplay {
 }
 
 #search-input:focus {
-    border-color: #007BFF;
+    border-color: rgb(233, 173, 53);
 }
 
 #search-btn {
@@ -785,6 +786,23 @@ header.right-aligned #usernameDisplay {
     color: #333;
     margin: 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

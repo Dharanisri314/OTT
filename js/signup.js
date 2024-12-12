@@ -1,20 +1,19 @@
-
-    // Import the functions you need from the Firebase SDKs
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyAL6dgKjaV_N-lneOwWri-N2Xm-bf6UJ7w",
-        authDomain: "ott-platform-cf43e.firebaseapp.com",
-        projectId: "ott-platform-cf43e",
-        storageBucket: "ott-platform-cf43e.firebasestorage.app",
-        messagingSenderId: "844526974291",
-        appId: "1:844526974291:web:11268d750d39062db85da6"
-    };
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAL6dgKjaV_N-lneOwWri-N2Xm-bf6UJ7w",
+    authDomain: "ott-platform-cf43e.firebaseapp.com",
+    projectId: "ott-platform-cf43e",
+    storageBucket: "ott-platform-cf43e.firebasestorage.app",
+    messagingSenderId: "844526974291",
+    appId: "1:844526974291:web:11268d750d39062db85da6"
+};
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 // Wait for the DOM to be ready
 document.addEventListener('DOMContentLoaded', function () {
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Form submission handler
     form.addEventListener('submit', function (e) {
         e.preventDefault(); // Prevent default form submission
-
         // Clear previous error messages
         usernameError.style.display = 'none';
         emailError.style.display = 'none';
@@ -37,27 +35,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let valid = true;
 
-const usernameValue = usernameInput.value.trim();
+        const usernameValue = usernameInput.value.trim();
+        if (usernameValue === '') {
+            usernameError.textContent = 'Name cannot be empty or just spaces.';
+            usernameError.style.display = 'block';
+            valid = false;
+        } else if (usernameValue.length < 3) {
+            usernameError.textContent = 'Name must be at least 3 characters long.';
+            usernameError.style.display = 'block';
+            valid = false;
+        }
+        // Validate format: Only letters and spaces, and must start with an uppercase letter
+        else if (!/^[A-Z][a-zA-Z\s]*$/.test(usernameValue)) {
+            usernameError.textContent = 'Name must start with an uppercase letter and only contain letters and spaces.';
+            usernameError.style.display = 'block';
+            valid = false;
+        } else {
+            usernameError.style.display = 'none'; // Clear the error if valid
+        }
 
-if (usernameValue === '') {
-    usernameError.textContent = 'Name cannot be empty or just spaces.';
-    usernameError.style.display = 'block';
-    valid = false;
-} else if (usernameValue.length < 3) {
-    usernameError.textContent = 'Name must be at least 3 characters long.';
-    usernameError.style.display = 'block';
-    valid = false;
-} 
-// Validate format: Only letters and spaces, and must start with an uppercase letter
-else if (!/^[A-Z][a-zA-Z\s]*$/.test(usernameValue)) {
-    usernameError.textContent = 'Name must start with an uppercase letter and only contain letters and spaces.';
-    usernameError.style.display = 'block';
-    valid = false;
-} else {
-    usernameError.style.display = 'none'; // Clear the error if valid
-}
-
- // Validate email
+        // Validate email
         const emailValue = emailInput.value.trim();
         if (emailValue === '') {
             emailError.textContent = 'Email cannot be empty or just spaces.';
@@ -77,8 +74,10 @@ else if (!/^[A-Z][a-zA-Z\s]*$/.test(usernameValue)) {
             valid = false;
         }
 
-        // Validate password
         const passwordValue = passwordInput.value.trim();
+        // Clear previous error messages
+        passwordError.style.display = 'none';
+
         if (passwordValue === '') {
             passwordError.textContent = 'Password is required.';
             passwordError.style.display = 'block';
@@ -87,8 +86,24 @@ else if (!/^[A-Z][a-zA-Z\s]*$/.test(usernameValue)) {
             passwordError.textContent = 'Password should be at least 6 characters.';
             passwordError.style.display = 'block';
             valid = false;
+        } else if (!/[a-z]/.test(passwordValue)) {
+            passwordError.textContent = 'Password must contain at least one lowercase letter.';
+            passwordError.style.display = 'block';
+            valid = false;
+        } else if (!/[A-Z]/.test(passwordValue)) {
+            passwordError.textContent = 'Password must contain at least one uppercase letter.';
+            passwordError.style.display = 'block';
+            valid = false;
+        } else if (!/[0-9]/.test(passwordValue)) {
+            passwordError.textContent = 'Password must contain at least one number.';
+            passwordError.style.display = 'block';
+            valid = false;
+        } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(passwordValue)) {
+            passwordError.textContent = 'Password must contain at least one special character.';
+            passwordError.style.display = 'block';
+            valid = false;
         }
-        
+
         // If form is valid, proceed to create a Firebase user account
         if (valid) {
             createUserWithEmailAndPassword(auth, emailValue, passwordValue)
@@ -96,13 +111,25 @@ else if (!/^[A-Z][a-zA-Z\s]*$/.test(usernameValue)) {
                     // Signed up successfully
                     const user = userCredential.user;
                     console.log('User created successfully:', user.email);
-                    window.location.href = "../html/main1.html"; // Example redirection
+
+                    // Now store user data in Firestore
+                    setDoc(doc(db, "users", user.uid), {
+                        username: usernameValue,
+                        email: user.email,
+                        // You can add more fields as needed
+                    })
+                    .then(() => {
+                        console.log('User data saved to Firestore');
+                        window.location.href = "../html/main1.html"; // Redirect after successful signup and data storage
+                    })
+                    .catch((error) => {
+                        console.error("Error saving data to Firestore:", error);
+                    });
                 })
                 .catch((error) => {
                     // Handle Firebase-specific errors
                     const errorCode = error.code;
                     const errorMessage = error.message;
-
                     if (errorCode === 'auth/email-already-in-use') {
                         emailError.textContent = 'This email is already in use.';
                         emailError.style.display = 'block';
