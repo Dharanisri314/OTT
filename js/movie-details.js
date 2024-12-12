@@ -60,7 +60,7 @@ function displayMovieDetails() {
                             <p><strong>Play Time:</strong> ${movie.play_time}</p>
                             <p><strong>Rating:</strong> ${movie.rating}</p>
                             <p><strong>Description:</strong> ${movie.description}</p>
-                            <a href="/html/video.html" class="watch-now-btn">Watch Now</a>
+                            <a href="${movie.stream_url}" class="watch-now-btn">Watch Now</a>
                         </div>
                     </div>`;
             } else {
