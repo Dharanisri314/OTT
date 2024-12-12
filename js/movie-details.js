@@ -603,6 +603,7 @@ function displayMovieDetails() {
             document.getElementById('movie-details-container').innerHTML = '<p>Failed to load movie details.</p>';
         });
 }
+
 // Function to display a list of movies (up to 18)
 function displayMovieList(data) {
     const genres = ['action', 'comedy', 'romance', 'horror', 'thiller'];
@@ -619,7 +620,7 @@ function displayMovieList(data) {
     // Limit to 18 movies
     allMovies = allMovies.slice(0, 18); // Show only the first 18 movies
 
-    // Create headline HTML
+    //Create headline HTML
     const headlineHTML = `
         <div class="movie-list-headline">
             <h2>Some of the Movies</h2>
@@ -638,27 +639,62 @@ function displayMovieList(data) {
     document.getElementById('movie-list-container').innerHTML = movieListHTML;
 }
 
-// Function to show the movie details when a list item is clicked
-function showMovieDetails(title) {
+ // Function to show the movie details when a list item is clicked
+ function showMovieDetails(title) {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.set('title', title);  // Set the title in the URL
     window.history.pushState({}, '', '?' + urlParams.toString());
-
     // Re-display the movie details
-    displayMovieDetails();
-}
+     displayMovieDetails();
+ }
 
-// Call the function when the page loads
-displayMovieDetails();
+ // Call the function when the page loads
+ displayMovieDetails();
 
-// Call the function to display the movie list when the page loads
-fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
-    .then(response => response.json())
-    .then(data => displayMovieList(data))
+ // Call the function to display the movie list when the page loads
+ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
+     .then(response => response.json())
+     .then(data => displayMovieList(data))
     .catch(error => console.error('Error loading movie list:', error));
 
-// Call the function to display movie details when the page loads (if applicable)
-displayMovieDetails();
+ // Call the function to display movie details when the page loads (if applicable)
+ displayMovieDetails();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
