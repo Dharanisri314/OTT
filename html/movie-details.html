@@ -13,13 +13,18 @@
       <a href="#home" class="logo">Film <span style="color: rgb(233, 173, 53); font-weight: bold;">k</span>i <span style="color: rgb(233, 173, 53);font-weight: bold;">shamiksha</span></a> 
     </div>
     <div class="header-links">
-      <!-- <a href="#carousel-container" class="heading">Home</a>  -->
-      <!-- <a href="#movies-container" class="heading">Movies</a> -->
+      <a href="#carousel-container" class="heading">Home</a> 
+      <a href="#movies-container" class="heading">Movies</a>
     </div>
-  
-    <!-- <div class="search-container">
-      <input type="search" id="suggestion-search-bar" placeholder="Search the movies..." />
-    </div> -->
+    <div>
+      <input type="text" id="search-input" placeholder="Search for movies..." />
+  </div>
+  <button type="button" id="search-btn">
+      <div id="search-bg"></div>
+      <img src="/assets/images/search-img1.png" alt="Search" width="35px" id="search-img">
+  </button>
+  <div class="results-container" id="search-results"></div>
+</form>
     <div class="header-login">
         
       <a href="/index.html">
@@ -39,6 +44,57 @@
   </style>
   <div id="movie-list-container"></div>
   <div class="name">Film <span style="color: rgb(233, 173, 53); font-weight: bold;">k</span>i <span style="color: rgb(233, 173, 53);font-weight: bold;">shamiksha</span></div>
+
+
+
+
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Details</title>
+  <link rel="stylesheet" href="/css/movie-details.css">
+  <script type="module" src="/js/movie-details.js" defer></script>
+</head>
+<body>
+  <header>
+      <div class="header-logo">
+          <a href="#home" class="logo">Film <span style="color: rgb(233, 173, 53); font-weight: bold;">k</span>i <span style="color: rgb(233, 173, 53);font-weight: bold;">shamiksha</span></a>
+      </div>
+      <div class="header-links">
+          <a href="#carousel-container" class="heading">Home</a>
+          <a href="#movies-container" class="heading">Movies</a>
+      </div>
+
+      <div class="search-container">
+          <input type="search" id="suggestion-search-bar" placeholder="Search the movies..." />
+      </div>
+      <div class="header-login">
+          <a href="/index.html">
+              <button type="submit" class="view-all">Login</button>
+          </a>
+      </div>
+  </header>
+  
+  <div id="movie-details-container"></div>
+
+  <h3>Some of the Movies</h3>
+  <style>
+      h3 {
+          text-align: center;
+          padding-top: 70px;
+          font-size: 45px;
+          color: rgb(233, 173, 53);
+      }
+  </style>
+  <div id="movie-list-container"></div>
+</body>
+</html>
+
+
 
 
 

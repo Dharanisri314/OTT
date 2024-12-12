@@ -1,6 +1,4 @@
 
-// F
-
 // Function to display movie details
 function displayMovieDetails() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -129,3 +127,94 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
 
 // Call the function to display movie details when the page loads (if applicable)
 displayMovieDetails();
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById("search-results");
+    const mainContainer = document.getElementById('mainContainer');
+
+    const jsonFilePath = '../assets/json/main1.json'; // Path to your JSON file
+
+    // Function to fetch all movies from the JSON file
+    async function loadMovies() {
+        try {
+            const response = await fetch(jsonFilePath);
+            if (!response.ok) {
+                throw new Error("Network response was not ok: " + response.statusText);
+            }
+            const data = await response.json();
+
+            // Combine movies from different sections into one array
+            let allMovies = [];
+            for (const section in data) {
+                if (Array.isArray(data[section])) {
+                    allMovies = allMovies.concat(data[section]);
+                }
+            }
+            return allMovies;
+        } catch (error) {
+            console.error("Error fetching movie data:", error);
+            return [];
+        }
+    }
+
+    // Function to display results based on the first letter of the movie name
+    function displayResults(results) {
+        resultsContainer.innerHTML = ''; // Clear previous results
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No movies found</p>';
+            return;
+        }
+
+        results.forEach(movie => {
+            const movieDiv = document.createElement('div');
+            movieDiv.classList.add('movie-result');
+            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to placeholder image
+
+            movieDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${movie.title}" width="100">
+                <div>
+                    <h3>${movie.title}</h3>
+                </div>
+            `;
+
+            // Handle movie click event to redirect to the movie details page
+            movieDiv.addEventListener('click', function () {
+                window.location.href = `movie-details.html?title=${encodeURIComponent(movie.title)}`; // Redirect to the details page
+            });
+
+            resultsContainer.appendChild(movieDiv);
+        });
+    }
+
+    // Handle dynamic search as the user types
+    searchInput.addEventListener('input', async function () {
+        const searchQuery = searchInput.value.trim().toLowerCase();
+
+        if (searchQuery.length === 0) {
+            resultsContainer.innerHTML = ''; // Clear results if no search query
+            mainContainer.innerHTML = ''; // Clear main container display
+            return;
+        }
+
+        // Load all movies
+        const movies = await loadMovies();
+
+        // Filter movies based on the first letter of the title
+        const filteredMovies = movies.filter(movie => {
+            return movie.title && movie.title.toLowerCase().startsWith(searchQuery);
+        });
+
+        // Display the filtered results
+        displayResults(filteredMovies);
+    });
+});
+

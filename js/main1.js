@@ -1,7 +1,9 @@
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById('search-input');
     const movieContainer = document.getElementById('mainContainer'); // The container where movie sections are created
+    const resultsContainer = document.getElementById("search-results");
 
     // Function to fetch and display all movies initially
     function displayAllMovies() {
@@ -22,40 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch(error => console.error("Error fetching the movie data:", error));
     }
 
-    // Function to filter and display matching movies based on search query
-    function filterMovies(query) {
-        // Clear the current results
-        movieContainer.innerHTML = '';
 
-        // Fetch the movie data again to filter
-        fetch("../assets/json/main1.json")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok: " + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Iterate through each section and filter the movies
-                Object.keys(data).forEach(sectionName => {
-                    const movies = data[sectionName];
-
-                    // Filter movies based on the first letter for partial search
-                    const filteredMovies = movies.filter(movie => 
-                        movie.movie_name.toLowerCase().startsWith(query.toLowerCase()) || // Matches the start of movie name
-                        movie.description.toLowerCase().includes(query.toLowerCase()) // Matches the description anywhere
-                    );
-
-                    // Create and display section with filtered movies
-                    if (filteredMovies.length > 0) {
-                        createSection(sectionName, filteredMovies);
-                    }
-                });
-            })
-            .catch(error => console.error("Error fetching the movie data:", error));
-    }
-
-    // Function to create and display a section with movies
     function createSection(sectionName, movies) {
         const sectionContainer = document.createElement("div");
         sectionContainer.id = `${sectionName.charAt(0).toUpperCase() + sectionName.slice(1)}`;
@@ -108,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (query.length > 0) {
             filterMovies(query); // Trigger real-time search
         } else {
-            // If the search input is cleared, display all movies again
+            resultsContainer.innerHTML = ""; // Clear results if the query is empty
             movieContainer.innerHTML = ''; // Clear the container
             displayAllMovies(); // Display all movies
         }
@@ -125,53 +94,646 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+ });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('search-results');
+    const selectedMovieContainer = document.getElementById('selected-movie-container'); // To display the selected movie's image and title
+
+    const jsonFilePath = '../assets/json/main1.json'; // Update with the correct path to your JSON file
+
+    // Load the movies from the JSON file
+    async function loadMovies() {
+        try {
+            const response = await fetch(jsonFilePath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            // Combine movies from all categories into a single array
+            let allMovies = [];
+            for (const category in data) {
+                if (Array.isArray(data[category])) {
+                    allMovies = allMovies.concat(data[category]);
+                }
+            }
+            return allMovies;
+        } catch (error) {
+            console.error("Error fetching movies: ", error);
+            return [];
+        }
+    }
+
+    // Display the search results
+    function displayResults(results) {
+        // Clear previous results
+        resultsContainer.innerHTML = '';
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No movies found</p>';
+            return;
+        }
+
+        // Display each result
+        results.forEach(movie => {
+            const movieDiv = document.createElement('div');
+            movieDiv.classList.add('movie-result');
+            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to a placeholder image
+
+            movieDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${movie.title}" width="100">
+                <div>
+                    <h3>${movie.title}</h3>
+                </div>
+            `;
+            resultsContainer.appendChild(movieDiv);
+
+            // When clicking on the movie image, populate the search bar with the movie title
+            movieDiv.addEventListener('click', function () {
+                searchInput.value = movie.title; // Populate search input with the movie title
+                resultsContainer.innerHTML = ''; // Clear results after selection
+
+                // Display the selected movie below the search bar
+                displaySelectedMovie(movie);
+            });
+        });
+    }
+
+    // Display the selected movie's image and title
+    function displaySelectedMovie(movie) {
+        selectedMovieContainer.innerHTML = `
+            <img src="${movie.image_url || 'placeholder.jpg'}" alt="${movie.title}" width="200">
+            <h3>${movie.title}</h3>
+        `;
+    }
+
+    // Handle dynamic search as the user types
+    searchInput.addEventListener('input', async function () {
+        const searchQuery = searchInput.value.trim().toLowerCase();
+
+        if (searchQuery.length === 0) {
+            resultsContainer.innerHTML = ''; // Clear results if no search query
+            selectedMovieContainer.innerHTML = ''; // Clear selected movie display
+            return;
+        }
+
+        // Load movies data
+        const movies = await loadMovies();
+
+        // Filter the movies based on the search query (first letter of the title)
+        const filteredMovies = movies.filter(movie => {
+            return movie.title && movie.title.toLowerCase().startsWith(searchQuery);
+        });
+
+        // Display the results
+        displayResults(filteredMovies);
+    });
 });
 
 
 
-const images = document.querySelectorAll(".carousel-image");
-const prevButton = document.getElementById('prevButton');
-const nextButton = document.getElementById('nextButton');
-let currentIndex = 0;
 
-function updateCarousel() {
-    images.forEach((img, index) => {
-        img.classList.remove("center", "left", "right");
 
-        if (index === currentIndex) {
-            img.classList.add("center");
-        } else if (index === (currentIndex - 1 + images.length) % images.length) {
-            img.classList.add("left");
-        } else if (index === (currentIndex + 1) % images.length) {
-            img.classList.add("right");
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('search-results');
+
+    const jsonFilePath = '../assets/json/main1.json'; // Update with the correct path to your JSON file
+
+    // Load the movies from the JSON file
+    async function loadMovies() {
+        try {
+            const response = await fetch(jsonFilePath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            // Combine movies from all categories into a single array
+            let allMovies = [];
+            for (const category in data) {
+                if (Array.isArray(data[category])) {
+                    allMovies = allMovies.concat(data[category]);
+                }
+            }
+            return allMovies;
+        } catch (error) {
+            console.error("Error fetching movies: ", error);
+            return [];
         }
+    }
+
+    // Display the search results
+    function displayResults(results) {
+        // Clear previous results
+        resultsContainer.innerHTML = '';
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No movies found</p>';
+            return;
+        }
+
+        // Display each result
+        results.forEach(movie => {
+            const movieDiv = document.createElement('div');
+            movieDiv.classList.add('movie-result');
+            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to a placeholder image
+
+            movieDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${movie.title}" width="100">
+                <div>
+                    <h3>${movie.title}</h3>
+                </div>
+            `;
+            resultsContainer.appendChild(movieDiv);
+
+            // When clicking on the movie image, populate the search bar with the movie title
+            movieDiv.addEventListener('click', function () {
+                searchInput.value = movie.title; // Populate search input with the movie title
+                resultsContainer.innerHTML = ''; // Clear results after selection
+                // Optionally, you can redirect to a movie page here
+                // window.location.href = `/movie/${movie.id}`;
+            });
+        });
+    }
+
+    // Handle dynamic search as the user types
+    searchInput.addEventListener('input', async function () {
+        const searchQuery = searchInput.value.trim().toLowerCase();
+
+        if (searchQuery.length === 0) {
+            resultsContainer.innerHTML = ''; // Clear results if no search query
+            return;
+        }
+
+        // Load movies data
+        const movies = await loadMovies();
+
+        // Filter the movies based on the search query (first letter of the title)
+        const filteredMovies = movies.filter(movie => {
+            return movie.title && movie.title.toLowerCase().startsWith(searchQuery);
+        });
+
+        // Display the results
+        displayResults(filteredMovies);
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById('search-results');
+    const selectedMovieContainer = document.getElementById('selected-movie-container');
+    
+    const jsonFilePath = '../assets/json/main1.json'; // Ensure this points to your JSON file
+
+    // Load movies from JSON file
+    async function loadMovies() {
+        try {
+            const response = await fetch(jsonFilePath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+
+            // Combine all movies from different categories into one array
+            let allMovies = [];
+            for (const category in data) {
+                if (Array.isArray(data[category])) {
+                    allMovies = allMovies.concat(data[category]);
+                }
+            }
+            return allMovies;
+        } catch (error) {
+            console.error("Error fetching movies:", error);
+            return [];
+        }
+    }
+
+    // Function to display results (filtered movies)
+    function displayResults(results) {
+        resultsContainer.innerHTML = ''; // Clear previous results
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No movies found</p>';
+            return;
+        }
+
+        results.forEach(movie => {
+            const movieDiv = document.createElement('div');
+            movieDiv.classList.add('movie-result');
+            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to placeholder image
+
+            movieDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${movie.title}" width="100">
+                <div>
+                    <h3>${movie.title}</h3>
+                </div>
+            `;
+
+            // Handle movie click event
+            movieDiv.addEventListener('click', function () {
+                searchInput.value = movie.title; // Populate search input with the movie title
+                resultsContainer.innerHTML = ''; // Clear results after selection
+                displaySelectedMovie(movie); // Display the selected movie below the search bar
+            });
+
+            resultsContainer.appendChild(movieDiv);
+        });
+    }
+
+    // Function to display the selected movie below the search bar
+    function displaySelectedMovie(movie) {
+        selectedMovieContainer.innerHTML = `
+            <img src="${movie.image_url || 'placeholder.jpg'}" alt="${movie.title}" width="200">
+            <h3>${movie.title}</h3>
+        `;
+    }
+
+    // Handle dynamic search as the user types
+    searchInput.addEventListener('input', async function () {
+        const searchQuery = searchInput.value.trim().toLowerCase();
+
+        if (searchQuery.length === 0) {
+            resultsContainer.innerHTML = ''; // Clear results if no search query
+            selectedMovieContainer.innerHTML = ''; // Clear selected movie display
+            return;
+        }
+
+        // Load the movie data
+        const movies = await loadMovies();
+
+        // Filter movies based on the first letter of the title
+        const filteredMovies = movies.filter(movie => {
+            return movie.title && movie.title.toLowerCase().startsWith(searchQuery);
+        });
+
+        // Display the filtered results
+        displayResults(filteredMovies);
+    });
+});
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById("search-results");
+    const mainContainer = document.getElementById('mainContainer');
+    
+    const jsonFilePath = '../assets/json/main1.json'; // Path to your JSON file
+
+    // Function to fetch all movies from the JSON file
+    async function loadMovies() {
+        try {
+            const response = await fetch(jsonFilePath);
+            if (!response.ok) {
+                throw new Error("Network response was not ok: " + response.statusText);
+            }
+            const data = await response.json();
+
+            // Combine movies from different sections into one array
+            let allMovies = [];
+            for (const section in data) {
+                if (Array.isArray(data[section])) {
+                    allMovies = allMovies.concat(data[section]);
+                }
+            }
+            return allMovies;
+        } catch (error) {
+            console.error("Error fetching movie data:", error);
+            return [];
+        }
+    }
+
+    // Function to display the search results
+    function displayResults(results) {
+        resultsContainer.innerHTML = ''; // Clear previous results
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No movies found</p>';
+            return;
+        }
+
+        results.forEach(movie => {
+            const movieDiv = document.createElement('div');
+            movieDiv.classList.add('movie-result');
+            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to placeholder image
+
+            movieDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${movie.title}" width="100">
+                <div>
+                    <h3>${movie.title}</h3>
+                </div>
+            `;
+
+            // Handle movie click event to show the selected movie below the search bar
+            movieDiv.addEventListener('click', function () {
+                searchInput.value = movie.title; // Populate search input with the movie title
+                resultsContainer.innerHTML = ''; // Clear results after selection
+                displaySelectedMovie(movie); // Display the selected movie in the main container
+            });
+
+            resultsContainer.appendChild(movieDiv);
+        });
+    }
+
+    // Function to display the selected movie in the main container
+    function displaySelectedMovie(movie) {
+        mainContainer.innerHTML = `
+            <div class="selected-movie">
+                <img src="${movie.image_url || 'placeholder.jpg'}" alt="${movie.title}" width="200">
+                <h3>${movie.title}</h3>
+                <p>${movie.description || 'No description available.'}</p>
+            </div>
+        `;
+    }
+
+    // Handle dynamic search as the user types
+    searchInput.addEventListener('input', async function () {
+        const searchQuery = searchInput.value.trim().toLowerCase();
+
+        if (searchQuery.length === 0) {
+            resultsContainer.innerHTML = ''; // Clear results if no search query
+            mainContainer.innerHTML = ''; // Clear main container display
+            return;
+        }
+
+        // Load all movies
+        const movies = await loadMovies();
+
+        // Filter movies based on the exact name match (case-insensitive)
+        const filteredMovies = movies.filter(movie => {
+            return movie.title && movie.title.toLowerCase() === searchQuery;
+        });
+
+        // Display the filtered results
+        displayResults(filteredMovies);
     });
 
-    // Automatically scroll the carousel
-    const container = document.querySelector(".movie_slide_container");
-    const offset = -currentIndex * (images[0].offsetWidth); // Calculate offset based on the image width
-    container.style.transform = `translateX(${offset}px)`;
-}
+});
 
-// Move to the next image
-function rotateCarousel() {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateCarousel();
-}
 
-// Move to the previous image
-function prevCarousel() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateCarousel();
-}
 
-// Next and Previous button functionality
-nextButton.addEventListener('click', rotateCarousel);
-prevButton.addEventListener('click', prevCarousel);
 
-// Automatically rotate the carousel every 3 seconds
-setInterval(rotateCarousel, 3000);
 
-// Initial setup
-updateCarousel();
 
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById("search-results");
+    const mainContainer = document.getElementById('mainContainer');
+
+    const jsonFilePath = '../assets/json/main1.json'; // Path to your JSON file
+
+    // Function to fetch all movies from the JSON file
+    async function loadMovies() {
+        try {
+            const response = await fetch(jsonFilePath);
+            if (!response.ok) {
+                throw new Error("Network response was not ok: " + response.statusText);
+            }
+            const data = await response.json();
+
+            // Combine movies from different sections into one array
+            let allMovies = [];
+            for (const section in data) {
+                if (Array.isArray(data[section])) {
+                    allMovies = allMovies.concat(data[section]);
+                }
+            }
+            return allMovies;
+        } catch (error) {
+            console.error("Error fetching movie data:", error);
+            return [];
+        }
+    }
+
+    // Function to display results based on the first letter of the movie name
+    function displayResults(results) {
+        resultsContainer.innerHTML = ''; // Clear previous results
+
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No movies found</p>';
+            return;
+        }
+
+        results.forEach(movie => {
+            const movieDiv = document.createElement('div');
+            movieDiv.classList.add('movie-result');
+            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to placeholder image
+
+            movieDiv.innerHTML = `
+                <img src="${imageUrl}" alt="${movie.title}" width="100">
+                <div>
+                    <h3>${movie.title}</h3>
+                </div>
+            `;
+
+            // Handle movie click event to redirect to the movie details page
+            movieDiv.addEventListener('click', function () {
+                window.location.href = `movie-details.html?title=${encodeURIComponent(movie.title)}`; // Redirect to the details page
+            });
+
+            resultsContainer.appendChild(movieDiv);
+        });
+    }
+
+    // Handle dynamic search as the user types
+    searchInput.addEventListener('input', async function () {
+        const searchQuery = searchInput.value.trim().toLowerCase();
+
+        if (searchQuery.length === 0) {
+            resultsContainer.innerHTML = ''; // Clear results if no search query
+            mainContainer.innerHTML = ''; // Clear main container display
+            return;
+        }
+
+        // Load all movies
+        const movies = await loadMovies();
+
+        // Filter movies based on the first letter of the title
+        const filteredMovies = movies.filter(movie => {
+            return movie.title && movie.title.toLowerCase().startsWith(searchQuery);
+        });
+
+        // Display the filtered results
+        displayResults(filteredMovies);
+    });
+});

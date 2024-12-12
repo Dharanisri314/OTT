@@ -27,7 +27,7 @@ body {
 header ul{
     display: flex;
     justify-content: flex-end;
-    
+    margin-right: 380px;
 }
 header ul li{
     list-style: none;
@@ -72,97 +72,6 @@ header ul li a {
     font-size: 20px;
 }
 
-#search-input{
-    width: 150%;
-    height: 3.5em;
-    border: none;
-    outline: none;
-    background-color: #f2f2f2;
-    border-radius: 30px;
-    color: gray;
-    font-size: 16px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-#search-bg{
-    width:45px;
-    height: 50px;
-    background-color: green;
-    position: absolute;
-    top: 6px;
-    left: 9%;
-    border-radius: 50px;
-    /* border: 1px black solid; */
-}
-#search-img{
-    position: absolute;
-    top: 20px;
-    left: 25px;
-    font-size: 30px;
-}
-
- /* Search Bar Container  */
-header form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin-top: -10px;
-} 
-
-/* Search Input */
-#search-input {
-    width: 310px;
-    height: 50px;
-    border: 2px solid rgb(233, 173, 53); /* Yellow border */
-    border-radius: 30px;
-    background-color: #fff; /* White background */
-    color: black; /* Black text */
-    font-size: 23px;
-    padding: 0 15px; /* Padding for comfortable typing */
-    transition: all 0.3s ease; /* Smooth focus animation */
-}
-
-/* Input Focus Style */
-#search-input:focus {
-    outline: none;
-    border-color: #ffa726; /* Orange border on focus */
-    box-shadow: 0 0 5px #ffa726; /* Glow effect */
-}
-
-/* Search Button */
-#search-btn {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-}
-
-/* Search Button Hover Effect */
-#search-btn:hover {
-    transform: scale(1.1);
-}
-
-/* Search Icon */
-#search-img {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0) invert(1); /* Makes the icon white */
-    transition: transform 0.2s ease;
-}
-
-/* Hover Effect for Icon */
-#search-btn:hover #search-img {
-    transform: scale(1.2);
-}
 
 
 /* Logout */
@@ -723,15 +632,14 @@ h4 {
 #usernameDisplay {
     font-size: 20px;         /* Set font size */
     font-weight: bold;       /* Make the text bold */
-    color:black;             /* Set text color */
+    color: #333;             /* Set text color */
     background-color: white; /* Light background color */
-    padding: 10px;   /* Add padding around the text */
+    padding: 10px 5px;      /* Add padding around the text */
     border-radius: 5px;      /* Rounded corners */
     display: inline-block;   /* Inline block display to adjust with content */
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
     margin-top: 10px;        /* Add some margin at the top */
-    text-align: center;   
-    margin-right: 40px;   /* Align the text horizontally inside the element */
+    text-align: center;      /* Align the text horizontally inside the element */
 }
 
 /* Optional: Hover effect */
@@ -741,6 +649,12 @@ h4 {
 }
 
 /* Aligning the parent container or header (if applicable) */
+header {
+    display: flex;             /* Use flexbox for easy alignment */
+    justify-content: center;   /* Align items horizontally in the center */
+    align-items: center;       /* Align items vertically in the center */
+    height: 100px;             /* Ensure the header has enough height */
+}
 
 /* If you want the text aligned to the left or right within the header */
 header.left-aligned #usernameDisplay {
@@ -750,6 +664,143 @@ header.left-aligned #usernameDisplay {
 header.right-aligned #usernameDisplay {
     text-align: right;
 }
+
+/* .results-container {
+    position: absolute;
+    left: 20%;
+    top: 70%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    max-height: 550px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: black;
+ 
+}
+.result-item {
+    text-align: center;
+    margin: 10px;
+}
+.result-item img {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+.result-item p {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+} */
+
+/* Style the search form */
+
+#search-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-left: 30px;
+}
+
+.input-container {
+    margin-right: 10px;
+}
+
+#search-input {
+  
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 25px;
+    border-radius: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus {
+    border-color: #007BFF;
+}
+
+#search-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: relative;
+}
+
+#search-btn img {
+    width: 35px;
+    height: 35px;
+    margin-right: 30px;
+}
+
+/* Style the search results container */
+#search-results {
+    /* margin-top: 20px; */
+    position: absolute;
+    top: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 40%;
+    justify-content: center;
+    z-index: 10;
+    max-height: 400px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.movie-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 150px;
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-result:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.movie-result img {
+    border-radius: 5px;
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.movie-result h3 {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

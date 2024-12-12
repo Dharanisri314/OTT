@@ -15,12 +15,21 @@
     <header>
         <div class="name">Film <span style="color: rgb(233, 173, 53); font-weight: bold;">k</span>i <span style="color: rgb(233, 173, 53);font-weight: bold;">shamiksha</span></div>
         <form id="search-form">
-            <input type="text" name="search" id="search-input" placeholder="Search">
+            <div>
+                <input type="text" id="search-input" placeholder="Search for movies..." />
+            </div>
             <button type="button" id="search-btn">
                 <div id="search-bg"></div>
                 <img src="/assets/images/search-img1.png" alt="Search" width="35px" id="search-img">
             </button>
+            <div class="results-container" id="search-results"></div>
         </form>
+    
+<!-- Container for displaying search results -->
+<div id="search-results"></div>
+
+<!-- Container for displaying the selected movie details (main container) -->
+
         <ul>
             <li><a href="#Home" id="Home">Home</a></li>
             <li><a href="#Thriller"id="Thriller" >Thriller</a></li>
@@ -31,7 +40,7 @@
         </ul>
         <p id="usernameDisplay">Welcome</p>
         <div id="logout">
-            <button type="button"><a href="/index.html" id="logoutBtn">Log in</a></button>
+            <button type="button"><a href="/index.html" id="logoutBtn">Log Out</a></button>
         </div>
     </header>
     <main>
@@ -40,31 +49,31 @@
     <h1 id="prevButton">❮</h1>
     <div class="movie_slide_container" id="movieSlideContainer">
         <div class="slide carousel-image">
-            <img src="/assets/images/A.png" width="2500px" height="1000px" alt="First">
+            <img src="/assets/images/Amaran.jpg" width="2500px" height="1000px" alt="First">
         </div>
         <div class="slide carousel-image">
             <img src="/assets/images/sita_raman.jpg" width="2500px"  height="1000px" alt="">
         </div>
         <div class="slide carousel-image">
-            <img src="/assets/images/96.png" width="2500px"  height="1000px" alt="">
+            <img src="/assets/images/961.jpg" width="2500px"  height="1000px" alt="">
         </div>
         <div class="slide carousel-image">
-            <img src="/assets/images/k.png" width="2500px"  height="1000px" alt="">
+            <img src="/assets/images/k5.jpg" width="2500px"  height="1000px" alt="">
         </div>
         <div class="slide carousel-image">
-            <img src="/assets/images/p.png" width="2500px"  height="1000px" alt="">
+            <img src="/assets/images/premalu3.jpg" width="2500px"  height="1000px" alt="">
         </div>
         <div class="slide carousel-image">
-            <img src="/assets/images/hey.png" width="2500px"  height="1000px" alt="">
+            <img src="/assets/images/hey4.jpg" width="2500px"  height="1000px" alt="">
         </div>
         <div class="slide carousel-image">
-            <img src="/assets/images/100.png" width="2500px"  height="1000px" alt="">
+            <img src="/assets/images/100-days-love.jpg" width="2500px"  height="1000px" alt="">
         </div>
         <div class="slide carousel-image">
             <img src="/assets/images/oh may.jpg" width="2500px"  height="1000px" alt="">
         </div>
         <div class="slide carousel-image">
-            <img src="/assets/images/smp.png" width="2500px"  height="1000px" alt="">
+            <img src="/assets/images/svp.jpg" width="2500px"  height="1000px" alt="">
         </div>
     </div>
     <h1 id="nextButton">❯</h1>
@@ -73,6 +82,7 @@
         
        
         <div id="mainContainer"></div> 
+        <div id="movie-container"></div>
        
     </main>
     <footer>
@@ -86,15 +96,15 @@
                     <li><a href="">Home</a></li>
                     <li><a href="">Movies</a></li>
                     <li><a href="">login</a></li>
-                    <!-- <li><a href="">profile</a></li> -->
+                    <li><a href="">profile</a></li>
                 </ul>
             </div>
             <div class="footer-content">
-                <!-- <h4>Follow <span style="color:rgb(233, 173, 53); font-weight: bold;">Us</span></h4> -->
+                <h4>Follow <span style="color:rgb(233, 173, 53); font-weight: bold;">Us</span></h4>
                 <ul class="social-icons ">
-                    <!-- <li><a href=""><i class="fa-brands fa-youtube"></i></a></li> -->
-                    <!-- <li><a href=""><i class="fa-brands fa-instagram"></i></a></li> -->
-                    <!-- <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li> -->
+                    <li><a href=""><i class="fa-brands fa-youtube"></i></a></li>
+                    <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -103,9 +113,7 @@
         </div>
     </footer>
 
-
-
-    <!-- Include the Firebase JS SDK -->
+<!-- Include the Firebase JS SDK -->
     <script type="module">
         // Firebase Configuration (replace with your own Firebase project config)
         const firebaseConfig = {
@@ -151,13 +159,20 @@
     </script>
 
     <!-- Include your other JS for movie display and functionality -->
-    <script type="module" src="/js/main1.js" defer></script>
-    <script type="module" src="/js/login.js" defer></script>
+    <script type="module" src="../js/main1.js" defer></script>
 
-<div>
 
-</div>
+
+
+
+
+
+
+
+
+    
 </body>
 
 </html>
+
 
