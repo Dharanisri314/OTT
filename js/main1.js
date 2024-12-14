@@ -737,3 +737,74 @@ document.addEventListener("DOMContentLoaded", function () {
         displayResults(filteredMovies);
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+const images = document.querySelectorAll(".carousel-image");
+let currentIndex = 0;
+
+function updateCarousel() {
+  images.forEach((img, index) => {
+    img.classList.remove("center", "left", "right");
+
+    if (index === currentIndex) {
+      img.classList.add("center");
+    } else if (index === (currentIndex - 1 + images.length) % images.length) {
+      img.classList.add("left");
+    } else if (index === (currentIndex + 1) % images.length) {
+      img.classList.add("right");
+    }
+  });
+
+  const container = document.getElementById("movieSlideContainer");
+  const offset = -currentIndex * images[0].offsetWidth;
+  container.style.transform = `translateX(${offset}px)`;
+}
+
+function rotateCarousel() {
+  currentIndex = (currentIndex + 1) % images.length;
+  updateCarousel();
+}
+
+// Set up interval for automatic rotation
+const interval = setInterval(rotateCarousel, 3000); // Rotate every 3 seconds
+
+// Add button functionality
+document.getElementById("prevButton").addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  updateCarousel();
+});
+
+document.getElementById("nextButton").addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % images.length;
+  updateCarousel();
+});
+
+// Optional: Pause rotation on hover
+const sliderContainer = document.querySelector(".slider-container");
+sliderContainer.addEventListener("mouseover", () => clearInterval(interval));
+sliderContainer.addEventListener("mouseleave", () => setInterval(rotateCarousel, 3000));
+
+// Initial setup
+updateCarousel();
+
+
+
+
+
+
+
+
+
+
+
+
