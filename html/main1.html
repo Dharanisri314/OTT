@@ -1,177 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Reviews</title>
-    <link rel="stylesheet" href="/css/main1.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js"></script>
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css">
 </head>
-
 <body>
-    <header>
-        <div class="name">Film <span style="color: rgb(233, 173, 53); font-weight: bold;">k</span>i <span style="color: rgb(233, 173, 53);font-weight: bold;">shamiksha</span></div>
-        <form id="search-form">
-            <div>
-                <input type="text" id="search-input" placeholder="Search for movies..." />
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="signup-form" novalidate>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="signup-email" placeholder="Enter your email">
+                <span id="email-error" style="color:red; display:none;"></span>
             </div>
-            <button type="button" id="search-btn">
-                <div id="search-bg"></div>
-                <img src="/assets/images/search-img1.png" alt="Search" width="35px" id="search-img">
-            </button>
-            <div class="results-container" id="search-results"></div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="signup-password" placeholder="Enter your password">
+                <span id="password-error" style="color:red; display:none;"></span>
+            </div>
+            <button type="submit" id="signup-btn" class="login-btn">Login</button>
         </form>
-    
-<!-- Container for displaying search results -->
-<div id="search-results"></div>
+        <p>Don't have an account? <a href="/html/signup.html">Sign up here</a></p>
+    </div>
+    <script type="module" src="../js/login.js"> </script>
 
-<!-- Container for displaying the selected movie details (main container) -->
-
-        <ul>
-            <li><a href="#Home" id="Home">Home</a></li> 
-            <li><a href="#Thriller"id="Thriller" >Thriller</a></li>
-            <li><a href="#Horror" id="horrow">Horror</a></li>
-            <li><a href="#Action" id="thriller">Action</a></li>
-            <li><a href="#Comedy" id="comedy">Comedy</a></li>
-            <li><a href="#Romance" id="romance">Romance</a></li>
-        </ul>
-        <p id="usernameDisplay">Welcome</p>
-        <div id="logout">
-            <button type="button"><a href="/index.html" id="logoutBtn">Log Out</a></button>
-        </div>
-    </header>
-    <main>
-
-        <div class="slider-container">
-            <h1 id="prevButton">&#10094;</h1>
-            <div class="movie_slide_container" id="movieSlideContainer">
-              <div class="carousel-image">
-                <img src="/assets/images/Amaran.jpg" alt="First">
-              </div>
-              <div class="carousel-image">
-                <img src="/assets/images/sita_raman.jpg" alt="">
-              </div>
-              <div class="carousel-image">
-                <img src="/assets/images/96.png" alt="">
-              </div>
-              <div class="carousel-image">
-                <img src="/assets/images/k5.png" alt="">
-              </div>
-              <div class="carousel-image">
-                <img src="/assets/images/premalu3.png" alt="">
-              </div>
-              <div class="carousel-image">
-                <img src="/assets/images/hey4.png" alt="">
-              </div>
-              <div class="carousel-image">
-                <img src="/assets/images/100 days.png" alt="">
-              </div>
-              <div class="carousel-image">
-                <img src="/assets/images/oh may.jpg" alt="">
-              </div>
-              <div class="carousel-image">
-                <img src="/assets/images/svp.png" alt="">
-              </div>
-            </div>
-            <h1 id="nextButton">&#10095;</h1>
-          </div>
-
-        
-       
-        <div id="mainContainer"></div> 
-        <div id="movie-container"></div>
-       
-    </main>
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <h4>Film <span style="color: rgb(233, 173, 53); font-weight: bold;">k</span>i <span style="color: rgb(233, 173, 53);font-weight: bold;">shamiksha</span></h4>
-            </div>
-            <div class="footer-content">
-                <h4>For <span style="color:rgb(233, 173, 53); font-weight: bold;">you</span></h4>
-                <ul class="list">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Movies</a></li>
-                    <li><a href="">login</a></li>
-                    <li><a href="">profile</a></li>
-                </ul>
-            </div>
-            <div class="footer-content">
-                <h4>Follow <span style="color:rgb(233, 173, 53); font-weight: bold;">Us</span></h4>
-                <ul class="social-icons ">
-                    <li><a href=""><i class="fa-brands fa-youtube"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href=""><i class="fa-brands fa-linkedin"></i></a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="bottom-bar">
-            <p>Copyright 2024@ Film ki shamiksha All rights reserved.</p>
-        </div>
-    </footer>
-
-<!-- Include the Firebase JS SDK -->
-    <script type="module">
-        // Firebase Configuration (replace with your own Firebase project config)
-        const firebaseConfig = {
-    apiKey: "AIzaSyAL6dgKjaV_N-lneOwWri-N2Xm-bf6UJ7w",
-    authDomain: "ott-platform-cf43e.firebaseapp.com",
-    projectId: "ott-platform-cf43e",
-    storageBucket: "ott-platform-cf43e.firebasestorage.app",
-    messagingSenderId: "844526974291",
-    appId: "1:844526974291:web:11268d750d39062db85da6"
-};
-
-        // Initialize Firebase
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
-        const app = initializeApp(firebaseConfig);
-
-        // Initialize Firebase Auth
-        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
-        const auth = getAuth();
-
-        // Listen for authentication state changes
-        onAuthStateChanged(auth, (user) => {
-            const usernameDisplay = document.getElementById("usernameDisplay");
-            if (user) {
-                // If the user is logged in, show the user's email
-                usernameDisplay.textContent = `Welcome, ${user.email}`;
-            } else {
-                // If no user is logged in, display "Guest"
-                usernameDisplay.textContent = 'Welcome, Guest';
-            }
-        });
-
-        // Handle logout
-        const logoutButton = document.getElementById("logoutBtn");
-        logoutButton.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent the default link behavior
-            signOut(auth).then(() => {
-                // Redirect to login or home page after sign-out
-                window.location.href = '/index.html';
-            }).catch((error) => {
-                console.error("Error signing out: ", error);
-            });
-        });
-    </script>
-
-    <!-- Include your other JS for movie display and functionality -->
-    <script type="module" src="../js/main1.js" defer></script>
-
-
-
-
-
-
-
-
-
-
-    
 </body>
-
 </html>
-
+<a href="./main1.html"

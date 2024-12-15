@@ -1,21 +1,25 @@
+
+// Import Firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-// Your web app's Firebase configuration
+
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyAL6dgKjaV_N-lneOwWri-N2Xm-bf6UJ7w",
     authDomain: "ott-platform-cf43e.firebaseapp.com",
     projectId: "ott-platform-cf43e",
-    storageBucket: "ott-platform-cf43e.firebasestorage.app",
+    storageBucket: "ott-platform-cf43e.firebaseapp.com",
     messagingSenderId: "844526974291",
     appId: "1:844526974291:web:11268d750d39062db85da6"
 };
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Wait for the DOM to be ready
+// Wait for DOM content to load
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('form');
     const usernameInput = document.getElementById('username');
@@ -25,133 +29,113 @@ document.addEventListener('DOMContentLoaded', function () {
     const emailError = document.getElementById("email-error");
     const passwordError = document.getElementById("password-error");
 
-    // Form submission handler
-    form.addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent default form submission
-        // Clear previous error messages
+    // Helper function to show error
+    const showError = (element, message) => {
+        element.textContent = message;
+        element.style.display = 'block';
+    };
+
+    // Helper function to clear errors
+    const clearErrors = () => {
         usernameError.style.display = 'none';
         emailError.style.display = 'none';
         passwordError.style.display = 'none';
+    };
+
+    // Form submission handler
+    form.addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission
+
+        // Clear previous error messages
+        clearErrors();
 
         let valid = true;
 
+        // Validate username
         const usernameValue = usernameInput.value.trim();
-        if (usernameValue === '') {
-            usernameError.textContent = 'Name cannot be empty or just spaces.';
-            usernameError.style.display = 'block';
+        if (!usernameValue) {
+            showError(usernameError, 'Name cannot be empty.');
             valid = false;
         } else if (usernameValue.length < 3) {
-            usernameError.textContent = 'Name must be at least 3 characters long.';
-            usernameError.style.display = 'block';
+            showError(usernameError, 'Name must be at least 3 characters long.');
             valid = false;
-        }
-        // Validate format: Only letters and spaces, and must start with an uppercase letter
-        else if (!/^[A-Z][a-zA-Z\s]*$/.test(usernameValue)) {
-            usernameError.textContent = 'Name must start with an uppercase letter and only contain letters and spaces.';
-            usernameError.style.display = 'block';
+        } else if (!/^[A-Z][a-zA-Z\s]*$/.test(usernameValue)) {
+            showError(usernameError, 'Name must start with an uppercase letter and only contain letters and spaces.');
             valid = false;
-        } else {
-            usernameError.style.display = 'none'; // Clear the error if valid
         }
 
         // Validate email
         const emailValue = emailInput.value.trim();
-        if (emailValue === '') {
-            emailError.textContent = 'Email cannot be empty or just spaces.';
-            emailError.style.display = 'block';
+        if (!emailValue) {
+            showError(emailError, 'Email cannot be empty.');
             valid = false;
-        } else if (/\s/.test(emailValue)) {
-            emailError.textContent = 'Email cannot contain spaces.';
-            emailError.style.display = 'block';
-            valid = false;
-        } else if (!emailValue.includes('@')) {
-            emailError.textContent = 'Email must contain an "@" symbol.';
-            emailError.style.display = 'block';
-            valid = false;
-        } else if (!validateEmail(emailValue)) {
-            emailError.textContent = 'Please enter a valid email address.';
-            emailError.style.display = 'block';
+        } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(emailValue)) {
+            showError(emailError, 'Please enter a valid email address.');
             valid = false;
         }
 
+        // Validate password
         const passwordValue = passwordInput.value.trim();
-        // Clear previous error messages
-        passwordError.style.display = 'none';
-
-        if (passwordValue === '') {
-            passwordError.textContent = 'Password is required.';
-            passwordError.style.display = 'block';
+        if (!passwordValue) {
+            showError(passwordError, 'Password is required.');
             valid = false;
         } else if (passwordValue.length < 6) {
-            passwordError.textContent = 'Password should be at least 6 characters.';
-            passwordError.style.display = 'block';
+            showError(passwordError, 'Password should be at least 6 characters.');
             valid = false;
         } else if (!/[a-z]/.test(passwordValue)) {
-            passwordError.textContent = 'Password must contain at least one lowercase letter.';
-            passwordError.style.display = 'block';
+            showError(passwordError, 'Password must contain at least one lowercase letter.');
             valid = false;
         } else if (!/[A-Z]/.test(passwordValue)) {
-            passwordError.textContent = 'Password must contain at least one uppercase letter.';
-            passwordError.style.display = 'block';
+            showError(passwordError, 'Password must contain at least one uppercase letter.');
             valid = false;
         } else if (!/[0-9]/.test(passwordValue)) {
-            passwordError.textContent = 'Password must contain at least one number.';
-            passwordError.style.display = 'block';
+            showError(passwordError, 'Password must contain at least one number.');
             valid = false;
         } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(passwordValue)) {
-            passwordError.textContent = 'Password must contain at least one special character.';
-            passwordError.style.display = 'block';
+            showError(passwordError, 'Password must contain at least one special character.');
             valid = false;
         }
 
-        // If form is valid, proceed to create a Firebase user account
+        // If valid, create user and store data in Firestore
         if (valid) {
             createUserWithEmailAndPassword(auth, emailValue, passwordValue)
                 .then((userCredential) => {
-                    // Signed up successfully
                     const user = userCredential.user;
                     console.log('User created successfully:', user.email);
 
-                    // Now store user data in Firestore
+                    // Store user data in Firestore
                     setDoc(doc(db, "users", user.uid), {
                         username: usernameValue,
                         email: user.email,
-                        // You can add more fields as needed
+                        createdAt: new Date().toISOString() // Add timestamp
                     })
                     .then(() => {
                         console.log('User data saved to Firestore');
-                        window.location.href = "../html/main1.html"; // Redirect after successful signup and data storage
+                        alert('Account created successfully!');
+                        window.location.href = "../index.html"; // Redirect after success
                     })
-                    .catch((error) => {
-                        console.error("Error saving data to Firestore:", error);
+                    .catch((firestoreError) => {
+                        // Handle Firestore-specific error
+                        console.error("Error saving data to Firestore:", firestoreError.message);
+                        showError(passwordError, 'An error occurred while saving user data. Please try again.');
                     });
                 })
                 .catch((error) => {
-                    // Handle Firebase-specific errors
                     const errorCode = error.code;
-                    const errorMessage = error.message;
+                    console.log('Error code:', errorCode);
+
+                    // Firebase Auth-specific error handling
                     if (errorCode === 'auth/email-already-in-use') {
-                        emailError.textContent = 'This email is already in use.';
-                        emailError.style.display = 'block';
+                        showError(emailError, 'This email is already in use.');
                     } else if (errorCode === 'auth/weak-password') {
-                        passwordError.textContent = 'Password should be at least 6 characters.';
-                        passwordError.style.display = 'block';
+                        showError(passwordError, 'Password should be at least 6 characters.');
                     } else {
-                        console.error("Error:", errorMessage);
+                        // Catch any other Firebase errors
+                        console.error("Error:", error.message);
+                        showError(passwordError, 'Registration failed. Please check your input and try again.');
                     }
                 });
         }
     });
-
-    // Function to validate email format using a regular expression
-    function validateEmail(email) {
-        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return emailPattern.test(email);
-    }
-
-    // Function to validate name format using a regular expression
-    function validateName(name) {
-        const namePattern = /^[a-zA-Z\s'-]+$/; // Allows letters, spaces, hyphens, and apostrophes
-        return namePattern.test(name);
-    }
 });
+
