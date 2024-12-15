@@ -1,0 +1,110 @@
+/* General Styling */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #1a1a1a, #f7c600); /* Black and yellow gradient */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Container Styling */
+.user-details-container {
+    width: 90%;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.6); /* Darker container with transparency */
+    backdrop-filter: blur(15px); /* Blur background for glass effect */
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: grid; /* Grid layout for better control */
+    grid-template-rows: auto auto 1fr auto; /* Creating rows for title, details, and button */
+    justify-items: center; /* Centers all items horizontally */
+    align-items: center; /* Centers all items vertically */
+    gap: 20px; /* Adds spacing between items */
+}
+
+/* Hover Effect */
+.user-details-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Title Styling */
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #f7c600, #f1b400); /* Yellow gradient text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Gradient text */
+    text-align: center;
+}
+
+/* User Detail Styling */
+.user-details {
+    font-size: 1.2rem;
+    color: #ffffff;
+    text-align: left; /* Align text to the left */
+    margin: 0;
+    width: 100%; /* Ensures text takes up full width */
+}
+
+/* Highlight Key Details */
+.user-details span {
+    font-weight: 600;
+    color: #f7c600; /* Highlight key details in yellow */
+}
+
+/* Button Styling */
+button {
+    background: linear-gradient(90deg, #f7c600, #f1b400); /* Yellow button gradient */
+    color: #1a1a1a; /* Dark text for button */
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
+    align-self: center; /* Center button horizontally */
+}
+
+/* Button Hover Effect */
+button:hover {
+    transform: scale(1.05); /* Slight scaling effect */
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Button Active Effect */
+button:active {
+    transform: scale(0.95); /* Button pressed effect */
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-details-container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .user-details {
+        font-size: 1rem;
+        text-align: center; /* Center text for small screens */
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+
