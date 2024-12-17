@@ -1,125 +1,181 @@
-/* General Styling */
-body {
-    font-family: 'Poppins', Arial, sans-serif;
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #1a1a1a, #f7c600); /* Black and yellow gradient */
-    color: #ffffff;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom, #000000, #222222); /* Black gradient background */
+    color: #fff; /* White text for contrast */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    background: #000; /* Solid black header */
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(255, 255, 0, 0.2); /* Subtle yellow shadow */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    background: linear-gradient(to right, #f1c40f, #ffd700); /* Yellow gradient for text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Gradient text effect */
+}
+
+.btn-logout {
+    background: #f1c40f; /* Yellow button */
+    color: #000;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: #ffd700; /* Lighter yellow on hover */
+    transform: scale(1.05);
+}
+
+/* Profile Container */
+.profile-container {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
+    padding: 20px;
 }
 
-/* Container Styling */
-.user-details-container {
-    width: 90%;
-    max-width: 600px;
-    background: rgba(0, 0, 0, 0.6); /* Darker container with transparency */
-    backdrop-filter: blur(15px); /* Blur background for glass effect */
-    border-radius: 15px;
-    padding: 30px;
+.profile-card {
+    background: rgba(0, 0, 0, 0.9); /* Almost black with opacity */
+    border: 2px solid #f1c40f; /* Yellow border */
+    border-radius: 10px;
+    padding: 25px;
     text-align: center;
-    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: grid; /* Grid layout for better control */
-    grid-template-rows: auto auto 1fr auto; /* Creating rows for title, details, and button */
-    justify-items: center; /* Centers all items horizontally */
-    align-items: center; /* Centers all items vertically */
-    gap: 20px; /* Adds spacing between items */
+    width: 100%;
+    max-width: 350px;
+  
+    box-shadow: 0px 8px 15px rgba(241, 196, 15, 0.4); /* Yellow shadow */
+    transition: 0.3s ease;
 }
 
-/* Hover Effect */
-.user-details-container:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.5);
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(241, 196, 15, 0.6);
 }
 
-/* Title Styling */
-h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    background: linear-gradient(90deg, #f7c600, #f1b400); /* Yellow gradient text */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Gradient text */
-    text-align: center;
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #f1c40f; /* Yellow border */
+    margin-bottom: 15px;
 }
 
-/* User Detail Styling */
-.user-details {
-    font-size: 1.2rem;
-    color: #ffffff;
-    text-align: left; /* Align text to the left */
-    margin: 0;
-    width: 100%; /* Ensures text takes up full width */
+.user-name {
+    font-size: 1.8rem;
+    color: #f1c40f; /* Yellow text for name */
+    margin-bottom: 5px;
 }
 
-/* Highlight Key Details */
-.user-details span {
-    font-weight: 600;
-    color: #f7c600; /* Highlight key details in yellow */
-}
-
-/* Button Styling */
-button {
-    background: linear-gradient(90deg, #f7c600, #f1b400); /* Yellow button gradient */
-    color: #1a1a1a; /* Dark text for button */
-    border: none;
-    border-radius: 25px;
-    padding: 12px 30px;
+.user-email {
     font-size: 1rem;
-    font-weight: 600;
+    color: #ffd700; /* Lighter yellow for email */
+    margin-bottom: 15px;
+}
+
+.user-info {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.user-info p {
+    margin-bottom: 10px;
+    color: #fff; /* White text */
+}
+
+.user-info span {
+    color: #f1c40f; /* Yellow highlights */
+}
+
+.btn-edit {
+    background: #f1c40f;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
-    align-self: center; /* Center button horizontally */
+    margin-top: 15px;
+    transition: 0.3s ease;
 }
 
-/* Button Hover Effect */
-button:hover {
-    transform: scale(1.05); /* Slight scaling effect */
-    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4);
+.btn-edit:hover {
+    background: #ffd700;
+    transform: scale(1.05);
 }
 
-/* Button Active Effect */
-button:active {
-    transform: scale(0.95); /* Button pressed effect */
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+/* Footer */
+footer {
+    background: #000; /* Solid black footer */
+    color: #f1c40f; /* Yellow text */
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(255, 255, 0, 0.2);
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .user-details-container {
-        padding: 20px;
-    }
-
     h1 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
-    .user-details {
-        font-size: 1rem;
-        text-align: center; /* Center text for small screens */
+    .profile-card {
+        padding: 15px;
     }
 
-    button {
+    .btn-logout,
+    .btn-edit {
+        padding: 8px 12px;
         font-size: 0.9rem;
-        padding: 10px 20px;
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Avatar Styling */
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Makes it a circle */
+    background-color: #f1c40f; /* Yellow background */
+    color: #000; /* Black letter color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem; /* Large font size */
+    font-weight: bold;
+    margin: 0 auto 15px auto; /* Centered with bottom spacing */
+    text-transform: uppercase; /* Ensure letter is uppercase */
+}
+h5{
+padding-top: 50px;
+padding-left: 40px;
+color: #f1c40f;
+font-size: 25px;
+}
