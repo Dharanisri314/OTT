@@ -1,93 +1,23 @@
-function displayMovieDetails() {
-    // Extract the movie title from the URL query parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const movieTitle = urlParams.get('title');
-
-    if (!movieTitle) {
-        document.getElementById('movie-details-container').innerHTML = '<p>Movie not found. Please try again.</p>';
-        return;
-    }
-
-    // Fetch movie data from the JSON file
-    fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
-        .then(response => response.json())
-        .then(data => {
-            const genres = ['action', 'comedy', 'romance', 'horror', 'thriller'];
-            let movie = null;
-
-            // Iterate over the genres and search for the movie in each genre list
-            for (const genre of genres) {
-                const movieList = data[genre]; // Get movies for this genre
-                if (movieList) {
-                    movie = movieList.find(m => m.title.toLowerCase() === movieTitle.toLowerCase());
-                    if (movie) break; // If the movie is found, exit the loop
-                }
-            }
-
-            if (movie) {
-                // Extract movie details and crew
-                const crew = movie.crew || {};
-
-                // Display the movie details dynamically
-                document.getElementById('movie-details-container').innerHTML = `
-                    <div class="movie-details-card">
-                        <img class="movie-details-image" src="${movie.image_url}" alt="${movie.title}" loading="lazy">
-                        <div class="movie-details-info">
-                            <h1>${movie.title}</h1>
-                            <p><strong>Genre:</strong> ${movie.genre}</p>
-                            <p><strong>Release Year:</strong> ${movie.release_date}</p>
-                            <p><strong>Play Time:</strong> ${movie.play_time}</p>
-                            <p><strong>Rating:</strong> ${movie.rating}</p>
-                            <p><strong>Description:</strong> ${movie.description}</p>
-                            <p><strong>Director:</strong> ${movie.director || 'N/A'}</p>
-                            <p><strong>Cast:</strong> ${movie.cast ? movie.cast.join(', ') : 'N/A'}</p>
-                            
-                            <h3>Crew:</h3>
-                            <p><strong>Music:</strong> ${crew.music || 'N/A'}</p>
-                            <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
-                            <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
-                            <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
-
-                            <a href="${movie.stream_url}" class="watch-now-btn">Watch Now</a>
-                        </div>
-                    </div>
-                `;
-            } else {
-                // If movie not found in any genre
-                document.getElementById('movie-details-container').innerHTML = '<p>Movie details not available. Please try again.</p>';
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching movie details:', error);
-            document.getElementById('movie-details-container').innerHTML = '<p>Failed to load movie details. Please try again later.</p>';
-        });
-}
-
-// Call the function to display movie details on page load
-displayMovieDetails();
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById('search-input');
-    const resultsContainer = document.getElementById("search-results");
-    const mainContainer = document.getElementById('mainContainer');
-
-    const jsonFilePath = '../assets/json/main1.json'; // Path to your JSON file
+    const resultsContainer = document.getElementById('search-results');
+    const movieDetailsContainer = document.getElementById('movie-details-container');
+    const jsonFilePath = '/assets/json/main1.json'; // Path to your JSON file
 
     // Function to fetch all movies from the JSON file
-    async function loadMovies() {
+    async function fetchMovies() {
         try {
-            const response = await fetch(jsonFilePath);
+            const response = await fetch(`${jsonFilePath}?timestamp=${Date.now()}`);
             if (!response.ok) {
-                throw new Error("Network response was not ok: " + response.statusText);
+                throw new Error(`Failed to fetch JSON file: ${response.statusText}`);
             }
             const data = await response.json();
 
-            // Combine movies from different sections into one array
-            let allMovies = [];
-            for (const section in data) {
-                if (Array.isArray(data[section])) {
-                    allMovies = allMovies.concat(data[section]);
+            // Combine all movies from all genres into one array
+            const allMovies = [];
+            for (const genre in data) {
+                if (Array.isArray(data[genre])) {
+                    allMovies.push(...data[genre]);
                 }
             }
             return allMovies;
@@ -97,20 +27,20 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Function to display results based on the first letter of the movie name
-    function displayResults(results) {
+    // Function to display search results
+    function displaySearchResults(results) {
         resultsContainer.innerHTML = ''; // Clear previous results
 
         if (results.length === 0) {
-            resultsContainer.innerHTML = '<p>No movies found</p>';
+            resultsContainer.innerHTML = '<p>No movies found.</p>';
             return;
         }
 
         results.forEach(movie => {
             const movieDiv = document.createElement('div');
             movieDiv.classList.add('movie-result');
-            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to placeholder image
 
+            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback for missing images
             movieDiv.innerHTML = `
                 <img src="${imageUrl}" alt="${movie.title}" width="100">
                 <div>
@@ -118,35 +48,92 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             `;
 
-            // Handle movie click event to redirect to the movie details page
-            movieDiv.addEventListener('click', function () {
-                window.location.href = `/html/some.html?title=${encodeURIComponent(movie.title)}`; // Redirect to the details page
+            // Add click event to redirect to the movie details page
+            movieDiv.addEventListener('click', () => {
+                window.location.href = `/html/some.html?title=${encodeURIComponent(movie.title)}`;
             });
 
             resultsContainer.appendChild(movieDiv);
         });
     }
 
-    // Handle dynamic search as the user types
+    // Dynamic search functionality
     searchInput.addEventListener('input', async function () {
-        const searchQuery = searchInput.value.trim().toLowerCase();
+        const query = searchInput.value.trim().toLowerCase();
 
-        if (searchQuery.length === 0) {
-            resultsContainer.innerHTML = ''; // Clear results if no search query
-            mainContainer.innerHTML = ''; // Clear main container display
+        if (query.length === 0) {
+            resultsContainer.innerHTML = ''; // Clear results if input is empty
             return;
         }
 
-        // Load all movies
-        const movies = await loadMovies();
+        // Fetch all movies and filter them based on the search query
+        const movies = await fetchMovies();
+        const filteredMovies = movies.filter(movie => movie.title && movie.title.toLowerCase().includes(query));
 
-        // Filter movies based on the first letter of the title
-        const filteredMovies = movies.filter(movie => {
-            return movie.title && movie.title.toLowerCase().startsWith(searchQuery);
-        });
-
-        // Display the filtered results
-        displayResults(filteredMovies);
+        displaySearchResults(filteredMovies);
     });
-});
 
+    // Function to display movie details
+    async function displayMovieDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieTitle = urlParams.get('title');
+
+        if (!movieTitle) {
+            movieDetailsContainer.innerHTML = '<p>Movie not found. Please try again.</p>';
+            return;
+        }
+
+        const movies = await fetchMovies();
+
+        // Find the movie by title
+        const movie = movies.find(m => m.title.toLowerCase() === movieTitle.toLowerCase());
+
+        if (movie) {
+            const crew = movie.crew || {};
+            movieDetailsContainer.innerHTML = `
+                <div class="movie-details-card">
+                    <img class="movie-details-image" src="${movie.image_url}" alt="${movie.title}" loading="lazy">
+                    <div class="movie-details-info">
+                        <h1>${movie.title}</h1>
+                        <p><strong>Genre:</strong> ${movie.genre || 'Unknown'}</p>
+                        <p><strong>Release Year:</strong> ${movie.release_date || 'Unknown'}</p>
+                        <p><strong>Play Time:</strong> ${movie.play_time || 'Unknown'}</p>
+                        <p><strong>Rating:</strong> ${movie.rating || 'N/A'}</p>
+                        <p><strong>Description:</strong> ${movie.description || 'No description available.'}</p>
+                        <p><strong>Director:</strong> ${movie.director || 'N/A'}</p>
+                        <p><strong>Cast:</strong> ${movie.cast ? movie.cast.join(', ') : 'N/A'}</p>
+                        
+                        <h3>Crew:</h3>
+                        <p><strong>Music:</strong> ${crew.music || 'N/A'}</p>
+                        <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
+                        <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
+                        <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
+
+                        <a href="${movie.stream_url}" class="watch-now-btn">Watch Now</a>
+                        <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
+                    </div>
+                </div>
+            `;
+
+            // Add functionality for "Watch Trailer" button
+            const trailerButton = document.querySelector('.trailer-now-btn');
+            if (trailerButton) {
+                trailerButton.addEventListener('click', () => {
+                    const trailerUrl = trailerButton.getAttribute('data-trailer-url');
+                    if (trailerUrl) {
+                        window.open(trailerUrl, '_blank');
+                    } else {
+                        alert('Trailer not available.');
+                    }
+                });
+            }
+        } else {
+            movieDetailsContainer.innerHTML = '<p>Movie details not found. Please try again.</p>';
+        }
+    }
+
+    // Call displayMovieDetails if we're on the details page
+    if (window.location.search.includes('title=')) {
+        displayMovieDetails();
+    }
+});

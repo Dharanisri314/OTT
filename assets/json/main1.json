@@ -1,8 +1,9 @@
 {
   "thriller": [
     {
-      "id": 1,
+"id": 1,
       "title": "Vikram",
+      "trailer_url":"https://www.youtube.com/embed/OKBMCL-frPU?si=N8JvLO82zBd9Ngzh",
       "genre": "genre: Family/Action/Drama",
       "poster": " poster:Vikram",
       "movie_name": "Vikram",
@@ -11,7 +12,21 @@
       "stream_url": "https://example.com/interstellar-stream",
       "play_time": "play-time:2h 25m",
       "rating": "rating:6.5 / 10",
-      "description": "A fast-paced action thriller featuring intense combat and espionage, following a series of dangerous operations by an undercover officer."
+      "description": "A fast-paced action thriller featuring intense combat and espionage, following a series of dangerous operations by an undercover officer.",
+      "director": "Lokesh Kanagaraj",
+      "cast": [
+        "Kamal Haasan",
+        "Fahadh Faasil",
+        "Vijay Sethupathi",
+        "Narain",
+        "Kalidas Jayaram"
+      ],
+      "crew": {
+        "music": "Anirudh Ravichander",
+        "cinematography": "Girish Gangadharan",
+        "editing": "Philomin Raj",
+        "production": "Raaj Kamal Films International"
+      }
     },
     {
       "id": 2,
