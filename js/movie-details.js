@@ -1,7 +1,3 @@
-
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById("search-results");
@@ -84,6 +80,27 @@ document.addEventListener("DOMContentLoaded", function () {
         displayResults(filteredMovies);
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -254,6 +271,8 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
     .catch(error => {
         console.error('Error loading movie list:', error);
     });
+
+
 
 
 

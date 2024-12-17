@@ -30,6 +30,7 @@
     },
     {
       "id": 2,
+      "trailer_url":"https://www.youtube.com/embed/6adtIuXDCBo?si=FmvjXJzti5N7HZz4" ,
       "title": "Ratsasan",
       "genre": "Family/Action/Drama",
       "poster": "Vikram",
@@ -43,6 +44,7 @@
     },
     {
       "title": "Kaithi",
+      "trailer_url":"https://www.youtube.com/embed/g79CvhHaj5I?si=K7-A9k0NE0gBvyTE",
       "genre": "Action/Thriller/Crime",
       "poster": "Kaithi",
       "movie_name": "Kaithi",
@@ -55,6 +57,7 @@
     },
     {
       "title": "Aramm",
+      "trailer_url":"https://www.youtube.com/embed/EuC5jXpswsM?si=Snry4TyECN-LcEsK",
       "genre": "Drama/Social",
       "poster": "Aramm",
       "movie_name": "Aramm",
@@ -67,6 +70,7 @@
     },
     {
       "title": "Valimai",
+      "trailer_url":"https://www.youtube.com/embed/Gi83R8jEqZU?si=pCI73CaZvyaAcCT7",
       "genre": "Action/Thriller",
       "poster": "Valimai",
       "movie_name": "Valimai",
@@ -79,6 +83,7 @@
     },
     {
       "title": "Soorarai Pottru",
+      "trailer_url":"https://www.youtube.com/embed/fa_DIwRsa9o?si=OXvaIQIwz9APW6r1",
       "genre": "Drama/Biography",
       "poster": "Soorarai Pottru",
       "movie_name": "Soorarai Pottru",
@@ -91,6 +96,7 @@
     },
     {
       "title": "Psycho",
+      "trailer_url":"https://www.youtube.com/embed/SDZCXPBYHY0?si=u96KHL4r_i_ko7nh",
       "genre": "Psychological Thriller",
       "poster": "Psycho",
       "movie_name": "Psycho",
@@ -103,6 +109,7 @@
     },
     {
       "title": "Kolaigaran",
+    "trailer_url":"https://www.youtube.com/embed/qTWop1q5V54?si=8MRaywT3MkdXu6k4",
       "genre": "Crime/Thriller",
       "poster": "Kolaigaran",
       "movie_name": "Kolaigaran",
@@ -115,6 +122,7 @@
     },
     {
       "title": "Karnan",
+      "trailer_url":"https://www.youtube.com/embed/pgfUzQ8nzBY?si=rpDS5iYoBSNtv_rl", 
       "genre": "Drama/Action",
       "poster": "Karnan",
       "movie_name": "Karnan",
