@@ -370,45 +370,57 @@ header .header-login button {
 }
 
 
+
+
 /* Footer Styling */
 footer {
   background-color: black;
+  padding-top: 20px; /* Increased padding for better spacing */
+  padding-bottom: 20px; /* Added bottom padding */
   color: white;
-  padding: 3px 0; /* Further reduced padding to make the footer smaller */
-  font-size: 13px; /* Reduced overall font size further */
 }
 
+/* Container to center the content */
 .container {
-  width: 700px;
+  width: 80%;  /* Use percentage for better responsiveness */
+  max-width: 1200px;  /* Limit max width for larger screens */
   margin: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;  /* Changed to space-between for better layout */
+  align-items: flex-start;
+  flex-wrap: wrap;  /* Allow wrapping for smaller screens */
 }
 
+/* Footer content section */
 .footer-content {
   width: 33.3%;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 h4 {
-  font-size: 16px; /* Reduced font size even further */
-  margin-bottom: 8px; /* Reduced margin to save more space */
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: white;
+  font-weight: bold;
 }
 
 /* Links (Quick Links) */
 .list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .list li {
-  margin-bottom: 8px; /* Further reduced space between list items */
+  margin-bottom: 15px; /* Adjusted for consistent spacing */
 }
 
 .list li a {
   text-decoration: none;
   color: white;
-  font-size: 12px; /* Smaller font size for links */
+  font-size: 15px;
+  transition: color 0.3s ease;
 }
 
 .list li a:hover {
@@ -420,7 +432,7 @@ h4 {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 8px; /* Further reduce gap between icons */
+  gap: 20px;
   padding: 0;
   margin: 0;
 }
@@ -432,42 +444,127 @@ h4 {
 .social-icons a {
   text-decoration: none;
   color: white;
-  font-size: 14px; /* Slightly smaller font size for icons */
+  font-size: 20px;
   transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-  color: rgb(233, 173, 53);
+  color: rgb(233, 173, 53); 
 }
 
-/* Profile Link */
+/* Profile Section */
 .profile a {
   color: white;
-  font-size: 16px; /* Further reduced font size */
-  margin-left: 15px; /* Further reduced margin */
+  font-size: 25px;
+  margin-left: 50px;
+  transition: color 0.3s ease;
 }
 
-/* Bottom Bar */
-.bottom-bar {
+.profile a:hover {
+  color: rgb(233, 173, 53);  /* Hover effect for profile link */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;  /* Stack the items on smaller screens */
+    align-items: center;
+  }
+
+  .footer-content {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .profile a {
+    margin-left: 0;  /* Remove left margin on small screens */
+    font-size: 20px;  /* Slightly smaller font size for mobile */
+  }
+}
+
+/* Movie list container styles */
+.movie-list-item {
+  position: relative;
+  width: 200px; /* Adjust the width for each movie item */
+  margin: 20px;
+  display: inline-block;
   text-align: center;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
-p {
-  color: #e5a100;
-  font-size: 12px; /* Reduced font size for the paragraph in the bottom bar */
-  margin-top: 5px; /* Reduced margin to save space */
+/* Image styles */
+.movie-list-image {
+  width: 100%; /* Make the image responsive */
+  height: auto;
+  border-radius: 10px;
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+/* Description text overlay */
+.movie-description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Transparent black background */
+  color: #fff;
+  padding: 10px;
+  font-size: 14px;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(100%); /* Hide description initially below the container */
+  border-radius: 0 0 10px 10px;
+}
+
+/* On hover, display the description */
+.movie-list-item:hover .movie-description {
+  opacity: 1; /* Show description */
+  transform: translateY(0); /* Slide up into view */
+}
+
+/* On hover, zoom the image */
+.movie-list-item:hover .movie-list-image {
+  transform: scale(1.1); /* Slightly zoom in the image */
 }
 
 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  position: relative;
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+}
 
 
-
-
-
-
-
-
-  
   
   
   

@@ -262,6 +262,7 @@ header ul li a {
         padding: 15px;
         font-size: 10px;
         color: #555;
+      
     }
     
     .movie-card:hover {
@@ -329,7 +330,7 @@ header ul li a {
     
   
     .movie-card img {
-        width: 200px;
+      
         height: 300px;
         border-bottom: 1px solid #ddd;
     }
@@ -523,7 +524,7 @@ h4 {
     color: black;
     font-size: 16px;
 }
-/* Style for movie card */
+ /* Style for movie card */
 .movie-card {
     position: relative;
     width: 300px; /* Adjust size as needed */
@@ -582,12 +583,15 @@ h4 {
     height: auto;
     transition: transform 0.3s ease;
 }
-
+.movie-title{
+    margin-top: 100px;
+}
 /* Description inside the movie card */
 .movie-card .description {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 40%;
+    right: 30px;
     transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.7);
     color: white;
@@ -598,76 +602,82 @@ h4 {
     transition: opacity 0.3s ease;
 }
 
-/* Show the description when hovering over the movie card */
-.movie-card:hover .description {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* Optionally, you can also scale the image slightly when hovering */
-.movie-card:hover img {
-    transform: scale(1.1);
-}
-/* Styling for the movie card */
+/* General styling for the movie card */
 .movie-card {
     position: relative;
-    width: 200px; /* Adjust the width of the movie card */
-    margin: 10px;
+    width: 230px; /* Width of the movie card */
+    height: 305px; /* Height of the movie card */
+    margin: 15px;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
 /* Movie image styling */
 .movie-card img {
-  
-    height: auto;
-    transition: opacity 0.3s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the card */
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* Movie name and description */
 .movie-card h3, .movie-card p {
     position: absolute;
     bottom: 10px;
-    left: 10px;
-    color:white;
+    left: 30px;
+    color: white;
     margin: 0;
-    padding: 0;
+    padding: 10px;
     background: rgba(0, 0, 0, 0.6);
-    border-radius: 4px;
-  
-    visibility: hidden; /* Initially hidden */
+    border-radius: 8px;
+    max-width: 80%;
     opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    max-width: 90%;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    text-align: center;
 }
 
-/* Show description on hover */
+/* Hover effect for the movie card */
+.movie-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Hover effect for the image */
 .movie-card:hover img {
-    opacity: 0.7; /* Fade out image on hover */
+    transform: scale(1.1); /* Zoom in the image */
+    opacity: 0.8; /* Fade the image slightly */
 }
 
+/* Show name and description on hover */
 .movie-card:hover h3, .movie-card:hover p {
-    visibility: visible;
     opacity: 1;
+    transform: translateY(0); /* Slide up text into view */
+    padding-top: 20px;
 }
 
 /* Styling for movie name */
-.movie-card h3 {
-    font-size: 35px;
+ .movie-card h3 {
+    font-size: 22px;
     font-weight: bold;
-    bottom: 150px; /* Adjust to display movie name above description */
-}
+    bottom: 60px; /* Adjust to place the name above the description */
+    margin-top: -px;
+}  
 
 /* Styling for description */
 .movie-card p {
-    font-size: 15px;
-    bottom: 10px; /* Adjust to position description at the bottom of the card */
+    font-size: 14px;
+      
+       bottom: 10px;      
 } 
 
-
-
+/* Optionally, a glowing border effect on hover */
+.movie-card:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 215, 0, 0.8); /* Golden border effect */
+}
 
 
 .slider-container {
@@ -815,7 +825,6 @@ header.right-aligned #usernameDisplay {
     margin-right: 60px;
 }
 
-/* Style the search results container */
 #search-results {
     /* margin-top: 20px; */
     position: absolute;
@@ -830,7 +839,6 @@ header.right-aligned #usernameDisplay {
     overflow-y: scroll;
     scrollbar-width: none;
 }
-
 .movie-result {
     display: flex;
     flex-direction: column;
@@ -947,109 +955,6 @@ body {
     background: white;
     color: black;
   }
-
-
-  .footer-content {
-    width: 33.3%;
-    text-align: center;
-  }
-  
-  h4 {
-    font-size: 16px; /* Reduced font size even further */
-    margin-bottom: 8px; /* Reduced margin to save more space */
-  }
-  
-  /* Links (Quick Links) */
-  .list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .list li {
-    margin-bottom: 8px; /* Further reduced space between list items */
-  }
-  
-  .list li a {
-    text-decoration: none;
-    color: white;
-    font-size: 12px; /* Smaller font size for links */
-  }
-  
-  .list li a:hover {
-    color: rgb(233, 173, 53);
-  }
-  
-  /* Social Icons */
-  .social-icons {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 8px; /* Further reduce gap between icons */
-    padding: 0;
-    margin: 0;
-  }
-  
-  .social-icons li {
-    display: inline-block;
-  }
-  
-  .social-icons a {
-    text-decoration: none;
-    color: white;
-    font-size: 14px; /* Slightly smaller font size for icons */
-    transition: color 0.3s ease;
-  }
-  
-  .social-icons a:hover {
-    color: rgb(233, 173, 53);
-  }
-  
-  /* Profile Link */
-  .profile a {
-    color: white;
-    font-size: 16px; /* Further reduced font size */
-    margin-left: 15px; /* Further reduced margin */
-  }
-  
-  /* Bottom Bar */
-  .bottom-bar {
-    text-align: center;
-  }
-  
-  p {
- 
-    font-size: 12px; /* Reduced font size for the paragraph in the bottom bar */
-    margin-top: 5px; /* Reduced margin to save space */
-  }
-  
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
