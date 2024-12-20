@@ -17,9 +17,10 @@
 
     <main>
     
-       <div>
-        <h5>wishlist</h5>
-       </div>
+        <div>
+            <h2>Watch List</h2>
+            <div id="watch-list-container" class="watch-list-container"></div>
+        </div>
         <div class="profile-container">
             <div class="profile-card">
                 <div id="avatar" class="avatar">A</div>
@@ -27,8 +28,19 @@
                 <p id="email" class="user-email">Loading...</p>
             </div>
         </div>
+
+
+        <section class="wishlist">
+            <h2>Your Wishlist</h2>
+            <div id="wishlist-container">
+                <!-- Wishlist items will be dynamically inserted here -->
+            </div>
+        </section>
     </main>
     <!-- Firebase and Custom JS -->
     <script type="module" src="../js/userDetails.js"></script>
+
+  
+    
 </body>
 </html>

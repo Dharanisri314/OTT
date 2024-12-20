@@ -23,6 +23,8 @@
 // const emailElement = document.getElementById('email');
 // const logoutButton = document.getElementById('logout-button');
 
+
+
 // // Fetch and display user details
 // const fetchUserDetails = async (userId) => {
 //     try {
@@ -74,77 +76,9 @@
 
 
 
-// // Import Firebase modules
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-// import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-// import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-// // Firebase configuration
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAL6dgKjaV_N-lneOwWri-N2Xm-bf6UJ7w",
-//     authDomain: "ott-platform-cf43e.firebaseapp.com",
-//     projectId: "ott-platform-cf43e",
-//     storageBucket: "ott-platform-cf43e.appspot.com",
-//     messagingSenderId: "844526974291",
-//     appId: "1:844526974291:web:11268d750d39062db85da6"
-// };
-
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
-// const db = getFirestore(app);
-
-// // DOM Elements
-// const usernameElement = document.getElementById("username");
-// const emailElement = document.getElementById("email");
-// const logoutButton = document.getElementById("logout-button");
-
-// // Fetch User Details
-// const fetchUserDetails = async (userId) => {
-//     try {
-//         const userRef = doc(db, "users", userId);
-//         const userSnap = await getDoc(userRef);
-
-//         if (userSnap.exists()) {
-//             const userData = userSnap.data();
-//             usernameElement.textContent = userData.username || "N/A";
-//             emailElement.textContent = userData.email || "N/A";
-//         } else {
-//             console.error("User document not found.");
-//         }
-//     } catch (error) {
-//         console.error("Error fetching user details:", error.message);
-//     }
-// };
-
-// // Monitor Authentication State
-// onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//         fetchUserDetails(user.uid);
-//     } else {
-//         alert("You are not logged in. Redirecting to login page.");
-//         window.location.href = "./main1.html";
-//     }
-// });
-
-// // Logout Functionality
-// logoutButton.addEventListener("click", () => {
-//     signOut(auth)
-//         .then(() => {
-//             alert("Logout successful.");
-//             window.location.href = "login.html";
-//         })
-//         .catch((error) => {
-//             console.error("Error during logout:", error.message);
-//         });
-// });
-
-
-
-
-// Import Firebase modules
+// Import necessary Firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 // Firebase configuration
@@ -162,59 +96,104 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// DOM Elements
-const usernameElement = document.getElementById("username");
-const emailElement = document.getElementById("email");
-const avatarElement = document.getElementById("avatar");
-const logoutButton = document.getElementById("logout-button");
+// DOM elements
+const usernameElement = document.getElementById('username');
+const emailElement = document.getElementById('email');
+const logoutButton = document.getElementById('logout-button');
+const wishlistContainer = document.getElementById('wishlist-container');
 
-// Fetch User Details
+// Fetch and display user details
 const fetchUserDetails = async (userId) => {
     try {
-        const userRef = doc(db, "users", userId);
-        const userSnap = await getDoc(userRef);
+        // Reference to the user's document in Firestore
+        const userDocRef = doc(db, "users", userId);
 
-        if (userSnap.exists()) {
-            const userData = userSnap.data();
+        // Get the document
+        const userDoc = await getDoc(userDocRef);
 
-            // Display full username and email
-            const fullName = userData.username || "N/A";
-            usernameElement.textContent = fullName;
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+
+            // Display user details
+            usernameElement.textContent = userData.username || "N/A";
             emailElement.textContent = userData.email || "N/A";
-
-            // Display first letter in the avatar
-            if (fullName && fullName.length > 0) {
-                avatarElement.textContent = fullName.charAt(0);
-            }
         } else {
-            console.error("User document not found.");
+            console.error("No such user document exists!");
+            alert("User data not found.");
         }
     } catch (error) {
         console.error("Error fetching user details:", error.message);
+        alert("An error occurred while fetching user details.");
     }
 };
 
-// Monitor Authentication State
+// Display user's wishlist
+const displayWishlist = async (userId) => {
+    try {
+        const userDocRef = doc(db, "users", userId); // Reference to the user's document
+        const userDoc = await getDoc(userDocRef); // Fetch the document
+
+        if (userDoc.exists()) {
+            const wishlist = userDoc.data().wishlist || [];
+
+            // Clear the container
+            wishlistContainer.innerHTML = '';
+
+            // Display wishlist items
+            if (wishlist.length > 0) {
+                wishlist.forEach((movie) => {
+                    const movieElement = document.createElement('div');
+                    movieElement.className = 'wishlist-item';
+                    movieElement.innerHTML = `
+                        <img src="${movie.image}" alt="${movie.title}" class="wishlist-item-image">
+                        <h3>${movie.title}</h3>
+                        <a href="${movie.video}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
+                    `;
+                    wishlistContainer.appendChild(movieElement);
+                });
+            } else {
+                wishlistContainer.innerHTML = '<p>No wishlist items found.</p>';
+            }
+        } else {
+            wishlistContainer.innerHTML = '<p>No wishlist items found.</p>';
+        }
+    } catch (error) {
+        console.error('Error fetching wishlist:', error);
+        alert('An error occurred while fetching the wishlist.');
+    }
+};
+
+// Monitor authentication state
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        fetchUserDetails(user.uid);
+        // User is logged in
+        fetchUserDetails(user.uid); // Fetch and display user details
+        displayWishlist(user.uid); // Fetch and display the user's wishlist
     } else {
+        // User is not logged in, redirect to login page
         alert("You are not logged in. Redirecting to login page.");
-        window.location.href = "./main1.html";
+        window.location.href = "login.html"; // Replace with the actual login page URL
     }
 });
 
-// Logout Functionality
-logoutButton.addEventListener("click", () => {
-    signOut(auth)
+// Logout functionality
+logoutButton.addEventListener('click', () => {
+    auth.signOut()
         .then(() => {
             alert("Logout successful.");
-            window.location.href = "./index.html";
+            window.location.href = "login.html"; // Redirect to login page
         })
         .catch((error) => {
-            console.error("Error during logout:", error.message);
+            console.error("Error logging out:", error.message);
         });
 });
+
+
+
+
+
+
+
 
 
 
