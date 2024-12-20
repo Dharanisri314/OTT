@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
     padding: 0;
@@ -179,7 +181,22 @@ color: #f1c40f;
 font-size: 25px;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
+body {
+    background: #000; /* Black background */
+    color: #ffd700; /* Yellow text */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Watch List Container */
 .watch-list-container {
     display: flex;
     flex-direction: column;
@@ -191,21 +208,25 @@ font-size: 25px;
     display: flex;
     align-items: center;
     gap: 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #ffd700; /* Yellow border */
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #111; /* Darker black background */
+    box-shadow: 0 2px 4px rgba(255, 215, 0, 0.2); /* Subtle yellow shadow */
 }
 
 .movie-image {
     width: 100px;
     height: 150px;
     object-fit: cover;
+    border: 2px solid #ffd700; /* Yellow border */
+    border-radius: 5px;
 }
 
 .movie-info h3 {
     margin: 0;
     font-size: 1.2em;
+    color: #ffd700; /* Yellow text */
 }
 
 .watch-buttons {
@@ -220,45 +241,129 @@ font-size: 25px;
     cursor: pointer;
     border: none;
     border-radius: 3px;
-    background-color: #007BFF;
-    color: white;
+    background-color: #ffd700; /* Yellow background */
+    color: #000; /* Black text */
     transition: background 0.3s;
 }
 
 .watch-buttons button:hover {
-    background-color: #0056b3;
+    background-color: #ffdd33; /* Lighter yellow on hover */
 }
 
-/* Trailer Modal */
-#trailer-modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
-}
-
-.modal-content {
-    background: #fff;
-    padding: 10px;
+/* Wishlist Container */
+#wishlist-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #111; /* Darker black background */
     border-radius: 8px;
-    position: relative;
+    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2); /* Subtle yellow shadow */
     text-align: center;
 }
 
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    color: red;
+#wishlist-container p {
+    font-size: 18px;
+    color: #ffd700; /* Yellow text */
 }
+
+/* Wishlist Items Grid */
+.wishlist-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 15px;
+    background-color: #111; /* Darker black background */
+    border-radius: 8px;
+    border: 1px solid #ffd700; /* Yellow border */
+    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2); /* Subtle yellow shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 200px;
+}
+
+.wishlist-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(255, 215, 0, 0.4); /* Brighter yellow shadow */
+}
+
+/* Wishlist Item Image */
+.wishlist-item-image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    height: 200px;
+    border: 2px solid #ffd700; /* Yellow border */
+}
+
+/* Wishlist Item Title */
+.wishlist-item h3 {
+    font-size: 18px;
+    color: #ffd700; /* Yellow text */
+    margin: 10px 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Watch Trailer Button */
+.wishlist-item-video {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #000; /* Black text */
+    background-color: #ffd700; /* Yellow background */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.wishlist-item-video:hover {
+    background-color: #ffdd33; /* Lighter yellow */
+}
+
+/* Grid Layout for Wishlist Items */
+#wishlist-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #wishlist-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .wishlist-item h3 {
+        font-size: 16px;
+    }
+
+    .wishlist-item-video {
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

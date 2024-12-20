@@ -76,6 +76,7 @@
 
 
 
+
 // Import necessary Firebase functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
@@ -101,14 +102,12 @@ const usernameElement = document.getElementById('username');
 const emailElement = document.getElementById('email');
 const logoutButton = document.getElementById('logout-button');
 const wishlistContainer = document.getElementById('wishlist-container');
+const avatarElement = document.getElementById('avatar');
 
 // Fetch and display user details
 const fetchUserDetails = async (userId) => {
     try {
-        // Reference to the user's document in Firestore
         const userDocRef = doc(db, "users", userId);
-
-        // Get the document
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
@@ -117,6 +116,10 @@ const fetchUserDetails = async (userId) => {
             // Display user details
             usernameElement.textContent = userData.username || "N/A";
             emailElement.textContent = userData.email || "N/A";
+
+            // Set avatar with the first letter of the username
+            const firstLetter = userData.username ? userData.username.charAt(0).toUpperCase() : "U";
+            avatarElement.textContent = firstLetter;
         } else {
             console.error("No such user document exists!");
             alert("User data not found.");
@@ -142,12 +145,16 @@ const displayWishlist = async (userId) => {
             // Display wishlist items
             if (wishlist.length > 0) {
                 wishlist.forEach((movie) => {
+                    const movieImage = movie.image || "https://via.placeholder.com/150"; // Default placeholder image
+                    const movieTitle = movie.title || "Untitled Movie";
+                    const movieVideo = movie.video || "#";
+
                     const movieElement = document.createElement('div');
                     movieElement.className = 'wishlist-item';
                     movieElement.innerHTML = `
-                        <img src="${movie.image}" alt="${movie.title}" class="wishlist-item-image">
-                        <h3>${movie.title}</h3>
-                        <a href="${movie.video}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
+                        <img src="${movieImage}" alt="${movieTitle}" class="wishlist-item-image">
+                        <h3>${movieTitle}</h3>
+                        <a href="${movieVideo}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
                     `;
                     wishlistContainer.appendChild(movieElement);
                 });
@@ -167,6 +174,7 @@ const displayWishlist = async (userId) => {
 onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is logged in
+        console.log("User logged in:", user.uid);
         fetchUserDetails(user.uid); // Fetch and display user details
         displayWishlist(user.uid); // Fetch and display the user's wishlist
     } else {

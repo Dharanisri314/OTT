@@ -168,6 +168,28 @@ function displayMovieDetails() {
         });
 }
 
+// Function to save a movie to the wishlist
+function saveToWishlist(movie) {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userDocRef = doc(db, 'users', user.uid);
+
+            updateDoc(userDocRef, {
+                wishlist: arrayUnion(movie)
+            })
+            .then(() => {
+                alert(`${movie.title} has been added to your wishlist.`);
+            })
+            .catch((error) => {
+                console.error('Error adding to wishlist:', error);
+                alert('Failed to add movie to wishlist. Please try again.');
+            });
+        } else {
+            alert('You must be logged in to add movies to your wishlist.');
+        }
+    });
+}
+
 // Function to show trailer in a modal
 function showTrailer(trailerUrl) {
     const modal = document.getElementById('trailer-modal');
@@ -189,9 +211,27 @@ function showTrailer(trailerUrl) {
     });
 }
 
-
 // Call the function to display movie details on page load
 document.addEventListener('DOMContentLoaded', displayMovieDetails);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -280,5 +320,4 @@ document.addEventListener("DOMContentLoaded", function () {
         displayResults(filteredMovies);
     });
 });
-
 
