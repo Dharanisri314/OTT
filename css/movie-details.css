@@ -1,3 +1,5 @@
+
+
 /* General Styles */
 body {
   font-family: 'Verdana', sans-serif;
@@ -92,14 +94,14 @@ header .header-login button {
 }
 
 .movie-details-image {
-  width: 300px;
+ width: 200px;
   height: 350px;
   border-radius: 15px;
   object-fit: cover;
   background-color: #333;
   border: 3px solid #e5a100;
-  margin-left: 150px;
-  margin-top: 100px;
+ margin-right: 50px;
+  margin-top: 10px;
 }
 
 .movie-details-info {
@@ -565,7 +567,67 @@ iframe {
 }
 
 
-  
-  
-  
-  
+
+
+
+.movie-details-card {
+  display: flex;
+  flex-direction: column; /* Stack image and details vertically */
+  align-items: center; /* Center-align contents */
+  gap: 10px; /* Add spacing between image and details */
+  background-color: #1f1f1f; /* Background color for the card */
+  border-radius: 15px; /* Rounded corners for the box */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
+  padding: 20px;
+  width: 600px; /* Set a consistent card width */
+  margin: 20px auto; /* Center horizontally */
+  text-align: center; /* Center-align text */
+}
+
+.movie-details-image {
+  width: 300px; /* Make image responsive to card width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 15px; /* Match card rounding */
+  object-fit: cover; /* Keep the image nicely cropped */
+  border: 3px solid #e5a100; /* Golden border around the image */
+}
+
+.movie-details-info {
+  width: 100%; /* Match width of the card */
+  margin-top: 10px;
+  margin-left: 30px; /* Add spacing between image and details */
+}
+
+.movie-details-info h2 {
+  font-size: 1.8rem; /* Slightly smaller than before */
+  color: #e5a100; /* Golden color for the title */
+  margin-bottom: 10px;
+}
+
+.movie-details-info p {
+  font-size: 1rem; /* Keep paragraph text consistent */
+  color: #ddd; /* Light gray for text */
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.movie-details-info a {
+  display: inline-block;
+  margin-top: 10px; /* Add spacing above the button */
+  padding: 10px 20px;
+  background-color: #e5a100;
+  color: #fff;
+  border-radius: 50px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.movie-details-info a:hover {
+  background-color: #ffcc33;
+}
+
+
+
+
