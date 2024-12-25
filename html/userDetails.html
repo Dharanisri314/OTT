@@ -5,9 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="/css/userDetails.css">
+    <script type="module" src="/js/userDetails.js"></script>
 </head>
 <body>
     <!-- Header -->
+      
+        <!-- Kuile Aro Mark (Back Button) -->
+        <div class="back-button-container">
+            <a href="/index.html">
+                <button class="back-button">Go Back</button>
+            </a>
+        </div>
     <header>
         <div class="header-container">
             <h1>User Profile</h1>
@@ -16,32 +24,37 @@
     </header>
 
     <main>
-    
-        <div>
-            <h2>Watch List</h2>
-            <div id="watch-list-container" class="watch-list-container"></div>
-        </div>
-        <div class="profile-container">
+        <!-- Profile Information -->
+        <section class="profile-container">
             <div class="profile-card">
                 <div id="avatar" class="avatar">A</div>
                 <h2 id="username" class="user-name">Loading...</h2>
                 <p id="email" class="user-email">Loading...</p>
             </div>
-        </div>
+        </section>
 
-
+        <!-- Wishlist Section -->
         <section class="wishlist">
-            <h2>Your Wishlist</h2>
+            <a href="/html/wishlist.html">
+                <h2>Your Wishlist</h2>
+            </a>
             <div id="wishlist-container">
                 <!-- Wishlist items will be dynamically inserted here -->
             </div>
         </section>
+
+        <!-- Modal for Video Trailer -->
+        <div id="trailer-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <iframe id="trailer-video" width="100%" height="315" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
     </main>
-    <!-- Firebase and Custom JS -->
-    <script type="module" src="../js/userDetails.js"></script>
 
-
-
-
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
 </body>
 </html>

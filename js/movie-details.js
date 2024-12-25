@@ -1,3 +1,5 @@
+
+
 function displayMovieList(data) {
     const genres = ['action', 'comedy', 'romance', 'horror', 'thriller'];
     let allMovies = [];
@@ -136,25 +138,116 @@ function displayMovieDetails() {
                             <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
                             <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
                             <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
-                            <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
-                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
-                            <button class="wishlist-btn">Add to Wishlist</button>
+                           <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
+ <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
+<button class="wishlist-btn">Add to Wishlist</button>
                         </div>
                     </div>`;
 
-                // Add event listener for "Watch Trailer" button
-                const trailerButton = document.querySelector('.trailer-now-btn');
-                trailerButton.addEventListener('click', () => {
-                    const trailerUrl = trailerButton.getAttribute('data-trailer-url');
-                    if (trailerUrl) showTrailer(trailerUrl);
-                    else alert('Trailer not available.');
+
+
+
+                    
+// Function to show trailer in a modal
+function showTrailer(trailerUrl) {
+    const modal = document.getElementById('trailer-modal');
+    const trailerVideo = document.getElementById('trailer-video');
+
+    if (!trailerUrl) {
+        console.error('Trailer URL is not available.');
+        return;
+    }
+
+    console.log('Trailer URL:', trailerUrl); // Debugging: Check URL
+
+    trailerVideo.src = trailerUrl;
+    modal.style.display = 'block'; // Show the modal
+
+    // Add event listener for close button inside the modal
+    const closeBtn = document.querySelector('.close-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            trailerVideo.src = ''; // Stop the video
+        });
+    }
+
+    // Close the modal when clicking outside the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            trailerVideo.src = ''; // Stop the video
+        }
+    });
+}
+
+// Add event listener for the trailer button
+const trailerButton = document.querySelector('.trailer-now-btn');
+if (trailerButton) {
+    trailerButton.addEventListener('click', () => {
+        // Assuming you have a valid URL in the data-trailer-url attribute
+        const trailerUrl = trailerButton.getAttribute('data-trailer-url');
+        if (trailerUrl) {
+            showTrailer(trailerUrl); // Show the trailer modal
+        } else {
+            console.error('No trailer URL available');
+        }
+    });
+}
+
+
+// Function to save a movie to the user's wishlist
+async function saveToWishlist(movie) {
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            const userRef = doc(db, "users", user.uid);
+            try {
+                await updateDoc(userRef, {
+                    wishlist: arrayUnion({
+                        title: movie.title,
+                        image: movie.image_url || 'placeholder.jpg',
+                        video: movie.trailer_url || ''
+                    })
                 });
+                alert("Movie added to your wishlist!");
+            } catch (error) {
+                console.error("Error adding to wishlist:", error.message);
+                alert("Failed to add the movie to the wishlist.");
+            }
+        } else {
+            alert("You must be logged in to add movies to your wishlist.");
+        }
+    });
+}
+
+
+
+                // Add event listener for "Watch Now" button
+                const watchNowButton = document.querySelector('.watch-now-btn');
+                if (watchNowButton) {
+                    watchNowButton.addEventListener('click', (e) => {
+                        e.preventDefault(); // Prevent default link behavior
+                        checkLoginAndPerformAction(() => {
+                            const streamUrl = watchNowButton.getAttribute('href');
+                            if (streamUrl) {
+                                window.open(streamUrl, '_blank'); // Open movie stream in a new tab
+                            } else {
+                                alert('Stream URL not available.');
+                            }
+                        });
+                    });
+                }
 
                 // Add event listener for "Wishlist" button
                 const wishlistButton = document.querySelector('.wishlist-btn');
-                wishlistButton.addEventListener('click', () => {
-                    saveToWishlist(movie);
-                });
+                if (wishlistButton) {
+                    wishlistButton.addEventListener('click', () => {
+                        checkLoginAndPerformAction(() => {
+                            saveToWishlist(movie); // Function to save movie to wishlist
+                        });
+                    });
+                }
+
             } else {
                 document.getElementById('movie-details-container').innerHTML = '<p>Movie details not available.</p>';
                 console.warn(`Movie titled "${movieTitle}" not found in the JSON data.`);
@@ -164,6 +257,26 @@ function displayMovieDetails() {
             console.error('Error loading movie details:', error);
             document.getElementById('movie-details-container').innerHTML = '<p>Failed to load movie details.</p>';
         });
+}
+
+
+// Call the function to display movie details on page load
+document.addEventListener('DOMContentLoaded', displayMovieDetails);
+
+
+
+
+// Function to check if the user is logged in before performing actions
+function checkLoginAndPerformAction(action) {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is logged in, proceed with the action
+            action(user);
+        } else {
+            // User is not logged in, show alert
+            alert('You must be logged in to perform this action.');
+        }
+    });
 }
 
 // Function to save a movie to the wishlist
@@ -188,34 +301,8 @@ function saveToWishlist(movie) {
     });
 }
 
-// Function to show trailer in a modal
-function showTrailer(trailerUrl) {
-    const modal = document.getElementById('trailer-modal');
-    const trailerVideo = document.getElementById('trailer-video');
-
-    trailerVideo.src = trailerUrl;
-    modal.style.display = 'block';
-
-    document.querySelector('.close-btn').addEventListener('click', () => {
-        modal.style.display = 'none';
-        trailerVideo.src = '';
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-            trailerVideo.src = '';
-        }
-    });
-}
-
 // Call the function to display movie details on page load
 document.addEventListener('DOMContentLoaded', displayMovieDetails);
-
-
-
-
-
 
 
 
@@ -303,4 +390,7 @@ document.addEventListener("DOMContentLoaded", function () {
         displayResults(filteredMovies);
     });
 });
+
+
+
 
