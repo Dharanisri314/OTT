@@ -22,8 +22,8 @@
 // const usernameElement = document.getElementById('username');
 // const emailElement = document.getElementById('email');
 // const logoutButton = document.getElementById('logout-button');
-
-
+// const wishlistContainer = document.getElementById('wishlist-container');
+// const avatarElement = document.getElementById('avatar');
 
 // // Fetch and display user details
 // const fetchUserDetails = async (userId) => {
@@ -40,6 +40,10 @@
 //             // Display user details
 //             usernameElement.textContent = userData.username || "N/A";
 //             emailElement.textContent = userData.email || "N/A";
+
+//             // Set avatar with the first letter of the username
+//             const firstLetter = userData.username ? userData.username.charAt(0).toUpperCase() : "U";
+//             avatarElement.textContent = firstLetter;
 //         } else {
 //             console.error("No such user document exists!");
 //             alert("User data not found.");
@@ -50,15 +54,52 @@
 //     }
 // };
 
+// // Display user's wishlist
+// const displayWishlist = async (userId) => {
+//     try {
+//         const userDocRef = doc(db, "users", userId); // Reference to the user's document
+//         const userDoc = await getDoc(userDocRef); // Fetch the document
+
+//         if (userDoc.exists()) {
+//             const wishlist = userDoc.data().wishlist || [];
+
+//             // Clear the container
+//             wishlistContainer.innerHTML = '';
+
+//             // Display wishlist items
+//             if (wishlist.length > 0) {
+//                 wishlist.forEach((movie) => {
+//                     const movieElement = document.createElement('div');
+//                     movieElement.className = 'wishlist-item';
+//                     movieElement.innerHTML = `
+//                         <img src="${movie.image}" alt="${movie.title}" class="wishlist-item-image">
+//                         <h3>${movie.title}</h3>
+//                         <a href="${movie.video}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
+//                     `;
+//                     wishlistContainer.appendChild(movieElement);
+//                 });
+//             } else {
+//                 wishlistContainer.innerHTML = '<p>No wishlist items found.</p>';
+//             }
+//         } else {
+//             wishlistContainer.innerHTML = '<p>No wishlist items found.</p>';
+//         }
+//     } catch (error) {
+//         console.error('Error fetching wishlist:', error);
+//         alert('An error occurred while fetching the wishlist.');
+//     }
+// };
+
 // // Monitor authentication state
 // onAuthStateChanged(auth, (user) => {
 //     if (user) {
-//         // User is logged in, fetch their details
-//         fetchUserDetails(user.uid);
+//         // User is logged in
+//         fetchUserDetails(user.uid); // Fetch and display user details
+//         displayWishlist(user.uid); // Fetch and display the user's wishlist
 //     } else {
 //         // User is not logged in, redirect to login page
 //         alert("You are not logged in. Redirecting to login page.");
-//         window.location.href ="./main1.html"; // Replace with the actual login page URL
+//         window.location.href = "login.html"; // Replace with the actual login page URL
 //     }
 // });
 
@@ -73,8 +114,6 @@
 //             console.error("Error logging out:", error.message);
 //         });
 // });
-
-
 
 
 // Import necessary Firebase functions
@@ -101,7 +140,6 @@ const db = getFirestore(app);
 const usernameElement = document.getElementById('username');
 const emailElement = document.getElementById('email');
 const logoutButton = document.getElementById('logout-button');
-const wishlistContainer = document.getElementById('wishlist-container');
 const avatarElement = document.getElementById('avatar');
 
 // Fetch and display user details
@@ -130,46 +168,6 @@ const fetchUserDetails = async (userId) => {
     }
 };
 
-// Display user's wishlist
-const displayWishlist = async (userId) => {
-    try {
-        const userDocRef = doc(db, "users", userId); // Reference to the user's document
-        const userDoc = await getDoc(userDocRef); // Fetch the document
-
-        if (userDoc.exists()) {
-            const wishlist = userDoc.data().wishlist || [];
-
-            // Clear the container
-            wishlistContainer.innerHTML = '';
-
-            // Display wishlist items
-            if (wishlist.length > 0) {
-                wishlist.forEach((movie) => {
-                    const movieImage = movie.image || "https://via.placeholder.com/150"; // Default placeholder image
-                    const movieTitle = movie.title || "Untitled Movie";
-                    const movieVideo = movie.video || "#";
-
-                    const movieElement = document.createElement('div');
-                    movieElement.className = 'wishlist-item';
-                    movieElement.innerHTML = `
-                        <img src="${movieImage}" alt="${movieTitle}" class="wishlist-item-image">
-                        <h3>${movieTitle}</h3>
-                        <a href="${movieVideo}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
-                    `;
-                    wishlistContainer.appendChild(movieElement);
-                });
-            } else {
-                wishlistContainer.innerHTML = '<p>No wishlist items found.</p>';
-            }
-        } else {
-            wishlistContainer.innerHTML = '<p>No wishlist items found.</p>';
-        }
-    } catch (error) {
-        console.error('Error fetching wishlist:', error);
-        alert('An error occurred while fetching the wishlist.');
-    }
-};
-
 // Monitor authentication state
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -180,7 +178,7 @@ onAuthStateChanged(auth, (user) => {
     } else {
         // User is not logged in, redirect to login page
         alert("You are not logged in. Redirecting to login page.");
-        window.location.href = "login.html"; // Replace with the actual login page URL
+        window.location.href = "./main1.html"; // Replace with the actual login page URL
     }
 });
 
