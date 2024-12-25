@@ -1,5 +1,3 @@
-
-
 function displayMovieList(data) {
     const genres = ['action', 'comedy', 'romance', 'horror', 'thriller'];
     let allMovies = [];
@@ -213,21 +211,6 @@ function showTrailer(trailerUrl) {
 
 // Call the function to display movie details on page load
 document.addEventListener('DOMContentLoaded', displayMovieDetails);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
