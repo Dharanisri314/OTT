@@ -222,7 +222,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 
-
 const images = document.querySelectorAll(".carousel-image");
 let currentIndex = 0;
 
@@ -241,37 +240,23 @@ function updateCarousel() {
 
   const container = document.getElementById("movieSlideContainer");
   const offset = -currentIndex * images[0].offsetWidth;
+  container.style.transition = "transform 0.5s ease-in-out";  // Smooth transition when changing images
   container.style.transform = `translateX(${offset}px)`;
 }
 
-function rotateCarousel() {
-  currentIndex = (currentIndex + 1) % images.length;
-  updateCarousel();
-}
-
-// Set up interval for automatic rotation
-const interval = setInterval(rotateCarousel, 3000); // Rotate every 3 seconds
-
-// Add button functionality
+// Button functionality for previous and next
 document.getElementById("prevButton").addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  currentIndex = (currentIndex - 1 + images.length) % images.length; // Move to previous image
   updateCarousel();
 });
 
 document.getElementById("nextButton").addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % images.length;
+  currentIndex = (currentIndex + 1) % images.length; // Move to next image
   updateCarousel();
 });
 
-// Optional: Pause rotation on hover
-const sliderContainer = document.querySelector(".slider-container");
-sliderContainer.addEventListener("mouseover", () => clearInterval(interval));
-sliderContainer.addEventListener("mouseleave", () => setInterval(rotateCarousel, 3000));
-
 // Initial setup
 updateCarousel();
-
-
 
 
 

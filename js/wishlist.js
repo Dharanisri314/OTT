@@ -43,6 +43,7 @@ const displayWishlist = async (userId) => {
                         <img src="${movieImage}" alt="${movieTitle}" class="wishlist-item-image">
                         <h3>${movieTitle}</h3>
                         <a href="${movieVideo}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
+                        <button class="delete-btn">Delete</button> 
                     `;
                     wishlistContainer.appendChild(movieElement);
                 });
@@ -81,4 +82,41 @@ logoutButton.addEventListener('click', () => {
         .catch((error) => {
             console.error("Error logging out:", error.message);
         });
+});
+
+
+// Function to handle deleting an item (e.g., from the DOM or database)
+function handleDelete(event) {
+    // Get the element that triggered the delete action (in this case, the button)
+    const deleteButton = event.target;
+    
+    // Optionally, you can confirm the delete action
+    const confirmation = confirm('Are you sure you want to delete this item?');
+    if (!confirmation) {
+        return; // If the user cancels, do nothing
+    }
+
+    // Find the parent element of the button (this could be a card, list item, etc.)
+    const itemToDelete = deleteButton.closest('.item'); // Change `.item` to the appropriate class or element type
+    
+    // If the item is found, remove it from the DOM
+    if (itemToDelete) {
+        itemToDelete.remove(); // Remove the element from the DOM
+        alert('Item deleted successfully.');
+    } else {
+        alert('Item not found.');
+    }
+
+    // If you need to delete something from a database (e.g., Firestore), you can call a function here
+    // Example (uncomment to use):
+    // deleteItemFromDatabase(itemToDelete.id);
+}
+
+// Attach event listener to the delete button
+document.addEventListener('DOMContentLoaded', () => {
+    const deleteButton = document.querySelector('.delete-btn');
+    
+    if (deleteButton) {
+        deleteButton.addEventListener('click', handleDelete);
+    }
 });
