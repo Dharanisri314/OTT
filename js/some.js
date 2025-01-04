@@ -158,6 +158,39 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
 
 
 
+// Function to update the button state based on the wishlist
+function updateButtonState(movie) {
+    const addToWishlistButton = document.querySelector('.wishlist-btn');
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    // Check if the movie is already in the wishlist
+    if (wishlist.some(item => item.title === movie.title)) {
+        addToWishlistButton.textContent = 'Remove from Wishlist';  // Movie is in wishlist
+    } else {
+        addToWishlistButton.textContent = 'Add to Wishlist'; // Movie is not in wishlist
+    }
+}
+
+// // Function to handle adding/removing the movie from the wishlist
+// function handleWishlist(movie) {
+//     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+//     if (!wishlist.some(item => item.title === movie.title)) {
+//         // Movie is not in the wishlist, add it
+//         wishlist.push(movie);
+//         localStorage.setItem('wishlist', JSON.stringify(wishlist));
+//         alert(`${movie.title} has been added to your wishlist.`);
+//     } else {
+//         // Movie is in the wishlist, remove it
+//         wishlist = wishlist.filter(item => item.title !== movie.title);
+//         localStorage.setItem('wishlist', JSON.stringify(wishlist));
+//         alert(`${movie.title} has been removed from your wishlist.`);
+//     }
+
+//     // Update the button state after modifying the wishlist
+//     updateButtonState(movie);
+// }
+
 
 
 
@@ -166,7 +199,7 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-import { getFirestore, doc,getDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -234,10 +267,20 @@ function displayMovieDetails() {
                             <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
                            <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
-                           <button class="wishlist-btn">Add to Wishlist</button>
-                           <button class="remove-wishlist-btn">Remove from Wishlist</button>
+                          <button class="wishlist-btn">Add to Wishlist</button>
+                           
                         </div>
                     </div>`;
+
+
+
+                // Update the button state based on the current movie
+                updateButtonState(movie);
+
+                // Add event listener to handle wishlist button click
+                const addToWishlistButton = document.querySelector('.wishlist-btn');
+                addToWishlistButton.addEventListener('click', () => handleWishlist(movie));
+
 
                 // Function to show trailer in a modal
                 function showTrailer(trailerUrl) {
@@ -313,6 +356,9 @@ function displayMovieDetails() {
         });
 }
 
+
+
+
 // Function to check if the user is logged in before performing actions
 function checkLoginAndPerformAction(action) {
     onAuthStateChanged(auth, (user) => {
@@ -339,7 +385,7 @@ async function saveToWishlist(movie) {
                         video: movie.trailer_url || ''
                     })
                 });
-                alert("Movie added to your wishlist!");
+
             } catch (error) {
                 console.error("Error adding to wishlist:", error.message);
                 alert("Failed to add the movie to the wishlist.");
@@ -374,11 +420,35 @@ async function removeFromWishlist(movie) {
     });
 }
 
+
+// Function to handle adding/removing the movie from the wishlist
+function handleWishlist(movie) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    if (!wishlist.some(item => item.title === movie.title)) {
+        // Movie is not in the wishlist, add it
+        wishlist.push(movie);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        alert(`${movie.title} has been added to your wishlist.`);
+    } else {
+        // Movie is in the wishlist, remove it
+        wishlist = wishlist.filter(item => item.title !== movie.title);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        alert(`${movie.title} has been removed from your wishlist.`);
+    }
+
+    // Update the button state after modifying the wishlist
+    updateButtonState(movie);
+}
+
+
+
+
+
 // Call the function to display movie details on page load
 document.addEventListener('DOMContentLoaded', displayMovieDetails);
-
 const userDisplay = document.getElementById("user-display");
-    
+
 // Monitor authentication state
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -388,10 +458,11 @@ onAuthStateChanged(auth, async (user) => {
         if (userData) {
             userDisplay.textContent = userData.username;
             userDisplay.style.display = "inline-block"; // Show user display
+            
         }
     } else {
         userDisplay.style.display = "none"; // Hide user display
+       
     }
 });
-
 

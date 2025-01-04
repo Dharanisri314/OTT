@@ -1,316 +1,3 @@
-// Import Firebase modules
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-import { getFirestore, doc, getDoc,updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyAL6dgKjaV_N-lneOwWri-N2Xm-bf6UJ7w",
-    authDomain: "ott-platform-cf43e.firebaseapp.com",
-    projectId: "ott-platform-cf43e",
-    storageBucket: "ott-platform-cf43e.appspot.com",
-    messagingSenderId: "844526974291",
-    appId: "1:844526974291:web:11268d750d39062db85da6"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// Function to display movie details
-function displayMovieDetails() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const movieTitle = urlParams.get('title');
-
-    if (!movieTitle) {
-        document.getElementById('movie-details-container').innerHTML = '<p>Movie not found.</p>';
-        console.error('Movie title not found in URL query parameters.');
-        return;
-    }
-
-    fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
-        .then(response => {
-            if (!response.ok) throw new Error(`Failed to fetch JSON file: ${response.statusText}`);
-            return response.json();
-        })
-        .then(data => {
-            const genres = ['action', 'comedy', 'romance', 'horror', 'thriller'];
-            let movie = null;
-
-            // Search for the movie in all genres
-            for (const genre of genres) {
-                const movieList = data[genre];
-                if (movieList) {
-                    movie = movieList.find(m => m.title && m.title.toLowerCase() === movieTitle.toLowerCase());
-                    if (movie) break;
-                }
-            }
-
-            if (movie) {
-                const crew = movie.crew || {};
-                const imageUrl = movie.image_url || 'placeholder.jpg';
-                document.getElementById('movie-details-container').innerHTML = `
-                    <div class="movie-details-card">
-                        <img class="movie-details-image" src="${imageUrl}" alt="${movie.title}" loading="lazy">
-                        <div class="movie-details-info">
-                            <h2>${movie.title}</h2>
-                            <p><strong>Genre:</strong> ${movie.genre || 'Unknown'}</p>
-                            <p><strong>Director:</strong> ${movie.director || 'N/A'}</p>
-                            <p><strong>Release Year:</strong> ${movie.release_date || 'Unknown'}</p>
-                            <p><strong>Play Time:</strong> ${movie.play_time || 'Unknown'}</p>
-                            <p><strong>Rating:</strong> ${movie.rating || 'N/A'}</p>
-                            <p><strong>Description:</strong> ${movie.description || 'No description available.'}</p>
-                            <p><strong>Cast:</strong> ${movie.cast ? movie.cast.join(', ') : 'N/A'}</p>
-                            <h3>Crew:</h3>
-                            <p><strong>Music:</strong> ${crew.music || 'N/A'}</p>
-                            <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
-                            <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
-                            <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
-                           <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
-                           <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
-                           <button class="wishlist-btn">Add to Wishlist</button>
-                        </div>
-                    </div>`;
-
-                // Function to show trailer in a modal
-                function showTrailer(trailerUrl) {
-                    const modal = document.getElementById('trailer-modal');
-                    const trailerVideo = document.getElementById('trailer-video');
-
-                    if (!trailerUrl) {
-                        console.error('Trailer URL is not available.');
-                        return;
-                    }
-
-                    trailerVideo.src = trailerUrl;
-                    modal.style.display = 'block'; // Show the modal
-
-                    // Add event listener for close button inside the modal
-                    const closeBtn = document.querySelector('.close-btn');
-                    if (closeBtn) {
-                        closeBtn.addEventListener('click', () => {
-                            modal.style.display = 'none';
-                            trailerVideo.src = ''; // Stop the video
-                        });
-                    }
-
-                    // Close the modal when clicking outside the modal content
-                    window.addEventListener('click', (event) => {
-                        if (event.target === modal) {
-                            modal.style.display = 'none';
-                            trailerVideo.src = ''; // Stop the video
-                        }
-                    });
-                }
-
-                // Event listener for "Watch Trailer" button
-                const trailerButton = document.querySelector('.trailer-now-btn');
-                if (trailerButton) {
-                    trailerButton.addEventListener('click', () => {
-                        const trailerUrl = trailerButton.getAttribute('data-trailer-url');
-                        if (trailerUrl) {
-                            showTrailer(trailerUrl);
-                        } else {
-                            console.error('No trailer URL available');
-                        }
-                    });
-                }
-
-                // Event listener for "Add to Wishlist" button
-                const wishlistButton = document.querySelector('.wishlist-btn');
-                if (wishlistButton) {
-                    wishlistButton.addEventListener('click', () => {
-                        checkLoginAndPerformAction(() => {
-                            saveToWishlist(movie); // Function to save movie to wishlist
-                        });
-                    });
-                }
-
-                // Event listener for "Remove from Wishlist" button
-                const removeWishlistButton = document.querySelector('.remove-wishlist-btn');
-                if (removeWishlistButton) {
-                    removeWishlistButton.addEventListener('click', () => {
-                        checkLoginAndPerformAction(() => {
-                            removeFromWishlist(movie); // Function to remove movie from wishlist
-                        });
-                    });
-                }
-            } else {
-                document.getElementById('movie-details-container').innerHTML = '<p>Movie details not available.</p>';
-                console.warn(`Movie titled "${movieTitle}" not found in the JSON data.`);
-            }
-        })
-        .catch(error => {
-            console.error('Error loading movie details:', error);
-            document.getElementById('movie-details-container').innerHTML = '<p>Failed to load movie details.</p>';
-        });
-}
-
-// Function to check if the user is logged in before performing actions
-function checkLoginAndPerformAction(action) {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // User is logged in, proceed with the action
-            action(user);
-        } else {
-            // User is not logged in, show alert
-            alert('You must be logged in to perform this action.');
-        }
-    });
-}
-
-// Function to save a movie to the user's wishlist
-async function saveToWishlist(movie) {
-    onAuthStateChanged(auth, async (user) => {
-        if (user) {
-            const userRef = doc(db, "users", user.uid);
-            try {
-                await updateDoc(userRef, {
-                    wishlist: arrayUnion({
-                        title: movie.title,
-                        image: movie.image_url || 'placeholder.jpg',
-                        video: movie.trailer_url || ''
-                    })
-                });
-                alert("Movie added to your wishlist!");
-            } catch (error) {
-                console.error("Error adding to wishlist:", error.message);
-                alert("Failed to add the movie to the wishlist.");
-            }
-        } else {
-            alert("You must be logged in to add movies to your wishlist.");
-        }
-    });
-}
-
-// Function to remove a movie from the user's wishlist
-async function removeFromWishlist(movie) {
-    onAuthStateChanged(auth, async (user) => {
-        if (user) {
-            const userRef = doc(db, "users", user.uid);
-            try {
-                await updateDoc(userRef, {
-                    wishlist: arrayRemove({
-                        title: movie.title,
-                        image: movie.image_url || 'placeholder.jpg',
-                        video: movie.trailer_url || ''
-                    })
-                });
-                alert("Movie removed from your wishlist!");
-            } catch (error) {
-                console.error("Error removing from wishlist:", error.message);
-                alert("Failed to remove the movie from the wishlist.");
-            }
-        } else {
-            alert("You must be logged in to remove movies from your wishlist.");
-        }
-    });
-}
-
-// Call the function to display movie details on page load
-document.addEventListener('DOMContentLoaded', displayMovieDetails);
-
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById('search-input');
-    const resultsContainer = document.getElementById("search-results");
-    const mainContainer = document.getElementById('mainContainer');
-   
-
-    const jsonFilePath = '../assets/json/main1.json'; // Path to your JSON file
-// Initialize Firestore (assumes Firebase has already been initialized)
-const db = getFirestore();
-
-
-
-    // Function to fetch all movies from the JSON file
-    async function loadMovies() {
-        try {
-            const response = await fetch(jsonFilePath);
-            if (!response.ok) {
-                throw new Error("Network response was not ok: " + response.statusText);
-            }
-            const data = await response.json();
-
-            // Combine movies from different sections into one array
-            let allMovies = [];
-            for (const section in data) {
-                if (Array.isArray(data[section])) {
-                    allMovies = allMovies.concat(data[section]);
-                }
-            }
-            return allMovies;
-        } catch (error) {
-            console.error("Error fetching movie data:", error);
-            return [];
-        }
-    }
-
-    // Function to display results based on the first letter of the movie name
-    function displayResults(results) {
-        resultsContainer.innerHTML = ''; // Clear previous results
-
-        if (results.length === 0) {
-            resultsContainer.innerHTML = '<p>No movies found</p>';
-            return;
-        }
-
-        results.forEach(movie => {
-            const movieDiv = document.createElement('div');
-            movieDiv.classList.add('movie-result');
-            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to placeholder image
-
-            movieDiv.innerHTML = `
-                <img src="${imageUrl}" alt="${movie.title}" width="100">
-                <div>
-                    <h3>${movie.title}</h3>
-                </div>
-            `;
-
-            // Handle movie click event to redirect to the movie details page
-            movieDiv.addEventListener('click', function () {
-                window.location.href = `movie-details.html?title=${encodeURIComponent(movie.title)}`; // Redirect to the details page
-            });
-
-            resultsContainer.appendChild(movieDiv);
-        });
-    }
-
-    // Handle dynamic search as the user types
-    searchInput.addEventListener('input', async function () {
-        const searchQuery = searchInput.value.trim().toLowerCase();
-
-        if (searchQuery.length === 0) {
-            resultsContainer.innerHTML = ''; // Clear results if no search query
-            mainContainer.innerHTML = ''; // Clear main container display
-            return;
-        }
-
-        // Load all movies
-        const movies = await loadMovies();
-
-        // Filter movies based on the first letter of the title
-        const filteredMovies = movies.filter(movie => {
-            return movie.title && movie.title.toLowerCase().startsWith(searchQuery);
-        });
-
-        // Display the filtered results
-        displayResults(filteredMovies);
-    });
-});
-
-
-
-
-
-
-
-
-
-
-
 
 
 function displayMovieList(data) {
@@ -370,258 +57,365 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
         console.error('Error loading movie list:', error);
     });
 
-    const userDisplay = document.getElementById("user-display");
-    
-    // Monitor authentication state
+
+
+
+
+
+
+
+
+// Function to update the button state based on the wishlist
+function updateButtonState(movie) {
+    const addToWishlistButton = document.querySelector('.wishlist-btn');
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    // Check if the movie is already in the wishlist
+    if (wishlist.some(item => item.title === movie.title)) {
+        addToWishlistButton.textContent = 'Remove from Wishlist';  // Movie is in wishlist
+    } else {
+        addToWishlistButton.textContent = 'Add to Wishlist'; // Movie is not in wishlist
+    }
+}
+
+// Function to handle adding/removing the movie from the wishlist
+function handleWishlist(movie) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    if (!wishlist.some(item => item.title === movie.title)) {
+        // Movie is not in the wishlist, add it
+        wishlist.push(movie);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        alert(`${movie.title} has been added to your wishlist.`);
+    } else {
+        // Movie is in the wishlist, remove it
+        wishlist = wishlist.filter(item => item.title !== movie.title);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        alert(`${movie.title} has been removed from your wishlist.`);
+    }
+
+    // Update the button state after modifying the wishlist
+    updateButtonState(movie);
+}
+
+// Function to display movie details
+function displayMovieDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const movieTitle = urlParams.get('title');
+
+    if (!movieTitle) {
+        document.getElementById('movie-details-container').innerHTML = '<p>Movie not found.</p>';
+        console.error('Movie title not found in URL query parameters.');
+        return;
+    }
+
+    fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
+        .then(response => {
+            if (!response.ok) throw new Error(`Failed to fetch JSON file: ${response.statusText}`);
+            return response.json();
+        })
+        .then(data => {
+            const genres = ['action', 'comedy', 'romance', 'horror', 'thriller'];
+            let movie = null;
+
+            // Search for the movie in all genres
+            for (const genre of genres) {
+                const movieList = data[genre];
+                if (movieList) {
+                    movie = movieList.find(m => m.title && m.title.toLowerCase() === movieTitle.toLowerCase());
+                    if (movie) break;
+                }
+            }
+
+            if (movie) {
+                // Dynamically update the movie details
+                const crew = movie.crew || {};
+                const imageUrl = movie.image_url || 'placeholder.jpg';
+                document.getElementById('movie-details-container').innerHTML = `
+                    <div class="movie-details-card">
+                        <img class="movie-details-image" src="${imageUrl}" alt="${movie.title}" loading="lazy">
+                        <div class="movie-details-info">
+                            <h2>${movie.title}</h2>
+                            <p><strong>Genre:</strong> ${movie.genre || 'Unknown'}</p>
+                            <p><strong>Director:</strong> ${movie.director || 'N/A'}</p>
+                            <p><strong>Release Year:</strong> ${movie.release_date || 'Unknown'}</p>
+                            <p><strong>Play Time:</strong> ${movie.play_time || 'Unknown'}</p>
+                            <p><strong>Rating:</strong> ${movie.rating || 'N/A'}</p>
+                            <p><strong>Description:</strong> ${movie.description || 'No description available.'}</p>
+                            <p><strong>Cast:</strong> ${movie.cast ? movie.cast.join(', ') : 'N/A'}</p>
+                            <h3>Crew:</h3>
+                            <p><strong>Music:</strong> ${crew.music || 'N/A'}</p>
+                            <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
+                            <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
+                            <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
+                            <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
+                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
+                            <button class="wishlist-btn">Add to Wishlist</button>
+                            <button class="rent-btn">Rent now</button>
+                        </div>
+                    </div>`;
+
+                // Update the button state based on the current movie
+                updateButtonState(movie);
+
+                // Add event listener to handle wishlist button click
+                const addToWishlistButton = document.querySelector('.wishlist-btn');
+                addToWishlistButton.addEventListener('click', () => handleWishlist(movie));
+
+
+
+                // Add event listener for trailer button
+                const trailerButton = document.querySelector('.trailer-now-btn');
+                if (trailerButton) {
+                    trailerButton.addEventListener('click', () => {
+                        const trailerUrl = trailerButton.getAttribute('data-trailer-url');
+                        if (trailerUrl) {
+                            showTrailer(trailerUrl);
+                        } else {
+                            console.error('No trailer URL available');
+                        }
+                    });
+                }
+
+
+
+
+
+// Function to save a movie to the user's wishlist
+async function saveToWishlist(movie) {
     onAuthStateChanged(auth, async (user) => {
         if (user) {
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            const userData = userDoc.exists() ? userDoc.data() : null;
-
-            if (userData) {
-                userDisplay.textContent = userData.username;
-                userDisplay.style.display = "inline-block"; // Show user display
+            const userRef = doc(db, "users", user.uid);
+            try {
+                await updateDoc(userRef, {
+                    wishlist: arrayUnion({
+                        title: movie.title,
+                        image: movie.image_url || 'placeholder.jpg',
+                        video: movie.trailer_url || ''
+                    })
+                });
+                alert("Movie added to your wishlist!");
+            } catch (error) {
+                console.error("Error adding to wishlist:", error.message);
+                alert("Failed to add the movie to the wishlist.");
             }
         } else {
-            userDisplay.style.display = "none"; // Hide user display
+            alert("You must be logged in to add movies to your wishlist.");
         }
     });
+}
+
+
+
+
+
+                // Add event listener for "Watch Now" button
+                const watchNowButton = document.querySelector('.watch-now-btn');
+                if (watchNowButton) {
+                    watchNowButton.addEventListener('click', (e) => {
+                        e.preventDefault(); // Prevent default link behavior
+                        checkLoginAndPerformAction(() => {
+                            const streamUrl = watchNowButton.getAttribute('href');
+                            if (streamUrl) {
+                                window.open(streamUrl, '_blank'); // Open movie stream in a new tab
+                            } else {
+                                alert('Stream URL not available.');
+                            }
+                        });
+                    });
+                }
 
 
 
 
 
 
-// // Import Firebase modules
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-// import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-// import { getFirestore, doc, updateDoc, arrayUnion, arrayRemove, getDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-// // Firebase configuration
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAL6dgKjaV_N-lneOwWri-N2Xm-bf6UJ7w",
-//     authDomain: "ott-platform-cf43e.firebaseapp.com",
-//     projectId: "ott-platform-cf43e",
-//     storageBucket: "ott-platform-cf43e.appspot.com",
-//     messagingSenderId: "844526974291",
-//     appId: "1:844526974291:web:11268d750d39062db85da6"
-// };
+                // Add event listener for "Wishlist" button
+                const wishlistButton = document.querySelector('.wishlist-btn');
+                if (wishlistButton) {
+                    wishlistButton.addEventListener('click', () => {
+                        checkLoginAndPerformAction(() => {
+                            saveToWishlist(movie); // Function to save movie to wishlist
+                        });
+                    });
+                }
 
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
-// const db = getFirestore(app);
+            } else {
+                document.getElementById('movie-details-container').innerHTML = '<p>Movie details not available.</p>';
+                console.warn(`Movie titled "${movieTitle}" not found in the JSON data.`);
+            }
+        })
+        .catch(error => {
+            console.error('Error loading movie details:', error);
+            document.getElementById('movie-details-container').innerHTML = '<p>Failed to load movie details.</p>';
+        });
+}
 
-// // Function to check if the user is logged in before performing actions
-// function checkLoginAndPerformAction(action) {
-//     onAuthStateChanged(auth, (user) => {
-//         if (user) {
-//             // User is logged in, proceed with the action
-//             action(user);
-//         } else {
-//             // User is not logged in, show alert
-//             alert('You must be logged in to perform this action.');
-//         }
-//     });
-// }
 
-// // Function to display movie details
-// function displayMovieDetails() {
-//     const urlParams = new URLSearchParams(window.location.search);
-//     const movieTitle = urlParams.get('title');
 
-//     if (!movieTitle) {
-//         document.getElementById('movie-details-container').innerHTML = '<p>Movie not found.</p>';
-//         console.error('Movie title not found in URL query parameters.');
-//         return;
-//     }
 
-//     fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
-//         .then(response => {
-//             if (!response.ok) throw new Error(`Failed to fetch JSON file: ${response.statusText}`);
-//             return response.json();
-//         })
-//         .then(data => {
-//             const genres = ['action', 'comedy', 'romance', 'horror', 'thriller'];
-//             let movie = null;
 
-//             // Search for the movie in all genres
-//             for (const genre of genres) {
-//                 const movieList = data[genre];
-//                 if (movieList) {
-//                     movie = movieList.find(m => m.title && m.title.toLowerCase() === movieTitle.toLowerCase());
-//                     if (movie) break;
-//                 }
-//             }
+// Call the function to display movie details on page load
+document.addEventListener('DOMContentLoaded', displayMovieDetails);
 
-//             if (movie) {
-//                 const crew = movie.crew || {};
-//                 const imageUrl = movie.image_url || 'placeholder.jpg';
-//                 document.getElementById('movie-details-container').innerHTML = `
-//                     <div class="movie-details-card">
-//                         <img class="movie-details-image" src="${imageUrl}" alt="${movie.title}" loading="lazy">
-//                         <div class="movie-details-info">
-//                             <h2>${movie.title}</h2>
-//                             <p><strong>Genre:</strong> ${movie.genre || 'Unknown'}</p>
-//                             <p><strong>Director:</strong> ${movie.director || 'N/A'}</p>
-//                             <p><strong>Release Year:</strong> ${movie.release_date || 'Unknown'}</p>
-//                             <p><strong>Play Time:</strong> ${movie.play_time || 'Unknown'}</p>
-//                             <p><strong>Rating:</strong> ${movie.rating || 'N/A'}</p>
-//                             <p><strong>Description:</strong> ${movie.description || 'No description available.'}</p>
-//                             <p><strong>Cast:</strong> ${movie.cast ? movie.cast.join(', ') : 'N/A'}</p>
-//                             <h3>Crew:</h3>
-//                             <p><strong>Music:</strong> ${crew.music || 'N/A'}</p>
-//                             <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
-//                             <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
-//                             <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
-//                            <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
-//                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
-//                            <button class="wishlist-btn">Add to Wishlist</button>
-//                         </div>
-//                     </div>`;
 
-//                 // Function to show trailer in a modal
-//                 function showTrailer(trailerUrl) {
-//                     const modal = document.getElementById('trailer-modal');
-//                     const trailerVideo = document.getElementById('trailer-video');
+// Function to check if the user is logged in before performing actions
+function checkLoginAndPerformAction(action) {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is logged in, proceed with the action
+            action(user);
+        } else {
+            // User is not logged in, show alert
+            alert('You must be logged in to perform this action.');
+        }
+    });
+}
 
-//                     if (!trailerUrl) {
-//                         console.error('Trailer URL is not available.');
-//                         return;
-//                     }
 
-//                     trailerVideo.src = trailerUrl;
-//                     modal.style.display = 'block'; // Show the modal
 
-//                     // Add event listener for close button inside the modal
-//                     const closeBtn = document.querySelector('.close-btn');
-//                     if (closeBtn) {
-//                         closeBtn.addEventListener('click', () => {
-//                             modal.style.display = 'none';
-//                             trailerVideo.src = ''; // Stop the video
-//                         });
-//                     }
+// Function to save a movie to the wishlist
+function saveToWishlist(movie) {
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const userDocRef = doc(db, 'users', user.uid);
 
-//                     // Close the modal when clicking outside the modal content
-//                     window.addEventListener('click', (event) => {
-//                         if (event.target === modal) {
-//                             modal.style.display = 'none';
-//                             trailerVideo.src = ''; // Stop the video
-//                         }
-//                     });
-//                 }
+            updateDoc(userDocRef, {
+                wishlist: arrayUnion(movie)
+            })
+                .then(() => {
+                    alert(`${movie.title} has been added to your wishlist.`);
+                })
+                .catch((error) => {
+                    console.error('Error adding to wishlist:', error);
+                    alert('Failed to add movie to wishlist. Please try again.');
+                });
+        } else {
+            alert('You must be logged in to add movies to your wishlist.');
+        }
+    });
+}
 
-//                 // Event listener for "Watch Trailer" button
-//                 const trailerButton = document.querySelector('.trailer-now-btn');
-//                 if (trailerButton) {
-//                     trailerButton.addEventListener('click', () => {
-//                         const trailerUrl = trailerButton.getAttribute('data-trailer-url');
-//                         if (trailerUrl) {
-//                             showTrailer(trailerUrl);
-//                         } else {
-//                             console.error('No trailer URL available');
-//                         }
-//                     });
-//                 }
 
-//                 // Event listener for "Add to Wishlist" button
-//                 const wishlistButton = document.querySelector('.wishlist-btn');
-//                 if (wishlistButton) {
-//                     wishlistButton.addEventListener('click', () => {
-//                         checkLoginAndPerformAction(() => {
-//                             handleWishlistAction(movie);
-//                         });
-//                     });
-//                 }
-//             }
-//         })
-//         .catch(error => {
-//             console.error("Error fetching movie data:", error);
-//         });
-// }
 
-// // Function to check if the movie is in the user's wishlist (Firestore)
-// async function isMovieInWishlist(movie, user) {
-//     if (!user) {
-//         return false; // If no user, return false
-//     }
 
-//     const userRef = doc(db, "users", user.uid); // User document in Firestore
-//     try {
-//         const userDoc = await getDoc(userRef);
-//         const userData = userDoc.data();
-//         const wishlist = userData ? userData.wishlist : []; // Get wishlist from Firestore data
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById('search-input');
+    const resultsContainer = document.getElementById("search-results");
+    const mainContainer = document.getElementById('mainContainer');
 
-//         // Check if the movie is in the wishlist
-//         return wishlist.some(item => item.title === movie.title);
-//     } catch (error) {
-//         console.error("Error fetching wishlist data:", error);
-//         return false; // Return false in case of an error
-//     }
-// }
+    const jsonFilePath = '../assets/json/main1.json'; // Path to your JSON file
 
-// // Function to save a movie to the user's wishlist
-// async function saveToWishlist(movie) {
-//     onAuthStateChanged(auth, async (user) => {
-//         if (user) {
-//             const userRef = doc(db, "users", user.uid); // Get user's document reference
-//             try {
-//                 await updateDoc(userRef, {
-//                     wishlist: arrayUnion({ // Add the movie to the wishlist
-//                         title: movie.title,
-//                         image: movie.image_url || 'placeholder.jpg',
-//                         video: movie.trailer_url || ''
-//                     })
-//                 });
-//                 alert("Movie added to your wishlist!");
-//             } catch (error) {
-//                 console.error("Error adding to wishlist:", error);
-//                 alert("Failed to add the movie to the wishlist.");
-//             }
-//         } else {
-//             alert("You must be logged in to add movies to your wishlist.");
-//         }
-//     });
-// }
+    // Function to fetch all movies from the JSON file
+    async function loadMovies() {
+        try {
+            const response = await fetch(jsonFilePath);
+            if (!response.ok) {
+                throw new Error("Network response was not ok: " + response.statusText);
+            }
+            const data = await response.json();
 
-// // Function to remove a movie from the user's wishlist
-// async function removeFromWishlist(movie) {
-//     onAuthStateChanged(auth, async (user) => {
-//         if (user) {
-//             const userRef = doc(db, "users", user.uid); // Get user's document reference
-//             try {
-//                 await updateDoc(userRef, {
-//                     wishlist: arrayRemove({ // Remove the movie from the wishlist
-//                         title: movie.title,
-//                         image: movie.image_url || 'placeholder.jpg',
-//                         video: movie.trailer_url || ''
-//                     })
-//                 });
-//                 alert("Movie removed from your wishlist!");
-//             } catch (error) {
-//                 console.error("Error removing from wishlist:", error);
-//                 alert("Failed to remove the movie from the wishlist.");
-//             }
-//         } else {
-//             alert("You must be logged in to remove movies from your wishlist.");
-//         }
-//     });
-// }
+            // Combine movies from different sections into one array
+            let allMovies = [];
+            for (const section in data) {
+                if (Array.isArray(data[section])) {
+                    allMovies = allMovies.concat(data[section]);
+                }
+            }
+            return allMovies;
+        } catch (error) {
+            console.error("Error fetching movie data:", error);
+            return [];
+        }
+    }
 
-// // Function to handle adding/removing from wishlist
-// const handleWishlistAction = (movie) => {
-//     onAuthStateChanged(auth, async (user) => {
-//         if (user) {
-//             const isInWishlist = await isMovieInWishlist(movie, user); // Check if the movie is in the wishlist
+    // Function to display results based on the first letter of the movie name
+    function displayResults(results) {
+        resultsContainer.innerHTML = ''; // Clear previous results
 
-//             if (isInWishlist) {
-//                 removeFromWishlist(movie); // Remove if it's already in the wishlist
-//             } else {
-//                 saveToWishlist(movie); // Add if it's not in the wishlist
-//             }
-//         }
-//     });
-// };
+        if (results.length === 0) {
+            resultsContainer.innerHTML = '<p>No movies found</p>';
+            return;
+        }
 
-// // Call the function to display movie details on page load
-// document.addEventListener('DOMContentLoaded', displayMovieDetails);
+        results.forEach(movie => {
+            const movieDiv = document.createElement('div');
+            movieDiv.classList.add('movie-result');
+            const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to placeholder image
+
+            movieDiv.innerHTML = `
+                    <img src="${imageUrl}" alt="${movie.title}" width="100">
+                    <div>
+                        <h3>${movie.title}</h3>
+                    </div>
+                `;
+
+            // Handle movie click event to redirect to the movie details page
+            movieDiv.addEventListener('click', function () {
+                window.location.href = `movie-details.html?title=${encodeURIComponent(movie.title)}`; // Redirect to the details page
+            });
+
+            resultsContainer.appendChild(movieDiv);
+        });
+    }
+
+    // Handle dynamic search as the user types
+    searchInput.addEventListener('input', async function () {
+        const searchQuery = searchInput.value.trim().toLowerCase();
+
+        if (searchQuery.length === 0) {
+            resultsContainer.innerHTML = ''; // Clear results if no search query
+            mainContainer.innerHTML = ''; // Clear main container display
+            return;
+        }
+
+        // Load all movies
+        const movies = await loadMovies();
+
+        // Filter movies based on the first letter of the title
+        const filteredMovies = movies.filter(movie => {
+            return movie.title && movie.title.toLowerCase().startsWith(searchQuery);
+        });
+
+        // Display the filtered results
+        displayResults(filteredMovies);
+    });
+});
+
+
+
+
+
+
+
+
+
+// movie-details.js
+document.addEventListener('DOMContentLoaded', () => {
+    // Select the Rent Now button
+    const rentNowButton = document.querySelector('.rent-btn');
+
+    // Check if the Rent Now button exists
+    if (rentNowButton) {
+        // Add an event listener to the Rent Now button
+        rentNowButton.addEventListener('click', () => {
+            // Get the movie title dynamically from the page (you could pass other details like movie ID)
+            const movieTitle = document.querySelector('h2').textContent;
+
+            // Redirect to checkout page with the movie title passed in the URL
+            window.location.href = `../html/checkout.html?movie=${encodeURIComponent(movieTitle)}`;
+        });
+    }
+});
+
+            
+            
+
+            
+            
+            
+            
+            
+            
+       

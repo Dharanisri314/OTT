@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="../css/checkout.css">
+</head>
+<body>
+    <div class="checkout-container">
+        <h2>Movie Rental Checkout</h2>
+        <div class="checkout-details">
+            <h3>Movie Title: Movie Title</h3>
+            <p><strong>Price:</strong> $5.99</p>
+            <p><strong>Rental Duration:</strong> 48 hours</p>
+            <button class="confirm-rent-btn">Confirm Rent</button>
+        </div>
+
+        <div class="login-container">
+            <h3>Login to Rent</h3>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+        </div>
+
+        <div class="payment-container">
+            <h3>Payment Method</h3>
+            <form id="payment-form">
+                <input type="text" id="card-number" placeholder="Card Number" required>
+                <input type="text" id="expiry-date" placeholder="Expiry Date" required>
+                <input type="text" id="cvv" placeholder="CVV" required>
+                <button type="submit" class="pay-btn">Pay Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/checkout.js"></script>
+</body>
+</html>
+<a href="../html/checkout.html"
