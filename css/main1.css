@@ -678,7 +678,7 @@ h4 {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
     border: 2px solid rgba(255, 215, 0, 0.8); /* Golden border effect */
 }
-
+/* 
 
 .slider-container {
     position: relative;
@@ -742,7 +742,91 @@ h4 {
 #nextButton:hover {
     background: white;
     color: black;
+} */
+
+
+/* General styles for the carousel container */
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+/* Container for the slides (images) */
+.movie_slide_container {
+  display: flex;
+  transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
+  width: 100%;
+}
+
+/* Individual carousel image */
+.carousel-image {
+  flex-shrink: 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* The "center" class applied to the active image */
+.carousel-image.center {
+  opacity: 1;
+}
+
+/* The "left" and "right" classes applied to neighboring images */
+.carousel-image.left,
+.carousel-image.right {
+  opacity: 0.5;
+}
+
+/* Previous and Next button styles */
+#prevButton,
+#nextButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+/* Positioning of the buttons */
+#nextButton {
+  right: 20px;
+}
+
+#prevButton {
+  left: 20px;
+}
+
+/* Hover effects for the buttons */
+#prevButton:hover,
+#nextButton:hover {
+  background: white;
+  color: black;
+}
+
+/* Optional: Add a shadow or border to the buttons */
+#prevButton, #nextButton {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+
 
 
 /* Styling for the username display */

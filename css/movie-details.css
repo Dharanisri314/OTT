@@ -627,7 +627,20 @@ iframe {
 .movie-details-info a:hover {
   background-color: #ffcc33;
 }
+.back-button{
+  width: 100px;
+  border-radius:5px;
+  margin-left: 10px;
+  background-color: #e5a100;
+  color: white;
+  padding: 5px;
+  border: 1px solid #e5a100;
+}
 
+#user-display {
+  display: none; /* Hidden by default */
+  font-size: 10px;
+  color: linear-gradient(135deg, #1a1a1a, #f7c600); /* Dark text color */
+  padding: 10px 15px; /* Spacing inside the box */
 
-
-
+}

@@ -65,29 +65,38 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
 
 
 
+// Function to update the button state based on the wishlist
+function updateButtonState(movie) {
+    const addToWishlistButton = document.querySelector('.wishlist-btn');
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
+    // Check if the movie is already in the wishlist
+    if (wishlist.some(item => item.title === movie.title)) {
+        addToWishlistButton.textContent = 'Remove from Wishlist';  // Movie is in wishlist
+    } else {
+        addToWishlistButton.textContent = 'Add to Wishlist'; // Movie is not in wishlist
+    }
+}
 
+// Function to handle adding/removing the movie from the wishlist
+function handleWishlist(movie) {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
+    if (!wishlist.some(item => item.title === movie.title)) {
+        // Movie is not in the wishlist, add it
+        wishlist.push(movie);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        alert(`${movie.title} has been added to your wishlist.`);
+    } else {
+        // Movie is in the wishlist, remove it
+        wishlist = wishlist.filter(item => item.title !== movie.title);
+        localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        alert(`${movie.title} has been removed from your wishlist.`);
+    }
 
-// Import Firebase modules
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-import { getFirestore, doc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyAL6dgKjaV_N-lneOwWri-N2Xm-bf6UJ7w",
-    authDomain: "ott-platform-cf43e.firebaseapp.com",
-    projectId: "ott-platform-cf43e",
-    storageBucket: "ott-platform-cf43e.appspot.com",
-    messagingSenderId: "844526974291",
-    appId: "1:844526974291:web:11268d750d39062db85da6"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+    // Update the button state after modifying the wishlist
+    updateButtonState(movie);
+}
 
 // Function to display movie details
 function displayMovieDetails() {
@@ -119,6 +128,7 @@ function displayMovieDetails() {
             }
 
             if (movie) {
+                // Dynamically update the movie details
                 const crew = movie.crew || {};
                 const imageUrl = movie.image_url || 'placeholder.jpg';
                 document.getElementById('movie-details-container').innerHTML = `
@@ -138,62 +148,42 @@ function displayMovieDetails() {
                             <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
                             <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
                             <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
-                           <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
- <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
-<button class="wishlist-btn">Add to Wishlist</button>
+                            <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
+                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
+                            <button class="wishlist-btn">Add to Wishlist</button>
+                            <button class="rent-btn">Rent now</button>
                         </div>
                     </div>`;
 
+                    document.querySelector('.rent-btn').addEventListener('click', function() {
+                        window.location.href = '../html/checkout.html'; // Redirect to the checkout page
+                    });
+
+
+                // Update the button state based on the current movie
+                updateButtonState(movie);
+
+                // Add event listener to handle wishlist button click
+                const addToWishlistButton = document.querySelector('.wishlist-btn');
+                addToWishlistButton.addEventListener('click', () => handleWishlist(movie));
 
 
 
-                    
-// Function to show trailer in a modal
-function showTrailer(trailerUrl) {
-    const modal = document.getElementById('trailer-modal');
-    const trailerVideo = document.getElementById('trailer-video');
+                // Add event listener for trailer button
+                const trailerButton = document.querySelector('.trailer-now-btn');
+                if (trailerButton) {
+                    trailerButton.addEventListener('click', () => {
+                        const trailerUrl = trailerButton.getAttribute('data-trailer-url');
+                        if (trailerUrl) {
+                            showTrailer(trailerUrl);
+                        } else {
+                            console.error('No trailer URL available');
+                        }
+                    });
+                }
 
-    if (!trailerUrl) {
-        console.error('Trailer URL is not available.');
-        return;
-    }
 
-    console.log('Trailer URL:', trailerUrl); // Debugging: Check URL
 
-    trailerVideo.src = trailerUrl;
-    modal.style.display = 'block'; // Show the modal
-
-    // Add event listener for close button inside the modal
-    const closeBtn = document.querySelector('.close-btn');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            trailerVideo.src = ''; // Stop the video
-        });
-    }
-
-    // Close the modal when clicking outside the modal content
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-            trailerVideo.src = ''; // Stop the video
-        }
-    });
-}
-
-// Add event listener for the trailer button
-const trailerButton = document.querySelector('.trailer-now-btn');
-if (trailerButton) {
-    trailerButton.addEventListener('click', () => {
-        // Assuming you have a valid URL in the data-trailer-url attribute
-        const trailerUrl = trailerButton.getAttribute('data-trailer-url');
-        if (trailerUrl) {
-            showTrailer(trailerUrl); // Show the trailer modal
-        } else {
-            console.error('No trailer URL available');
-        }
-    });
-}
 
 
 // Function to save a movie to the user's wishlist
@@ -222,6 +212,8 @@ async function saveToWishlist(movie) {
 
 
 
+
+
                 // Add event listener for "Watch Now" button
                 const watchNowButton = document.querySelector('.watch-now-btn');
                 if (watchNowButton) {
@@ -237,6 +229,12 @@ async function saveToWishlist(movie) {
                         });
                     });
                 }
+
+
+
+
+
+
 
                 // Add event listener for "Wishlist" button
                 const wishlistButton = document.querySelector('.wishlist-btn');
@@ -260,10 +258,11 @@ async function saveToWishlist(movie) {
 }
 
 
+
+
+
 // Call the function to display movie details on page load
 document.addEventListener('DOMContentLoaded', displayMovieDetails);
-
-
 
 
 // Function to check if the user is logged in before performing actions
@@ -279,6 +278,8 @@ function checkLoginAndPerformAction(action) {
     });
 }
 
+
+
 // Function to save a movie to the wishlist
 function saveToWishlist(movie) {
     onAuthStateChanged(auth, (user) => {
@@ -288,21 +289,18 @@ function saveToWishlist(movie) {
             updateDoc(userDocRef, {
                 wishlist: arrayUnion(movie)
             })
-            .then(() => {
-                alert(`${movie.title} has been added to your wishlist.`);
-            })
-            .catch((error) => {
-                console.error('Error adding to wishlist:', error);
-                alert('Failed to add movie to wishlist. Please try again.');
-            });
+                .then(() => {
+                    alert(`${movie.title} has been added to your wishlist.`);
+                })
+                .catch((error) => {
+                    console.error('Error adding to wishlist:', error);
+                    alert('Failed to add movie to wishlist. Please try again.');
+                });
         } else {
             alert('You must be logged in to add movies to your wishlist.');
         }
     });
 }
-
-// Call the function to display movie details on page load
-document.addEventListener('DOMContentLoaded', displayMovieDetails);
 
 
 
@@ -353,11 +351,11 @@ document.addEventListener("DOMContentLoaded", function () {
             const imageUrl = movie.image_url || 'placeholder.jpg'; // Fallback to placeholder image
 
             movieDiv.innerHTML = `
-                <img src="${imageUrl}" alt="${movie.title}" width="100">
-                <div>
-                    <h3>${movie.title}</h3>
-                </div>
-            `;
+                    <img src="${imageUrl}" alt="${movie.title}" width="100">
+                    <div>
+                        <h3>${movie.title}</h3>
+                    </div>
+                `;
 
             // Handle movie click event to redirect to the movie details page
             movieDiv.addEventListener('click', function () {
@@ -394,3 +392,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+            
+            
+
+            
+            
+            
+            
+            
+            
+       
