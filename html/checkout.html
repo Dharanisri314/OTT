@@ -7,36 +7,40 @@
     <link rel="stylesheet" href="../css/checkout.css">
 </head>
 <body>
+
     <div class="checkout-container">
-        <h2>Movie Rental Checkout</h2>
-        <div class="checkout-details">
-            <h3>Movie Title: Movie Title</h3>
-            <p><strong>Price:</strong> $5.99</p>
-            <p><strong>Rental Duration:</strong> 48 hours</p>
-            <button class="confirm-rent-btn">Confirm Rent</button>
-        </div>
-
-        <div class="login-container">
-            <h3>Login to Rent</h3>
-            <form id="login-form">
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit" class="login-btn">Login</button>
-            </form>
-        </div>
-
-        <div class="payment-container">
-            <h3>Payment Method</h3>
-            <form id="payment-form">
-                <input type="text" id="card-number" placeholder="Card Number" required>
-                <input type="text" id="expiry-date" placeholder="Expiry Date" required>
-                <input type="text" id="cvv" placeholder="CVV" required>
-                <button type="submit" class="pay-btn">Pay Now</button>
-            </form>
-        </div>
+        <h1>Movie Rental Checkout</h1>
+        
+        <form id="checkout-form">
+            <div class="plan-selection">
+                <label for="plans">Choose a subscription plan:</label>
+                <select id="plans" name="plans">
+                    <option value="weekly">Weekly - ₹750</option>
+                    <option value="monthly">Monthly - ₹2250</option>
+                    <option value="24hours">24 Hours - ₹375</option>
+                </select>
+            </div>
+            
+            <div class="payment-details">
+                <h2>Payment Information</h2>
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9101 1121">
+                
+                <label for="expiry-date">Expiry Date (MM/YY):</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY">
+                
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" placeholder="123">
+                
+                <div class="total-price">
+                    <p>Total Price: ₹<span id="total-price">750</span></p>
+                </div>
+            </div>
+            
+            <button type="submit">Confirm Purchase</button>
+        </form>
     </div>
 
     <script src="../js/checkout.js"></script>
 </body>
 </html>
-<a href="../html/checkout.html"

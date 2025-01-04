@@ -1,32 +1,37 @@
-// Simulate Login and Rent Confirmation
-document.getElementById('login-form').addEventListener('submit', (event) => {
-    event.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+// Handle the change of the subscription plan and update the total price
+document.getElementById('plans').addEventListener('change', function() {
+    const plan = this.value;
+    let price = 0;
 
-    // Perform login authentication (example, not connected to real Firebase)
-    if (email === 'user@example.com' && password === 'password123') {
-        alert('Login successful!');
-        document.querySelector('.login-container').style.display = 'none'; // Hide login form
-        document.querySelector('.payment-container').style.display = 'block'; // Show payment form
-    } else {
-        alert('Invalid credentials. Please try again.');
+    if (plan === 'weekly') {
+        price = 750; // Weekly price in INR
+    } else if (plan === 'monthly') {
+        price = 2250; // Monthly price in INR
+    } else if (plan === '24hours') {
+        price = 375; // 24 hours price in INR
     }
+
+    // Update the displayed total price
+    document.getElementById('total-price').innerText = price;
 });
 
-document.getElementById('payment-form').addEventListener('submit', (event) => {
+// Handle form submission
+document.getElementById('checkout-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    
+
     const cardNumber = document.getElementById('card-number').value;
     const expiryDate = document.getElementById('expiry-date').value;
     const cvv = document.getElementById('cvv').value;
+    
+    // Basic validation for payment details
+    const cardNumberRegex = /^\d{16}$/;
+    const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    const cvvRegex = /^\d{3}$/;
 
-    // Perform payment validation and API integration here
-    if (cardNumber && expiryDate && cvv) {
+    if (cardNumberRegex.test(cardNumber) && expiryDateRegex.test(expiryDate) && cvvRegex.test(cvv)) {
         alert('Payment successful! Enjoy your movie.');
-        window.location.href = 'thank-you.html';  // Redirect to a "Thank You" page or Movie Page
+        window.location.href = 'thank-you.html';  // Redirect to a "Thank You" page
     } else {
-        alert('Please complete all payment details.');
+        alert('Please complete all payment details correctly.');
     }
 });
