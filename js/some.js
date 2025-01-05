@@ -268,10 +268,13 @@ function displayMovieDetails() {
                            <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
                           <button class="wishlist-btn">Add to Wishlist</button>
-                           
+                           <button class="rent-btn">Rent now</button>
                         </div>
                     </div>`;
 
+                    document.querySelector('.rent-btn').addEventListener('click', function() {
+                        window.location.href = '../html/checkout.html'; // Redirect to the checkout page
+                    });
 
 
                 // Update the button state based on the current movie

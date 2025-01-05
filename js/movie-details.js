@@ -155,9 +155,7 @@ function displayMovieDetails() {
                         </div>
                     </div>`;
 
-                    document.querySelector('.rent-btn').addEventListener('click', function() {
-                        window.location.href = '../html/checkout.html'; // Redirect to the checkout page
-                    });
+
 
 
                 // Update the button state based on the current movie
@@ -305,7 +303,6 @@ function saveToWishlist(movie) {
 
 
 
-
 document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById('search-input');
     const resultsContainer = document.getElementById("search-results");
@@ -397,28 +394,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+// movie-details.js
+document.addEventListener('DOMContentLoaded', () => {
+    // Select the Rent Now button
+    const rentNowButton = document.querySelector('.rent-btn');
 
+    // Check if the Rent Now button exists
+    if (rentNowButton) {
+        // Add an event listener to the Rent Now button
+        rentNowButton.addEventListener('click', () => {
+            // Get the movie title dynamically from the page (you could pass other details like movie ID)
+            const movieTitle = document.querySelector('h2').textContent;
 
+            // Redirect to checkout page with the movie title passed in the URL
+            window.location.href = `../html/checkout.html?movie=${encodeURIComponent(movieTitle)}`;
+        });
+    }
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
             
             
 
@@ -429,3 +422,9 @@ document.addEventListener("DOMContentLoaded", function () {
             
             
        
+
+
+
+
+
+

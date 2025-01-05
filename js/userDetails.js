@@ -197,6 +197,54 @@ logoutButton.addEventListener('click', () => {
 
 
 
+// On page load, retrieve all rented movies from localStorage and display them
+window.addEventListener('DOMContentLoaded', function() {
+    const rentedMovies = JSON.parse(localStorage.getItem('rentedMovies')) || [];  // Retrieve or initialize as empty array
+
+    const rentedMoviesContainer = document.getElementById('rented-movie-container');
+    if (rentedMovies.length > 0) {
+        // Loop through all rented movies and display them
+        rentedMovies.forEach(movie => {
+            rentedMoviesContainer.innerHTML += `
+                <div class="rented-movie">
+                    <h3>${movie.title}</h3>
+                    <p>Price: ₹${parseInt(movie.price).toLocaleString()}</p>
+                    <img src="${movie.image}" alt="Rented Movie" style="max-width: 300px;">
+                </div>
+            `;
+        });
+    } else {
+        rentedMoviesContainer.innerHTML = '<p>No rented movies found.</p>';
+    }
+});
+
+// Event listener for the "Rent Movie" button
+document.getElementById('rent-button').addEventListener('click', function() {
+    // Movie details (these values should ideally come from your app logic, such as from the selected movie on the movie page)
+    const movieTitle = 'Sample Movie Title'; // Replace with actual movie title
+    const moviePrice = '2000'; // Replace with actual price
+    const movieImage = 'https://via.placeholder.com/300'; // Replace with actual image URL
+
+    // Retrieve the current rented movies from localStorage
+    const rentedMovies = JSON.parse(localStorage.getItem('rentedMovies')) || [];
+
+    // Add the new movie to the rented movies array
+    rentedMovies.push({
+        title: movieTitle,
+        price: moviePrice,
+        image: movieImage
+    });
+
+    // Save the updated rented movies array back to localStorage
+    localStorage.setItem('rentedMovies', JSON.stringify(rentedMovies));
+
+    // Display the rented movie details immediately
+    document.getElementById('rented-movie-container').innerHTML = `
+        <h3>${movieTitle}</h3>
+        <p>Price: ₹${parseInt(moviePrice).toLocaleString()}</p>
+        <img src="${movieImage}" alt="Rented Movie" style="max-width: 300px;">
+    `;
+});
 
 
 

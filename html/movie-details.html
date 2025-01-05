@@ -65,8 +65,54 @@
         <iframe id="trailer-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Assuming the movie details are dynamically generated -->
+<button class="rent-btn">Rent Now</button>
+
+<script>
+    // Example dynamic movie title, price, and image
+    const movieTitle = "Example Movie Title";  // Replace with actual movie title
+    const moviePrice = 750;  // Replace with actual price (₹750)
+    const movieImage = "path_to_image.jpg";  // Replace with actual movie image URL
+
+    document.querySelector('.rent-btn').addEventListener('click', function() {
+        // Store movie details in localStorage
+        localStorage.setItem('rentedMovie', movieTitle);
+        localStorage.setItem('rentedMoviePrice', moviePrice);
+        localStorage.setItem('rentedMovieImage', movieImage);
+
+        // Show rented success message
+        document.getElementById('rented-success-message').style.display = 'block';
+
+        // Optionally, you can store rented movie status as well
+        localStorage.setItem('rentedStatus', 'true');
+
+        // Redirect to the user profile page or thank you page
+        setTimeout(function() {
+            window.location.href = 'profile.html';  // Redirect to user profile page
+        }, 2000);  // Redirect after 2 seconds
+    });
+</script>
+
+
+
+
 </body>
 </html>
+<a href="../html/movie-details.html"
 
 
 
