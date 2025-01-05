@@ -616,9 +616,47 @@ footer {
   border: 1px solid #e5a100;
 }
 
+/* User Display Container Styling */
 #user-display {
   display: none; /* Hidden by default */
-  font-size: 10px;
-  color: linear-gradient(135deg, #1a1a1a, #f7c600); /* Dark text color */
-  padding: 10px 15px; /* Spacing inside the box */
+  font-size: 10px; /* Increased font size for better readability */
+  color: #fff; /* White text color */
+  background: linear-gradient(135deg, #000000, #f7c600); /* Black to yellow gradient background */
+  border-radius: 10px; /* Rounded corners for a smooth look */
+  padding:15px; /* Generous padding for better spacing */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for appearing */
+  text-align: center; /* Center align text */
+}
+
+#user-display.show {
+  display: block; /* Displayed when the class 'show' is added */
+  opacity: 1; /* Make it visible */
+  transform: translateY(0); /* Slide it into view */
+}
+
+#user-display.hide {
+  opacity: 0; /* Invisible when the 'hide' class is applied */
+  transform: translateY(-20px); /* Slightly slide out of view */
+}
+
+#user-display h2 {
+  font-size: 18px; /* Slightly larger heading text */
+  margin-bottom: 10px; /* Space between heading and text */
+}
+
+#user-display p {
+  font-size: 14px; /* Regular text size for description */
+  margin-bottom: 15px; /* Space between paragraphs */
+}
+
+#user-display a {
+  color: #f7c600; /* Yellow links */
+  font-weight: bold; /* Bold links for emphasis */
+  text-decoration: none; /* Remove underline */
+}
+
+#user-display a:hover {
+  text-decoration: underline; /* Underline on hover for better interactivity */
+  color: #000000; /* Change to black when hovered */
 }
