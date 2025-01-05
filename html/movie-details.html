@@ -6,7 +6,11 @@
     <title>Movie Details</title>
     <link rel="stylesheet" href="/css/movie-details.css">
     <script type="module" src="/js/movie-details.js" defer></script>
-    
+    <script type="module" src="/js/some.js" defer></script>
+  
+
+
+</head>
 </head>
 <body>
     <header>
@@ -65,6 +69,10 @@
         <iframe id="trailer-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </div>
+<!-- Movie Details Page -->
+<div id="already-rented-message" style="display: none; color: red;">
+    You have already rented this movie!
+</div>
 
 
 
@@ -77,35 +85,6 @@
 
 
 
-
-
-<!-- Assuming the movie details are dynamically generated -->
-<button class="rent-btn">Rent Now</button>
-
-<script>
-    // Example dynamic movie title, price, and image
-    const movieTitle = "Example Movie Title";  // Replace with actual movie title
-    const moviePrice = 750;  // Replace with actual price (₹750)
-    const movieImage = "path_to_image.jpg";  // Replace with actual movie image URL
-
-    document.querySelector('.rent-btn').addEventListener('click', function() {
-        // Store movie details in localStorage
-        localStorage.setItem('rentedMovie', movieTitle);
-        localStorage.setItem('rentedMoviePrice', moviePrice);
-        localStorage.setItem('rentedMovieImage', movieImage);
-
-        // Show rented success message
-        document.getElementById('rented-success-message').style.display = 'block';
-
-        // Optionally, you can store rented movie status as well
-        localStorage.setItem('rentedStatus', 'true');
-
-        // Redirect to the user profile page or thank you page
-        setTimeout(function() {
-            window.location.href = 'profile.html';  // Redirect to user profile page
-        }, 2000);  // Redirect after 2 seconds
-    });
-</script>
 
 
 

@@ -216,6 +216,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+
 // Function to display movie details
 function displayMovieDetails() {
     const urlParams = new URLSearchParams(window.location.search);
