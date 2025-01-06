@@ -1,83 +1,100 @@
-// Function to display error messages
-function displayError(element, message) {
-    const errorElement = document.createElement('p');
-    errorElement.classList.add('error');
-    errorElement.innerText = message;
-    element.parentElement.appendChild(errorElement);
-}
+// Get references to DOM elements
+const movieTitleElement = document.getElementById("movie-title");
+const totalPriceElement = document.getElementById("total-price");
+const planSelectElement = document.getElementById("plans");
+const checkoutForm = document.getElementById("checkout-form");
+const rentedMessage = document.getElementById("rented-success-message");
 
-// Clear previous error messages
-function clearErrors() {
-    const errorMessages = document.querySelectorAll('.error');
-    errorMessages.forEach(error => error.remove());
-}
+// Set movie title (this can be dynamic if needed)
+movieTitleElement.textContent = "Inception"; // Example movie title, can be replaced dynamically
 
-// Handle form submission for payment details
-document.getElementById('checkout-form').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent form from submitting automatically
+// Define prices for each subscription plan
+const prices = {
+    weekly: 750,
+    monthly: 2250,
+    "24hours": 375
+};
 
-    const cardNumber = document.getElementById('card-number').value;
-    const expiryDate = document.getElementById('expiry-date').value;
-    const cvv = document.getElementById('cvv').value;
-
-    const cardNumberRegex = /^\d{16}$/;
-    const expiryDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
-    const cvvRegex = /^\d{3}$/;
-
-    let isValid = true;
-    clearErrors();
-
-    // Validate input fields
-    if (!cardNumberRegex.test(cardNumber)) {
-        isValid = false;
-        displayError(document.getElementById('card-number'), 'Card number must be 16 digits.');
-    }
-    if (!expiryDateRegex.test(expiryDate)) {
-        isValid = false;
-        displayError(document.getElementById('expiry-date'), 'Expiry date must be in MM/YY format.');
-    }
-    if (!cvvRegex.test(cvv)) {
-        isValid = false;
-        displayError(document.getElementById('cvv'), 'CVV must be 3 digits.');
-    }
-
-    if (isValid) {
-        // Retrieve the rented movie array from localStorage
-        const rentedMovies = JSON.parse(localStorage.getItem('rentedMovies')) || [];
-
-        // Retrieve the last rented movie details
-        const movieTitle = localStorage.getItem('rentedMovie');
-        const moviePrice = localStorage.getItem('rentedMoviePrice');
-        const movieImage = localStorage.getItem('rentedMovieImage');
-
-        // Check if the necessary movie details exist
-        if (!movieTitle || !moviePrice || !movieImage) {
-            alert('Movie details are missing. Please rent a movie before proceeding.');
-            return;
-        }
-
-        // Add the rented movie to the array
-        rentedMovies.push({
-            title: movieTitle,
-            price: moviePrice,
-            image: movieImage
-        });
-
-        // Save the updated rented movies array to localStorage
-        localStorage.setItem('rentedMovies', JSON.stringify(rentedMovies));
-
-        // Show success message
-        document.getElementById('rented-success-message').style.display = 'block';
-
-        // Redirect to "Thank You" page after a short delay
-        setTimeout(function () {
-            window.location.href = 'thank-you.html'; // Redirect after successful payment
-        }, 2000);
-    } else {
-        alert('Please correct the errors before submitting.');
-    }
+// Update total price when subscription plan is changed
+planSelectElement.addEventListener("change", function () {
+    const selectedPlan = planSelectElement.value;
+    const price = prices[selectedPlan];
+    totalPriceElement.textContent = price;
 });
 
+// Function to validate card number using Luhn Algorithm (basic card validation)
+function validateCardNumber(cardNumber) {
+    const regex = /^[0-9]{16}$/; // Check if the card number is 16 digits
+    return regex.test(cardNumber);
+}
+
+// Function to validate expiry date (MM/YY)
+function validateExpiryDate(expiryDate) {
+    const regex = /^(0[1-9]|1[0-2])\/\d{2}$/; // Format MM/YY
+    return regex.test(expiryDate);
+}
+
+// Function to validate CVV (3 digits)
+function validateCVV(cvv) {
+    const regex = /^[0-9]{3}$/; // CVV should be 3 digits
+    return regex.test(cvv);
+}
+
+// Handle form submission
+checkoutForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // Prevent form from refreshing the page
+
+    // Get form values
+    const cardNumber = document.getElementById("card-number").value;
+    const expiryDate = document.getElementById("expiry-date").value;
+    const cvv = document.getElementById("cvv").value;
+
+    let valid = true;
+
+    // Clear previous error messages
+    const errorElements = document.querySelectorAll(".error-message");
+    errorElements.forEach((el) => el.remove());
+
+    // Validate card number
+    if (!validateCardNumber(cardNumber)) {
+        valid = false;
+        const errorMessage = document.createElement("p");
+        errorMessage.classList.add("error-message");
+        errorMessage.textContent = "Please enter a valid 16-digit card number.";
+        document.getElementById("card-number").insertAdjacentElement("afterend", errorMessage);
+    }
+
+    // Validate expiry date
+    if (!validateExpiryDate(expiryDate)) {
+        valid = false;
+        const errorMessage = document.createElement("p");
+        errorMessage.classList.add("error-message");
+        errorMessage.textContent = "Please enter a valid expiry date (MM/YY).";
+        document.getElementById("expiry-date").insertAdjacentElement("afterend", errorMessage);
+    }
+
+    // Validate CVV
+    if (!validateCVV(cvv)) {
+        valid = false;
+        const errorMessage = document.createElement("p");
+        errorMessage.classList.add("error-message");
+        errorMessage.textContent = "Please enter a valid CVV (3 digits).";
+        document.getElementById("cvv").insertAdjacentElement("afterend", errorMessage);
+    }
+
+    // If all fields are valid, show success message
+    if (valid) {
+        rentedMessage.style.display = "block";
+        setTimeout(function () {
+            rentedMessage.style.display = "none";
+            // Optionally, redirect to a confirmation page after a delay
+            window.location.href = "../html/thankyou.html"; // Example redirect
+        }, 2000); // Hide success message after 2 seconds
+    } else {
+        // If any field is invalid, don't submit form and show alert
+        alert("Please fix the errors and try again.");
+    }
+});
 
 
 

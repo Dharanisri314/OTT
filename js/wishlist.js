@@ -60,60 +60,7 @@ const displayWishlist = async (userId) => {
     }
 };
 
-// Remove movie from the user's wishlist in Firestore
-const removeMovieFromWishlist = async (userId, movieTitle) => {
-    try {
-        const userDocRef = doc(db, "users", userId);
-        const userDoc = await getDoc(userDocRef);
 
-        if (userDoc.exists()) {
-            let wishlist = userDoc.data().wishlist || [];
-            // Filter out the movie to be removed
-            wishlist = wishlist.filter(item => item.title !== movieTitle);
-
-            // Update Firestore with the new wishlist
-            await setDoc(userDocRef, { wishlist: wishlist });
-
-            // Refresh the displayed wishlist
-            displayWishlist(userId);
-
-            alert(`${movieTitle} has been removed from your wishlist.`);
-        }
-    } catch (error) {
-        console.error('Error removing movie:', error);
-        alert('An error occurred while removing the movie.');
-    }
-};
-
-// Add movie to the user's wishlist in Firestore
-const addMovieToWishlist = async (userId, movie) => {
-    try {
-        const userDocRef = doc(db, "users", userId);
-        const userDoc = await getDoc(userDocRef);
-
-        if (userDoc.exists()) {
-            const wishlist = userDoc.data().wishlist || [];
-            // Add the new movie to the wishlist
-            wishlist.push(movie);
-
-            // Update Firestore with the new wishlist
-            await setDoc(userDocRef, { wishlist: wishlist });
-
-            // Refresh the displayed wishlist
-            displayWishlist(userId);
-
-            alert(`${movie.title} has been added to your wishlist.`);
-        } else {
-            // If no wishlist exists for the user, create one with the new movie
-            await setDoc(userDocRef, { wishlist: [movie] });
-            displayWishlist(userId);
-            alert(`${movie.title} has been added to your wishlist.`);
-        }
-    } catch (error) {
-        console.error('Error adding movie:', error);
-        alert('An error occurred while adding the movie.');
-    }
-};
 
 // Monitor authentication state
 onAuthStateChanged(auth, (user) => {

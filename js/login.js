@@ -40,23 +40,19 @@ if (form) {
 
         // Validate email
         if (!emailValue) {
-            emailError.textContent = 'Email is required.';
-            emailError.style.display = 'block';
+            showError(emailError, 'Email is required.');
             valid = false;
         } else if (!findValidEmail(emailValue)) {
-            emailError.textContent = 'Please enter a valid email address.';
-            emailError.style.display = 'block';
+            showError(emailError, 'Please enter a valid email address.');
             valid = false;
         }
 
         // Validate password
         if (!passwordValue) {
-            passwordError.textContent = 'Password is required.';
-            passwordError.style.display = 'block';
+            showError(passwordError, 'Password is required.');
             valid = false;
         } else if (!validatePassword(passwordValue)) {
-            passwordError.textContent = 'Password must be at least 6 characters long, include one uppercase letter, one lowercase letter, and one special character.';
-            passwordError.style.display = 'block';
+            showError(passwordError, 'Password must be at least 6 characters long, include one uppercase letter, one lowercase letter, and one special character.');
             valid = false;
         }
 
@@ -68,23 +64,28 @@ if (form) {
                     const user = userCredential.user;
                     console.log("Logged in as:", user.email);
                     alert("Login Successful");
-                    window.location.href = '../index.html'
-                    // Change button to Logout
+                    window.location.href = '../index.html'; // Redirect to home page
+                    localStorage.setItem('user', true);
                     updateButtonToLogout();
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
 
+                    // Clear previous error messages
+                    emailError.style.display = 'none';
+                    passwordError.style.display = 'none';
+
+                    // Handle Firebase authentication errors
                     if (errorCode === 'auth/user-not-found') {
-                        emailError.textContent = 'Email not found.';
-                        emailError.style.display = 'block';
+                        showError(emailError, 'Invalid email address. Please check the email and try again.');
                     } else if (errorCode === 'auth/wrong-password') {
-                        passwordError.textContent = 'Incorrect password.';
-                        passwordError.style.display = 'block';
+                        showError(passwordError, 'Incorrect password. Please try again.');
+                    } else if (errorCode === 'auth/invalid-email') {
+                        showError(emailError, 'The email address format is invalid. Please enter a valid email.');
                     } else {
-                        console.error("Error:", errorMessage);
-                        alert("An error occurred: " + errorMessage);
+                        console.error("Unexpected error:", errorMessage);  // Log unexpected errors
+                        showError(emailError, 'email address or password Incorrect.');
                     }
                 });
         }
@@ -115,12 +116,18 @@ function validatePassword(password) {
     return passwordRegex.test(password);
 }
 
+// Function to show error message
+function showError(element, message) {
+    element.textContent = message;
+    element.style.display = 'block';
+}
+
 // Update button to Logout
 function updateButtonToLogout() {
-    if(loginLogoutButton){
+    if (loginLogoutButton) {
         loginLogoutButton.textContent = 'Logout';
         loginLogoutButton.addEventListener('click', function () {
-            if(confirm('Are you want to logout')){
+            if (confirm('Are you sure you want to logout?')) {
                 signOut(auth).then(() => {
                     alert("Logout Successful");
                     updateButtonToLogin();
@@ -134,11 +141,10 @@ function updateButtonToLogout() {
 
 // Update button to Login
 function updateButtonToLogin() {
-    if(loginLogoutButton){
+    if (loginLogoutButton) {
         loginLogoutButton.textContent = 'Login';
         loginLogoutButton.removeEventListener('click', updateButtonToLogout);
     }
-
 }
 
 // Monitor authentication state

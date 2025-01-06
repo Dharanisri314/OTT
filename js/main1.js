@@ -55,6 +55,8 @@ document.addEventListener("DOMContentLoaded", async function () {
                 if(confirm('Are you sure you are leaving the Filmki shamiksha?')){
                     signOut(auth).then(() => {
                         alert("Thank you for visiting Filmki shamiksha.");
+                        localStorage.removeItem('user');
+
                         updateButtonToLogin();
                     }).catch((error) => {
                         console.error("Error logging out:", error.message);
