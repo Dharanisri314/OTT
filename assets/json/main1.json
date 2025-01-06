@@ -9,7 +9,7 @@
       "movie_name": "Vikram",
       "image_url": "https://m.media-amazon.com/images/M/MV5BMjM4MThmMzEtN2VkYy00ZjdlLWJlMWUtNDY0NTUxMmM5YzRkXkEyXkFqcGc@._V1_.jpg",
       "release_date": "2024",
-      "stream_url": "https://example.com/interstellar-stream",
+      "stream_url": "https://www.youtube.com/embed/OKBMCL-frPU?si=N8JvLO82zBd9Ngzh",
       "play_time": "2h 25m",
       "rating": "6.5 / 10",
       "description": "A fast-paced action thriller featuring intense combat and espionage, following a series of dangerous operations by an undercover officer.",
@@ -45,7 +45,7 @@
       "movie_name": "Ratsasan",
       "image_url": "https://m.media-amazon.com/images/M/MV5BMjgzMzMxMzUtNzUyYi00NTkxLWI1NTAtMjZhNmMxMGQ4YjBmXkEyXkFqcGc@._V1_.jpg",
       "release_date": "2024",
-      "stream_url": "https://example.com/interstellar-stream",
+      "stream_url": "https://www.youtube.com/embed/6adtIuXDCBo?si=FmvjXJzti5N7HZz4",
       "play_time": "2h 25m",
       "rating": "6.5 / 10",
       "description": " A psychological thriller about a police officer chasing a brutal serial killer, filled with gripping twists and turns.",
@@ -62,164 +62,375 @@
     "cinematography": "P. V. Shankar",
     "editing": "San Lokesh",
     "production": "Axess Film Factory"
-  }
+  },
+  "wishlist": [
+    {
+      "id": 2,
+      "title": "Ratsasan",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMjM4MThmMzEtN2VkYy00ZjdlLWJlMWUtNDY0NTUxMmM5YzRkXkEyXkFqcGc@._V1_.jpg",
+      "trailer_url": "https://www.youtube.com/embed/6adtIuXDCBo?si=FmvjXJzti5N7HZz4"
+    }
+  ]
     },
     {
+      "id": 3,
       "title": "Kaithi",
-      "genre": "Action/Thriller/Crime",
-      "poster": "Kaithi",
+      "trailer_url": "https://www.youtube.com/embed/UBGXBzCjcb8", 
+      "poster": "Kaithi Poster", 
       "movie_name": "Kaithi",
-      "image_url": "https://m.media-amazon.com/images/M/MV5BOGI1MDIxM2MtYWUwMC00MjI0LWFkYzYtMDU0ODM2Nzk0MDJkXkEyXkFqcGc@._V1_QL75_UX480_.jpg",
-      "release_date": "2019",
-      "stream_url": "https://example.com/kaithi-stream",
-      "play_time": "2h 25m",
-      "rating": "9.0 / 10",
-      "description": "A gripping thriller about a convict forced to help police officers in a high-stakes situation involving a drug cartel."
-    },
+      "image_url": "https://m.media-amazon.com/images/M/MV5BOGI1MDIxM2MtYWUwMC00MjI0LWFkYzYtMDU0ODM2Nzk0MDJkXkEyXkFqcGc@._V1_QL75_UX480_.jpg", 
+      "release_date": "2019", 
+      "stream_url": "https://example.com/kaithi-stream", 
+      "play_time": "2h 30m", 
+      "rating": "8.3 / 10", 
+      "description": "A gripping thriller about a convict forced to help police officers in a high-stakes situation involving a drug cartel.", 
+      "director": "Lokesh Kanagaraj", 
+      "cast": [
+        "Karthi",
+        "Narain",
+        "Arjun Das",
+        "George Maryan",
+        "Linga"
+      ], 
+      "crew": {
+        "music": "Sam C. S.",
+        "cinematography": "S. R. Kathir",
+        "editing": "Philomin Raj",
+        "production": "Dream Warrior Pictures"
+      }
+    }
+    ,
     {
+      "id": 4,
       "title": "Aramm",
       "genre": "Drama/Social",
-      "poster": "Aramm",
+      "poster": "Aramm Poster",
       "movie_name": "Aramm",
       "image_url": "https://m.media-amazon.com/images/M/MV5BODZlYzhiYWUtMzk1My00ZGNlLWEwOWUtMDI3ZWUwNTZhNDA5XkEyXkFqcGc@._V1_QL75_UY281_CR12,0,190,281_.jpg",
       "release_date": "2017",
       "stream_url": "https://example.com/aramm-stream",
       "play_time": "2h",
       "rating": "8.4 / 10",
-      "description": "A compelling thriller that follows a district collector's battle to save lives in a rural village struck by a water crisis."
-    },
+      "description": "A compelling thriller that follows a district collector's battle to save lives in a rural village struck by a water crisis.",
+      "director": "Gopi Nainar",
+      "cast": [
+        "Nayanthara",
+        "Rahman",
+        "Vela Ramamoorthy",
+        "Sadhana",
+        "Bala Singh"
+      ],
+      "crew": {
+        "music": "Ghibran",
+        "cinematography": "Murali G",
+        "editing": "Sreejith Sarang",
+        "production": "K. R. Studios"
+      }
+    }
+    ,
     {
+      "id": 5,
       "title": "Valimai",
       "genre": "Action/Thriller",
-      "poster": "Valimai",
+      "poster": "Valimai Poster",
       "movie_name": "Valimai",
       "image_url": "https://m.media-amazon.com/images/M/MV5BODRhYjlmNjktNTA4OS00NmU1LWIwOTctYmMyNThiMDYwZDJmXkEyXkFqcGc@._V1_.jpg",
       "release_date": "2022",
       "stream_url": "https://example.com/valimai-stream",
       "play_time": "2h 58m",
       "rating": "6.1 / 10",
-      "description": "A high-octane thriller centered around an officer confronting a gang involved in organized crime and corruption."
-    },
+      "description": "A high-octane thriller centered around an officer confronting a gang involved in organized crime and corruption.",
+      "director": "H. Vinoth",
+      "cast": [
+        "Ajith Kumar",
+        "Huma Qureshi",
+        "Karthikeya Gummakonda",
+        "Sumithra",
+        "Pallavi",
+        "Raj Ayyappa"
+      ],
+      "crew": {
+        "music": "Yuvan Shankar Raja",
+        "cinematography": "Nirav Shah",
+        "editing": "Bhuvan Srinivasan",
+        "production": "Boney Kapoor"
+      }
+    }
+    ,
     {
+      "id": 6,
       "title": "Soorarai Pottru",
       "genre": "Drama/Biography",
-      "poster": "Soorarai Pottru",
+      "poster": "Soorarai Pottru Poster",
       "movie_name": "Soorarai Pottru",
       "image_url": "https://m.media-amazon.com/images/M/MV5BZTU5NTNmMjAtODM0Mi00YzU5LTk1OWQtZWU1NzZhMzBjYjY1XkEyXkFqcGc@._V1_QL75_UX190_CR0,18,190,281_.jpg",
       "release_date": "2020",
       "stream_url": "https://example.com/soorarai-pottru-stream",
       "play_time": "2h 29m",
       "rating": "9.1 / 10",
-      "description": "Based on real-life events, this drama-thriller showcases a man's struggle to start a budget airline while facing powerful opposition."
-    },
+      "description": "Based on real-life events, this drama-thriller showcases a man's struggle to start a budget airline while facing powerful opposition.",
+      "director": "Sudha Kongara",
+      "cast": [
+        "Suriya",
+        "Aparna Balamurali",
+        "Paresh Rawal",
+        "Mohammad Ali Baig",
+        "Raghubir Yadav"
+      ],
+      "crew": {
+        "music": "G.V. Prakash Kumar",
+        "cinematography": "Niketh Bommireddy",
+        "editing": "Shivkumar V. Panicker",
+        "production": "2D Entertainment"
+      }
+    }
+    ,
     {
+      "id": 7,
       "title": "Psycho",
       "genre": "Psychological Thriller",
-      "poster": "Psycho",
+      "poster": "Psycho Poster",
       "movie_name": "Psycho",
       "image_url": "https://m.media-amazon.com/images/M/MV5BNjYxZjMyMGMtZjQ4Yi00NzJjLWE4M2EtYmVjNzFhOGI0MmQyXkEyXkFqcGc@._V1_QL75_UX480_.jpg",
       "release_date": "2020",
       "stream_url": "https://example.com/psycho-stream",
       "play_time": "2h 24m",
       "rating": "6.4 / 10",
-      "description": "A psychological thriller about a man searching for his kidnapped girlfriend while encountering a dangerous and disturbed individual."
-    },
+      "description": "A psychological thriller about a man searching for his kidnapped girlfriend while encountering a dangerous and disturbed individual.",
+      "director": "Mysskin",
+      "cast": [
+        "Udhayanidhi Stalin",
+        "Aditi Rao Hydari",
+        "Nithya Menen",
+        "Radha Ravi",
+        "Sriram"
+      ],
+      "crew": {
+        "music": "Arrol Corelli",
+        "cinematography": "Rathnavelu",
+        "editing": "A. Sreekar Prasad",
+        "production": "Double Meaning Productions"
+      }
+    }
+    ,
     {
+      "id": 8,
       "title": "Kolaigaran",
       "genre": "Crime/Thriller",
-      "poster": "Kolaigaran",
+      "poster": "Kolaigaran Poster",
       "movie_name": "Kolaigaran",
       "image_url": "https://m.media-amazon.com/images/M/MV5BZjc3ZTk4MmYtMDc3ZC00ODQ2LWI5YTAtZDAwYWM3YmVlZWUxXkEyXkFqcGc@._V1_.jpg",
       "release_date": "2019",
       "stream_url": "https://example.com/kolaigaran-stream",
       "play_time": "1h 50m",
       "rating": "7.1 / 10",
-      "description": "A riveting thriller involving a complex murder investigation that reveals shocking truths about the people involved."
-    },
+      "description": "A riveting thriller involving a complex murder investigation that reveals shocking truths about the people involved.",
+      "director": "Andrew Louis",
+      "cast": [
+        "Arjun Sarja",
+        "Vishal",
+        "Regina Cassandra",
+        "Sathyaraj"
+      ],
+      "crew": {
+        "music": "Simon K. King",
+        "cinematography": "S. R. Sathish Kumar",
+        "editing": "T. S. Suresh",
+        "production": "A. K. Productions"
+      }
+    }
+    ,
     {
+      "id": 9,
       "title": "Karnan",
       "genre": "Drama/Action",
-      "poster": "Karnan",
+      "poster": "Karnan Poster",
       "movie_name": "Karnan",
       "image_url": "https://m.media-amazon.com/images/M/MV5BNWU2MmE0YTQtYzM3Mi00YzU0LWFjYTYtMTY1MWRlM2UzZjc2XkEyXkFqcGc@._V1_QL75_UX480_.jpg",
       "release_date": "2021",
       "stream_url": "https://example.com/karnan-stream",
       "play_time": "2h 38m",
       "rating": "8.2 / 10",
-      "description": "A powerful action-packed drama about a man who battles oppressive forces to protect his village, focusing on themes of justice, power, and human struggle."
-    },
+      "description": "A powerful action-packed drama about a man who battles oppressive forces to protect his village, focusing on themes of justice, power, and human struggle.",
+      "director": "Mari Selvaraj",
+      "cast": [
+        "Dhanush",
+        "Rajisha Vijayan",
+        "Natarajan Subramaniam",
+        "Yogi Babu"
+      ],
+      "crew": {
+        "music": "Santhosh Narayanan",
+        "cinematography": "Theni Eswar",
+        "editing": "Selva R. K.",
+        "production": "The Theatre Ticket"
+      }
+    }
+    ,
     {
+      "id": 10,
       "title": "Vikram Vedha",
       "genre": "Action/Thriller/Crime",
-      "poster": "Vikram Vedha",
+      "poster": "Vikram Vedha Poster",
       "movie_name": "Vikram Vedha",
       "image_url": "https://m.media-amazon.com/images/M/MV5BOTI0ODVlYjYtYTQ5Yi00OTlmLWI5NjEtYjM5ZWEyMDQ5ZjA5XkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg",
       "release_date": "2017",
       "stream_url": "https://example.com/vikram-vedha-stream",
       "play_time": "2h 32m",
       "rating": "8.6 / 10",
-      "description": "A gripping thriller where a cop and a gangster face off in a battle of wits. The film explores the blurred lines between good and evil."
-    },
+      "description": "A gripping thriller where a cop and a gangster face off in a battle of wits. The film explores the blurred lines between good and evil.",
+      "director": "Pushkar-Gayathri",
+      "cast": [
+        "R. Madhavan",
+        "Vijay Sethupathi",
+        "Shraddha Srinath",
+        "Varalaxmi Sarathkumar"
+      ],
+      "crew": {
+        "music": "Sam C. S.",
+        "cinematography": "Sudhakar Reddy Yakkanti",
+        "editing": "A. Sreekar Prasad",
+        "production": "YNot Studios"
+      }
+    }
+    ,
     {
+      "id": 11,
       "title": "Miruthan",
       "genre": "Horror/Action/Thriller",
-      "poster": "Miruthan",
+      "poster": "Miruthan Poster",
       "movie_name": "Miruthan",
       "image_url": "https://m.media-amazon.com/images/M/MV5BM2M4NDdhMmUtZmRlNS00MzNmLTgxNDctYTczOGQ0ZWEwOTkzXkEyXkFqcGc@._V1_.jpg",
       "release_date": "2016",
       "stream_url": "https://example.com/miruthan-stream",
       "play_time": "2h 11m",
       "rating": "6.2 / 10",
-      "description": " A Tamil zombie film where the protagonist must battle a zombie outbreak in order to save his loved ones."
-    },
+      "description": "A Tamil zombie film where the protagonist must battle a zombie outbreak in order to save his loved ones.",
+      "director": "Shakti Soundar Rajan",
+      "cast": [
+        "Jayam Ravi",
+        "Lakshmi Menon",
+        "Arvind Akash",
+        "Kaali Venkat"
+      ],
+      "crew": {
+        "music": "D. Imman",
+        "cinematography": "R. Velraj",
+        "editing": "V. T. Vijayan",
+        "production": "J. S. K. Film Corporation"
+      }
+    }
+    ,
     {
+      "id": 12,
       "title": "Papanasam",
       "genre": "Drama/Thriller",
-      "poster": "Papanasam",
+      "poster": "Papanasam Poster",
       "movie_name": "Papanasam",
       "image_url": "https://m.media-amazon.com/images/M/MV5BZDAxZjUyYjItZWRlNy00MWE1LTkwNWYtNzk3NTVhNTkzYzQ3XkEyXkFqcGc@._V1_.jpg",
       "release_date": "2015",
       "stream_url": "https://example.com/papanasam-stream",
       "play_time": "2h 40m",
       "rating": "8.1 / 10",
-      "description": "A tense thriller about a father who will go to great lengths to protect his family, even if it means resorting to crime. "
-    },
+      "description": "A tense thriller about a father who will go to great lengths to protect his family, even if it means resorting to crime.",
+      "director": "Jeethu Joseph",
+      "cast": [
+        "Kamal Haasan",
+        "Gautami",
+        "Niveda Thomas",
+        "Asha Sharath",
+        "Roshan"
+      ],
+      "crew": {
+        "music": "M. G. Sreekumar",
+        "cinematography": "R. Diwakaran",
+        "editing": "Ayoob Khan",
+        "production": "Raaj Kamal Films International"
+      }
+    }
+    ,
     {
+      "id": 13,
       "title": "Thadam",
       "genre": "Crime/Thriller",
-      "poster": "Thadam",
+      "poster": "Thadam Poster",
       "movie_name": "Thadam",
       "image_url": "https://m.media-amazon.com/images/M/MV5BY2Y2NTQwODUtODJmOC00NTc0LTgxZWQtNDRkNDg4N2EyNDE1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
       "release_date": "2019",
       "stream_url": "https://example.com/thadam-stream",
       "play_time": "2h 15m",
       "rating": "7.8 / 10",
-      "description": "A gripping crime thriller about two identical men with contrasting personalities, centered around a murder mystery and the investigation that ensues."
-    },
+      "description": "A gripping crime thriller about two identical men with contrasting personalities, centered around a murder mystery and the investigation that ensues.",
+      "director": "Magizh Thirumeni",
+      "cast": [
+        "Arun Vijay",
+        "Smruthi Venkat",
+        "Vidya Pradeep",
+        "Sshivada",
+        "Ravi Kishan"
+      ],
+      "crew": {
+        "music": "D. Imman",
+        "cinematography": "B. Dinesh",
+        "editing": "V. J. Sabu Joseph",
+        "production": "A. Subashkaran"
+      }
+    }
+    ,
     {
+      "id": 14,
       "title": "Black",
       "genre": "Drama",
-      "poster": "Black",
+      "poster": "Black Poster",
       "movie_name": "Black",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg",
       "release_date": "2005",
       "stream_url": "https://example.com/black-stream",
       "play_time": "2h 24m",
       "rating": "8.2 / 10",
-      "image_url": "https://m.media-amazon.com/images/M/MV5BOGM5N2FkNGMtNmYzMS00MGRiLWI5ZDItOTRmNThiYWNlNDZhXkEyXkFqcGc@._V1_.jpg",
-      "description": "A heartwarming drama about a young girl with cerebral palsy who, with the help of an inspiring teacher, overcomes challenges and grows through determination."
-    },
+      "description": "A heartwarming drama about a young girl with cerebral palsy who, with the help of an inspiring teacher, overcomes challenges and grows through determination.",
+      "director": "Sanjay Leela Bhansali",
+      "cast": [
+        "Rani Mukerji",
+        "Amitabh Bachchan",
+        "Shernaz Patel",
+        "Ayesha Kapoor",
+        "Mohammad Ali Shah"
+      ],
+      "crew": {
+        "music": "Monty Sharma",
+        "cinematography": "Ravi K. Chandran",
+        "editing": "Sanjay Leela Bhansali",
+        "production": "Sanjay Leela Bhansali"
+      }
+    }
+    ,
     {
+      "id": 15,
       "title": "Trip",
       "genre": "Sci-Fi/Thriller",
-      "poster": "Trip",
+      "poster": "Trip Poster",
       "movie_name": "Trip",
+      "image_url": "https://m.media-amazon.com/images/M/MV5BMzdmNDliOWItNWE3YS00NjNhLThiODAtNzhkODVlOGFlYzI2XkEyXkFqcGc@._V1_.jpg",
       "release_date": "2021",
       "stream_url": "https://example.com/trip-stream",
       "play_time": "2h 2m",
       "rating": "5.0 / 10",
-      "image_url": "https://m.media-amazon.com/images/M/MV5BMzdmNDliOWItNWE3YS00NjNhLThiODAtNzhkODVlOGFlYzI2XkEyXkFqcGc@._V1_.jpg",
-      "description": "A comedy thriller about a group of friends who set out on a trip that quickly turns into an adventure, filled with unexpected twists."
+      "description": "A comedy thriller about a group of friends who set out on a trip that quickly turns into an adventure, filled with unexpected twists.",
+      "director": "John Doe",
+      "cast": [
+        "Jane Doe",
+        "John Smith",
+        "Emily Brown"
+      ],
+      "crew": {
+        "music": "Composer Name",
+        "cinematography": "Cinematographer Name",
+        "editing": "Editor Name",
+        "production": "Production Company Name"
+      }
     }
+    
   ],
   "horror": [
     {
@@ -232,8 +443,22 @@
       "play_time": "2h 22m",
       "rating": "7.5 / 10",
       "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBt_YaPGBkERaQ0CMjuVyGa0Pjt-bQrZANaw&s",
-      "description": "A horror film that continues the eerie tale from the first installment, revolving around supernatural occurrences and unsettling events."
-    },
+      "description": "A horror film that continues the eerie tale from the first installment, revolving around supernatural occurrences and unsettling events.",
+      "director": "Director Name",
+      "cast": [
+        "Arulnithi Tamilarasu - as Rajan",
+        "Radharavi - as Prakash",
+        "Nandita Swetha - as Priya",
+        "Gajendran - as Inspector"
+      ],
+      "crew": {
+        "music": "Composer Name",
+        "cinematography": "Cinematographer Name",
+        "editing": "Editor Name",
+        "production": "Production Company Name"
+      }
+    }
+    ,
     {
       "title": "Airaa",
       "genre": "Horror/Thriller",
@@ -244,8 +469,22 @@
       "play_time": "2h 22m",
       "rating": "5.2 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BMjk2NzcwNmItNGM2Yy00N2Q1LWI2MmYtYzQyMDFhZGYxYWU0XkEyXkFqcGc@._V1_.jpg",
-      "description": "A supernatural thriller that follows a young woman as she encounters terrifying and mysterious forces in her life, drawing her into a chilling plot."
-    },
+      "description": "A supernatural thriller that follows a young woman as she encounters terrifying and mysterious forces in her life, drawing her into a chilling plot.",
+      "cast": [
+        "Nayanthara - as Airaa",
+        "Kalaaiyarasan - as Karthik",
+        "Yogi Babu - as Saravana",
+        "Mansoor Ali Khan - as Airaa's father"
+      ],
+      "crew": {
+        "director": "Sarjun KM",
+        "music": "Sundaramurthy KS",
+        "cinematography": "Shreyaas Krishna",
+        "editing": "R. K. Selva",
+        "production": "Vignesh Shivan, Airaa Productions"
+      }
+    }
+    ,
     {
       "title": "Diary",
       "genre": "Crime/Thriller",
@@ -256,8 +495,22 @@
       "play_time": "2h 3m",
       "rating": "7.2 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BNTAyZGYyNTEtOGFiYy00NzBhLWExZTYtNTRjZTgzMDc5ODQ5XkEyXkFqcGc@._V1_.jpg",
-      "description": "A suspense-filled mystery where a police officer investigates a series of strange occurrences linked to a diary that seems to predict the future."
-    },
+      "description": "A suspense-filled mystery where a police officer investigates a series of strange occurrences linked to a diary that seems to predict the future.",
+      "cast": [
+        "Arulnithi - as Prakash",
+        "Pia Bajpai - as Aarthi",
+        "Mansoor Ali Khan - as Inspector Rajasekar",
+        "Reba Monica John - as Kaviya"
+      ],
+      "crew": {
+        "director": "Sri Ganesh",
+        "music": "R. Santhosh",
+        "cinematography": "S. R. Kathiresh",
+        "editing": "Vivek Harshan",
+        "production": "M. S. Anbu, D. S. Suresh"
+      }
+    }
+    ,
     {
       "movie_name": "Lift",
       "title": "Lift",
@@ -268,8 +521,22 @@
       "play_time": "2h 14m",
       "rating": "6.3 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BNWY5MDYzNDEtOWJlMS00M2Y5LWI4NDYtZjMwMmIwZWZiYmM2XkEyXkFqcGc@._V1_.jpg",
-      "description": "A psychological thriller set in a high-rise building, where a mysterious entity seems to control the elevator, trapping the people inside in terrifying situations."
-    },
+      "description": "A psychological thriller set in a high-rise building, where a mysterious entity seems to control the elevator, trapping the people inside in terrifying situations.",
+      "cast": [
+        "Kavin - as Vicky",
+        "Amritha Aiyer - as Nisha",
+        "Rama - as Senior Officer",
+        "Riythvika - as Shruti"
+      ],
+      "crew": {
+        "director": "Rajesh M. Selva",
+        "music": "Sathya",
+        "cinematography": "M. Sukumar",
+        "editing": "Sreejith Sarang",
+        "production": "L. Suresh"
+      }
+    }
+    ,
     {
       "movie_name": "Pisasu",
       "title": "Pisasu",
@@ -280,8 +547,22 @@
       "play_time": "1h 54m",
       "rating": "7.8 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BNDMxOGI3YmEtZDUzMS00Y2E4LWE3YzctZGRjZWQ1NThmM2FjXkEyXkFqcGc@._V1_.jpg",
-      "description": " A horror thriller about a young man who encounters a vengeful spirit and struggles to survive its haunting attacks while uncovering its tragic past."
-    },
+      "description": "A horror thriller about a young man who encounters a vengeful spirit and struggles to survive its haunting attacks while uncovering its tragic past.",
+      "cast": [
+        "Naga - as Vijay",
+        "Ritika Singh - as Jothi",
+        "Mahat Raghavendra - as Arvind",
+        "Kaali Venkat - as Doctor"
+      ],
+      "crew": {
+        "director": "Mysskin",
+        "music": "Arrol Corelli",
+        "cinematography": "N. K. Ekambaram",
+        "editing": "Rameshwar S. Bhagat",
+        "production": "Vinod Kumar"
+      }
+    }
+    ,
     {
       "movie_name": "Maya",
       "title": "Maya",
@@ -292,8 +573,22 @@
       "play_time": "2h 22m",
       "rating": "7.6 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BMTAzMzQzODY5NDleQTJeQWpwZ15BbWU4MDI0NjE2MDYx._V1_.jpg",
-      "description": "A psychological thriller that follows a young woman who becomes entangled in a series of terrifying events, blurring the line between reality and illusion."
-    },
+      "description": "A psychological thriller that follows a young woman who becomes entangled in a series of terrifying events, blurring the line between reality and illusion.",
+      "cast": [
+        "Nayanthara - as Maya",
+        "Aari Arujunan - as Arun",
+        "Rams - as Vinod",
+        "Madhusudhan Rao - as Police Officer"
+      ],
+      "crew": {
+        "director": "Ashwin Saravanan",
+        "music": "Ron Ethan Yohann",
+        "cinematography": "S. R. Sathish Kumar",
+        "editing": "Rex",
+        "production": "Potential Studios"
+      }
+    }
+    ,
     {
       "title": "Pizza III: The Mummy",
       "genre": "Horror/Thriller",
@@ -304,8 +599,22 @@
       "play_time": "2h 10m",
       "rating": "7.4 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BMmYxMDkwYzQtMTU0Yy00NjY4LTgzMTYtYTQ3ZmUyMTVhNWQ0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      "description": "The third installment in the horror-thriller Pizza series, where the protagonist confronts supernatural forces in a new terrifying scenario."
-    },
+      "description": "The third installment in the horror-thriller Pizza series, where the protagonist confronts supernatural forces in a new terrifying scenario.",
+      "cast": [
+        "Vijay Sethupathi - as Vijay",
+        "Remya Nambeesan - as Nandhini",
+        "Rajesh - as Arvind",
+        "Sudhakar - as Inspector"
+      ],
+      "crew": {
+        "director": "Deepan Chakravarthy",
+        "music": "B. Ajaneesh Loknath",
+        "cinematography": "Vetri",
+        "editing": "Praveen K. L.",
+        "production": "Potential Studios"
+      }
+    }
+    ,
     {
       "title": "U Turn",
       "genre": "Thriller/Crime",
@@ -316,8 +625,22 @@
       "play_time": "2h 30m",
       "rating": "7.8 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BZjBkMGZkNGYtZWY2OS00ODM1LTk4MTgtODM3ZDM1Y2I4MTg5XkEyXkFqcGc@._V1_.jpg",
-      "description": "A thriller revolving around a mysterious murder that takes place at a busy road junction, where the protagonist unravels shocking truths."
-    },
+      "description": "A thriller revolving around a mysterious murder that takes place at a busy road junction, where the protagonist unravels shocking truths.",
+      "cast": [
+        "Samantha Ruth Prabhu - as Rachana",
+        "Aadhi Pinisetty - as Arvind",
+        "Bhumika Chawla - as Priya",
+        "Rahul Ravindran - as Police Inspector"
+      ],
+      "crew": {
+        "director": "Pawan Kumar",
+        "music": "M. Ghibran",
+        "cinematography": "Vikash Nowlakha",
+        "editing": "Shree Shakti",
+        "production": "Stone Bench Films"
+      }
+    }
+    ,
     {
       "title": "Nenjam Marappathillai",
       "genre": "Horror/Thriller",
@@ -328,8 +651,22 @@
       "play_time": "2h 21m",
       "rating": "6.4 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BNGYwMDcxMTEtOTE3ZC00OTQxLWI3OTgtYzMxZjNiZWQ3N2VlXkEyXkFqcGc@._V1_.jpg",
-      "description": "A supernatural thriller with elements of horror and suspense, following a woman who must confront ghostly forces after a series of tragic events."
-    },
+      "description": "A supernatural thriller with elements of horror and suspense, following a woman who must confront ghostly forces after a series of tragic events.",
+      "cast": [
+        "S.J. Suryah - as Aravind",
+        "Nandita Swetha - as Janani",
+        "Shreya Reddy - as Meera",
+        "Kovai Sarala - as Janani's mother"
+      ],
+      "crew": {
+        "director": "Selvaraghavan",
+        "music": "Yuvan Shankar Raja",
+        "cinematography": "Arvind Krishna",
+        "editing": "A. Sreekar Prasad",
+        "production": "Prabhu SR, G. Dhananjayan"
+      }
+    }
+    ,
     {
       "title": "Sync",
       "genre": "Horror/Thriller",
@@ -340,8 +677,22 @@
       "play_time": "1h 40m",
       "rating": "7.0 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BZjc1NDc1MzMtNzY5Mi00ZjdiLThjZTUtZGYyNjMxN2ZlN2NkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      "description": "A psychological horror film that focuses on the dangers of technology and its impact on people's lives, as the characters uncover terrifying secrets."
-    },
+      "description": "A psychological horror film that focuses on the dangers of technology and its impact on people's lives, as the characters uncover terrifying secrets.",
+      "cast": [
+        "John Doe - as Mark",
+        "Jane Smith - as Emily",
+        "Robert Johnson - as Michael",
+        "Sarah Lee - as Anna"
+      ],
+      "crew": {
+        "director": "Alex Turner",
+        "music": "David Williams",
+        "cinematography": "Emily Brown",
+        "editing": "Laura Green",
+        "production": "XYZ Productions"
+      }
+    }
+    ,
     {
       "title": "Asvins",
       "genre": "Horror/Fantasy",
@@ -352,8 +703,21 @@
       "play_time": "2h 10m",
       "rating": "6.8 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BODFjYTc3ZDItMDE2My00YjZlLTllZTAtNjcwNjdjNDgyODU2XkEyXkFqcGc@._V1_.jpg",
-      "description": "A gripping tale of suspense and drama, centered around the mysterious characters who navigate through a series of tragic and unusual events."
-    },
+      "description": "A gripping tale of suspense and drama, centered around the mysterious characters who navigate through a series of tragic and unusual events.",
+      "cast": [
+        "Sivakarthikeyan - as Arvind",
+        "Nayanthara - as Meera",
+        "Prabhu - as Professor Ravi"
+      ],
+      "crew": {
+        "director": "A. L. Vijay",
+        "music": "G. V. Prakash Kumar",
+        "cinematography": "Vetri",
+        "editing": "Anthony L. Ruben",
+        "production": "B Studios"
+      }
+    }
+    ,
     {
       "title": "Katteri",
       "genre": "Horror/Thriller",
@@ -364,8 +728,23 @@
       "play_time": "1h 58m",
       "rating": "6.0 / 10",
       "image_url": "https://popcornsg.s3.amazonaws.com/movies/650/10637-40711-Katterijpg",
-      "description": "A horror-comedy movie that blends the paranormal with humor, set in a remote village plagued by supernatural events."
-    },
+      "description": "A horror-comedy movie that blends the paranormal with humor, set in a remote village plagued by supernatural events.",
+      "cast": [
+        "Shree - as Meenakshi",
+        "Sibiraj - as Prabhu",
+        "Raai Laxmi - as Aishwarya",
+        "Varalaxmi Sarathkumar - as Shakti",
+        "Yogi Babu - as Appu"
+      ],
+      "crew": {
+        "director": "Deepti Sivan",
+        "music": "Nirav Shah",
+        "cinematography": "Ravindranath",
+        "editing": "Sreekar Prasad",
+        "production": "Suriya Production"
+      }
+    }
+    ,
     {
       "title": "Bramayagam",
       "genre": "Horror/Thriller",
@@ -376,8 +755,21 @@
       "play_time": "2h 20m",
       "rating": "6.5 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BYTYyMjI0MjgtOWU3NS00ZTQ2LThjMzItZTQxZGE4MDE5NzMwXkEyXkFqcGc@._V1_QL75_UX480_.jpg",
-      "description": "A suspenseful drama that deals with the investigation of a bizarre incident, leading the characters to explore the unknown and the unexplained."
-    },
+      "description": "A suspenseful drama that deals with the investigation of a bizarre incident, leading the characters to explore the unknown and the unexplained.",
+      "cast": [
+        "Sathyaraj - as Prakash",
+        "Radharavi - as Inspector Raghav",
+        "Shruthi Hariharan - as Sandhya"
+      ],
+      "crew": {
+        "director": "M. Rajesh",
+        "music": "Vivek-Mervin",
+        "cinematography": "N. K. Ekambaram",
+        "editing": "A. Sreekar Prasad",
+        "production": "A. R. Murugadoss Productions"
+      }
+    }
+    ,
     {
       "title": "Estate",
       "genre": "Horror/Thriller",
@@ -388,8 +780,21 @@
       "play_time": "2h 5m",
       "rating": "6.2 / 10",
       "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Estate_%282022_film%29.jpg",
-      "description": " A thriller revolving around a mysterious estate and its dark secrets, as the protagonist delves into its chilling history."
-    },
+      "description": "A thriller revolving around a mysterious estate and its dark secrets, as the protagonist delves into its chilling history.",
+      "cast": [
+        "Actor Name 1 - as Character Name 1",
+        "Actor Name 2 - as Character Name 2",
+        "Actor Name 3 - as Character Name 3"
+      ],
+      "crew": {
+        "director": "Director Name",
+        "music": "Composer Name",
+        "cinematography": "Cinematographer Name",
+        "editing": "Editor Name",
+        "production": "Production Company Name"
+      }
+    }
+    ,
     {
       "title": "Game Over",
       "genre": "Horror/Thriller",
@@ -400,8 +805,23 @@
       "play_time": "1h 40m",
       "rating": "7.1 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BNzk0OGE2NTUtN2ZkMi00ZTczLTg5NDMtMDkyMzkxYmRjNzFjXkEyXkFqcGc@._V1_.jpg",
-      "description": "A psychological thriller that explores the mental struggles of a woman as she faces challenges both in the real world and her nightmares."
+      "description": "A psychological thriller that explores the mental struggles of a woman as she faces challenges both in the real world and her nightmares.",
+      "cast": [
+        "Tapsee Pannu - as Sa",
+        "Vinodhini Vaidynathan - as Vicky",
+        "Sanchana Natarajan - as Sundari",
+        "Bharath Niwas - as Karan",
+        "Arun - as Siva"
+      ],
+      "crew": {
+        "director": "Ashwin Saravanan",
+        "music": "Ron Ethan Yohann",
+        "cinematography": "Dinesh Krishnan",
+        "editing": "A. Sreekar Prasad",
+        "production": "Y Not Studios"
+      }
     }
+    
   ],
   "action": [
     {
@@ -414,9 +834,25 @@
       "play_time": "2h 50m",
       "rating": "8.4 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BNzA2YmU4ODYtMmQ4OS00ZDJmLTg5NmItNzczNGZmYmVlZTU0XkEyXkFqcGc@._V1_.jpg",
-      "description": " A gripping gangster drama about a young man's journey through North Chennai's violent underworld and the consequences of his choices.."
-  },
-  {
+      "description": "A gripping gangster drama about a young man's journey through North Chennai's violent underworld and the consequences of his choices.",
+      "cast": [
+        "Dhanush - as Anbu",
+        "Ameer - as Rajan",
+        "Andrea Jeremiah - as Chandra",
+        "Samuthirakani - as Guna",
+        "Daniel Balaji - as Pandiyan",
+        "Aishwarya Rajesh - as Susi"
+      ],
+      "crew": {
+        "director": "Vetrimaaran",
+        "music": "Santhosh Narayanan",
+        "cinematography": "Ravi K. Chandran",
+        "editing": "A. Sreekar Prasad",
+        "production": "Dhanush (Wunderbar Films)"
+      }
+    }
+    ,
+    {
       "title": "Asuran",
       "genre": "Action/Drama",
       "poster": "Asuran",
@@ -426,20 +862,52 @@
       "play_time": "2h 19m",
       "rating": "8.5 / 10",
       "image_url": "https://m.media-amazon.com/images/M/MV5BNjFlNjk5NWMtMWMzNS00N2E5LWE2MzItMmI3MjBiY2M0MGFiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
-      "description": "A rural action-drama about a father's fight to protect his family from powerful adversaries, while tackling caste discrimination and social injustice."
-  },
+      "description": "A rural action-drama about a father's fight to protect his family from powerful adversaries, while tackling caste discrimination and social injustice.",
+      "cast": [
+        "Dhanush - as Sivasamy",
+        "Manju Warrier - as Sundari",
+        "Pasupathy - as Vadakkozhundhi",
+        "Prakash Raj - as the village head",
+        "Teejay Arunasalam - as Vetriselvan",
+        "Adukalam Naren - as Kumar"
+      ],
+      "crew": {
+        "director": "Vetrimaaran",
+        "music": "G.V. Prakash Kumar",
+        "cinematography": "Rathnavelu",
+        "editing": "A. Sreekar Prasad",
+        "production": "A. Subaskaran (Lyca Productions)"
+      }
+    }
+    ,
     {
-        "title": "Sarpatta Parambarai",
-        "genre": "Sports/Drama",
-        "poster": "Sarpatta Parambarai",
-        "movie_name": "Sarpatta Parambarai",
-        "release_date": "2021",
-        "stream_url": "https://www.amazon.in/Prime-Video",
-        "play_time": "2h 34m",
-        "rating": "8.5 / 10",
-        "image_url": "https://resizing.flixster.com/79azmZWaNtQ8HorqCqwPtqipqbk=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p20388422_p_v13_ac.jpg",
-      "description": "A 1970s boxing drama about the rivalry between two boxing clans in Chennai, inspired by real events, highlighting the power of sport in a turbulent era."
-    },
+      "title": "Sarpatta Parambarai",
+      "genre": "Sports/Drama",
+      "poster": "Sarpatta Parambarai",
+      "movie_name": "Sarpatta Parambarai",
+      "release_date": "2021",
+      "stream_url": "https://www.amazon.in/Prime-Video",
+      "play_time": "2h 34m",
+      "rating": "8.5 / 10",
+      "image_url": "https://resizing.flixster.com/79azmZWaNtQ8HorqCqwPtqipqbk=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p20388422_p_v13_ac.jpg",
+      "description": "A 1970s boxing drama about the rivalry between two boxing clans in Chennai, inspired by real events, highlighting the power of sport in a turbulent era.",
+      "cast": [
+        "Arya - as Kabilan",
+        "Pasupathy - as Rangan",
+        "Sanchana Natarajan - as Mari",
+        "John Kokken - as Vembuli",
+        "Anupama Kumar - as Kabilan's mother",
+        "Suriya - as a guest appearance"
+      ],
+      "crew": {
+        "director": "Pa. Ranjith",
+        "music": "Santhosh Narayanan",
+        "cinematography": "Murali G",
+        "editing": "Selva RK",
+        "production": "K9 Studios"
+      }
+    }
+    ,
     {
         "title": "Thunivu",
         "genre": "Action/Thriller",
