@@ -164,26 +164,12 @@
 
     <!-- JavaScript to hide the loader after page load -->
     <script>
- // Function to show the loader
-function showLoader() {
-    document.getElementById("loader").classList.add("show");
-}
-
-// Function to hide the loader
-function hideLoader() {
-    document.getElementById("loader").classList.remove("show");
-}
-
-// Trigger the loader on page load
-window.addEventListener("load", function() {
-    hideLoader();  // Hide the loader once the page content has loaded
-});
-
-// Optionally, you can show the loader during certain events, for example, before fetching movie data
-document.addEventListener("DOMContentLoaded", function() {
-    showLoader();  // Show loader when starting something like fetching data or other tasks
-});
-
+       function showLoader(){
+        document.getElementById("loader").style.display = "flex";
+       }
+       function hideLoader(){
+        document.getElementById("loader").style.display = "none";
+       }
     </script>
 
 </body>

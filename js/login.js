@@ -22,7 +22,6 @@ const emailInput = document.getElementById('signup-email');
 const passwordInput = document.getElementById('signup-password');
 const emailError = document.getElementById('email-error');
 const passwordError = document.getElementById('password-error');
-const loginLogoutButton = document.getElementById('login-logout-button');
 
 // Form submission handler
 if (form) {
@@ -38,71 +37,93 @@ if (form) {
         const emailValue = emailInput.value.trim();
         const passwordValue = passwordInput.value.trim();
 
-        // Validate email
-        if (!emailValue) {
-            showError(emailError, 'Email is required.');
-            valid = false;
-        } else if (!findValidEmail(emailValue)) {
-            showError(emailError, 'Please enter a valid email address.');
-            valid = false;
-        }
+        // Debugging: Check the values of email and password
+        console.log('Email Value:', emailValue); // Check if email value is being fetched correctly
+        console.log('Password Value:', passwordValue); // Check if password value is being fetched correctly
 
-        // Validate password
-        if (!passwordValue) {
-            showError(passwordError, 'Password is required.');
-            valid = false;
-        } else if (!validatePassword(passwordValue)) {
-            showError(passwordError, 'Password must be at least 6 characters long, include one uppercase letter, one lowercase letter, and one special character.');
-            valid = false;
-        }
+        /// Trim spaces from email and password
+const trimmedEmail = emailValue.trim();
+const trimmedPassword = passwordValue.trim();
 
-        // If valid, proceed to login
-        if (valid) {
-            signInWithEmailAndPassword(auth, emailValue, passwordValue)
-                .then((userCredential) => {
-                    // Signed in successfully
-                    const user = userCredential.user;
-                    console.log("Logged in as:", user.email);
-                    alert("Login Successful");
-                    window.location.href = '../index.html'; // Redirect to home page
-                    localStorage.setItem('user', true);
-                    updateButtonToLogout();
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
+// Validate email
+if (!trimmedEmail) {
+    showError(emailError, 'Email is required.');
+    valid = false;
+} else if (trimmedEmail.startsWith(" ")) {
+    showError(emailError, 'Email cannot start with a space.');
+    valid = false;
+} else if (trimmedEmail.includes(" ")) {
+    showError(emailError, 'Email cannot contain spaces.');
+    valid = false;
+} else if (!findValidEmail(trimmedEmail)) {
+    showError(emailError, 'Please enter a valid email address.');
+    valid = false;
+}
 
-                    // Clear previous error messages
-                    emailError.style.display = 'none';
-                    passwordError.style.display = 'none';
+// Validate password
+if (!trimmedPassword) {
+    showError(passwordError, 'Password is required.');
+    valid = false;
+} else if (trimmedPassword.includes(" ")) {
+    showError(passwordError, 'Password cannot contain spaces.');
+    valid = false;
+} else if (!validatePassword(trimmedPassword)) {
+    showError(passwordError, 'Password must be at least 6 characters long, include one uppercase letter, one lowercase letter, and one special character.');
+    valid = false;
+}
 
-                    // Handle Firebase authentication errors
-                    if (errorCode === 'auth/user-not-found') {
-                        showError(emailError, 'Invalid email address. Please check the email and try again.');
-                    } else if (errorCode === 'auth/wrong-password') {
-                        showError(passwordError, 'Incorrect password. Please try again.');
-                    } else if (errorCode === 'auth/invalid-email') {
-                        showError(emailError, 'The email address format is invalid. Please enter a valid email.');
-                    } else {
-                        console.error("Unexpected error:", errorMessage);  // Log unexpected errors
-                        showError(emailError, 'email address or password Incorrect.');
-                    }
-                });
-        }
+// Proceed with Firebase authentication if valid
+if (valid) {
+    signInWithEmailAndPassword(auth, trimmedEmail, trimmedPassword)
+        .then((userCredential) => {
+            // Signed in successfully
+            const user = userCredential.user;
+            console.log("Logged in as:", user.email);
+            alert("Login Successful");
+            window.location.href = '../index.html'; // Redirect to home page
+            localStorage.setItem('user', true);
+            updateButtonToLogout();
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            // Clear previous error messages
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+
+            // Handle Firebase authentication errors
+            if (errorCode === 'auth/user-not-found') {
+                showError(emailError, 'Invalid email address. Please check the email and try again.');
+            } else if (errorCode === 'auth/wrong-password') {
+                showError(passwordError, 'Incorrect password. Please try again.');
+            } else if (errorCode === 'auth/invalid-email') {
+                showError(emailError, 'The email address format is invalid. Please enter a valid email.');
+            } else {
+                console.error("Unexpected error:", errorMessage);  // Log unexpected errors
+                showError(emailError, 'Email address or password is incorrect.');
+            }
+        });
+}
+
     });
 }
 
 // Function to validate email format
 function findValidEmail(email) {
     const atIndex = email.indexOf('@');
-    if (atIndex === -1) {
+    const dotIndex = email.lastIndexOf('.');
+
+    if (atIndex === -1 || dotIndex === -1 || dotIndex < atIndex) {
         return false;
     }
 
+    // Local part and domain part checks (simple validation)
     const localPart = email.slice(0, atIndex);
     const domainPart = email.slice(atIndex + 1);
+    const domainParts = domainPart.split('.');
 
-    if (!localPart || !domainPart || domainPart.indexOf('.') === -1) {
+    if (localPart.length === 0 || domainParts.length < 2) {
         return false;
     }
 
@@ -122,38 +143,14 @@ function showError(element, message) {
     element.style.display = 'block';
 }
 
-// Update button to Logout
-function updateButtonToLogout() {
-    if (loginLogoutButton) {
-        loginLogoutButton.textContent = 'Logout';
-        loginLogoutButton.addEventListener('click', function () {
-            if (confirm('Are you sure you want to logout?')) {
-                signOut(auth).then(() => {
-                    alert("Logout Successful");
-                    updateButtonToLogin();
-                }).catch((error) => {
-                    console.error("Error logging out:", error.message);
-                });
-            }
-        });
-    }
-}
-
-// Update button to Login
-function updateButtonToLogin() {
-    if (loginLogoutButton) {
-        loginLogoutButton.textContent = 'Login';
-        loginLogoutButton.removeEventListener('click', updateButtonToLogout);
-    }
-}
-
-// Monitor authentication state
+// Monitor authentication state (optional)
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // User is logged in, change button to Logout
-        updateButtonToLogout();
+        console.log("User is logged in:", user.email);
     } else {
-        // No user logged in, change button to Login
-        updateButtonToLogin();
+        console.log("User is not logged in");
     }
 });
+
+
+

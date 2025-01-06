@@ -44,7 +44,7 @@ const displayWishlist = async (userId) => {
                         <img src="${movieImage}" alt="${movieTitle}" class="wishlist-item-image">
                         <h3>${movieTitle}</h3>
                         <a href="${movieVideo}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
-                        <button class="remove-btn" data-title="${movieTitle}">Remove</button>
+                        
                     `;
                     wishlistContainer.appendChild(movieElement);
                 });

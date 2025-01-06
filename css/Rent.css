@@ -1,110 +1,21 @@
-/* Profile Container Styling */
-.profile-container {
-    width: 80%;
-    max-width: 1200px;
-    margin: 0 auto;
+/* Basic styling */
+.rental-container {
     padding: 20px;
+}
+
+.movie-details {
     text-align: center;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    font-size: 2.5em;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-h2 {
-    font-size: 2em;
-    color: #444;
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-#rented-movie-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-    text-align: left;
-}
-
-#rented-movie-details {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-
-#rented-movie-image {
+#movie-image {
     width: 200px;
-    height: auto;
-    border-radius: 8px;
+    height: 300px;
     object-fit: cover;
 }
 
-#rented-movie-title {
-    font-size: 1.5em;
-    color: #333;
-}
-
-#rented-movie-price {
-    font-size: 1.2em;
-    color: #e74c3c;
-    font-weight: bold;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    font-size: 1.1em;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 30px;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #2980b9;
-}
-
-button:focus {
-    outline: none;
-}
-
-@media (max-width: 768px) {
-    .profile-container {
-        width: 90%;
-    }
-
-    #rented-movie-details {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    #rented-movie-image {
-        width: 100%;
-        height: auto;
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 2em;
-    }
-
-    h2 {
-        font-size: 1.6em;
-    }
-
-    button {
-        width: 100%;
-        font-size: 1.2em;
-    }
+#rented-success-message {
+    text-align: center;
+    color: green;
+    font-size: 18px;
+    margin-top: 20px;
 }

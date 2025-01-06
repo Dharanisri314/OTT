@@ -166,6 +166,15 @@ function displayMovieDetails() {
                         </div>
                     </div>`;
 
+                // Add event listener for "Watch Trailer" button
+                const trailerButton = document.querySelector('.trailer-now-btn');
+                if (trailerButton) {
+                    trailerButton.addEventListener('click', () => {
+                        const trailerUrl = movie.trailer_url;
+                        showTrailer(trailerUrl);
+                    });
+                }
+
                 // Update the button state based on the current movie
                 updateButtonState(movie);
 
@@ -179,16 +188,38 @@ function displayMovieDetails() {
                     watchNowButton.addEventListener('click', () => handleWatchNow(movie));
                 }
 
-                // Add event listener for "Rent Now" button
                 const rentNowButton = document.querySelector('.rent-btn');
                 if (rentNowButton) {
                     rentNowButton.addEventListener('click', (e) => {
                         e.preventDefault(); // Prevent default link behavior
-                        const movieTitle = document.querySelector('h2').textContent;
-                        window.location.href = `checkout.html?movie=${encodeURIComponent(movieTitle)}`;
+
+                        // Check if the movie has already been rented by the user
+                        const rentedMovie = localStorage.getItem('rentedMovie');
+
+                        console.log('Rented movie in localStorage:', rentedMovie);
+                        console.log('Current movie title:', movie.title);
+
+                        if (rentedMovie && rentedMovie === movie.title) {
+                            // If the movie is already rented, show an alert
+                            alert(`${movie.title} has already been rented.`);
+                        } else {
+                            // If not rented, store movie details in localStorage
+                            localStorage.setItem('rentedMovie', movie.title);
+                            localStorage.setItem('rentedMoviePrice', movie.price || 'Unknown');
+                            localStorage.setItem('rentedMovieImage', movie.image_url || 'placeholder.jpg');
+                            localStorage.setItem('rentedMoviePlan', 'Monthly'); // Example plan type, can be dynamic
+
+                            // Log the stored rental details for debugging purposes
+                            console.log('Storing rental details for:', movie.title);
+                            console.log('Price:', movie.price);
+                            console.log('Image URL:', movie.image_url);
+                            console.log('Rental Plan:', 'Monthly');
+
+                            // Redirect to the rent page
+                            window.location.href = "checkout.html";
+                        }
                     });
                 }
-
             } else {
                 document.getElementById('movie-details-container').innerHTML = '<p>Movie details not available.</p>';
                 console.warn(`Movie titled "${movieTitle}" not found in the JSON data.`);
@@ -199,8 +230,6 @@ function displayMovieDetails() {
             document.getElementById('movie-details-container').innerHTML = '<p>Failed to load movie details.</p>';
         });
 }
-
-
 
 // Function to show trailer in a modal
 function showTrailer(trailerUrl) {
@@ -320,12 +349,239 @@ document.addEventListener("DOMContentLoaded", function () {
 // Call the function to display movie details on page load
 document.addEventListener('DOMContentLoaded', displayMovieDetails);
 
-
          
             
             
             
        
+
+
+// // Function to display movies from JSON data
+// function displayMovieList(data) {
+//     const genres = ['action', 'comedy', 'romance', 'horror', 'thriller'];
+//     let allMovies = [];
+
+//     // Collect movies from all genres
+//     genres.forEach(genre => {
+//         const movieList = data[genre];
+//         if (movieList) {
+//             allMovies = allMovies.concat(movieList);
+//         }
+//     });
+
+//     // Limit to 12 movies
+//     allMovies = allMovies.slice(0, 12);
+
+//     // Insert movies into the container dynamically
+//     const movieListContainer = document.getElementById('movie-list-container');
+//     movieListContainer.innerHTML = ''; // Clear any existing content
+
+//     allMovies.forEach(movie => {
+//         const movieItem = document.createElement('div');
+//         movieItem.className = 'movie-list-item';
+
+//         // Populate the movie item with data
+//         movieItem.innerHTML = `
+//             <img class="movie-list-image" src="${movie.image_url || 'placeholder.jpg'}" alt="${movie.title}" loading="lazy">
+//             <h3 class="movie-list-title">${movie.title}</h3>
+//             <p class="movie-description">${movie.description || 'No description available'}</p>
+//         `;
+
+//         // Add click event listener to navigate to the movie details page
+//         movieItem.addEventListener('click', () => {
+//             window.location.href = `/html/some.html?title=${encodeURIComponent(movie.title)}`;
+//         });
+
+//         // Append the movie item to the container
+//         movieListContainer.appendChild(movieItem);
+//     });
+// }
+
+// // Function to display movie details
+// function displayMovieDetails() {
+//     const urlParams = new URLSearchParams(window.location.search);
+//     const movieTitle = urlParams.get('title');
+
+//     if (!movieTitle) {
+//         document.getElementById('movie-details-container').innerHTML = '<p>Movie not found.</p>';
+//         console.error('Movie title not found in URL query parameters.');
+//         return;
+//     }
+
+//     fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
+//         .then(response => {
+//             if (!response.ok) throw new Error(`Failed to fetch JSON file: ${response.statusText}`);
+//             return response.json();
+//         })
+//         .then(data => {
+//             const genres = ['action', 'comedy', 'romance', 'horror', 'thriller'];
+//             let movie = null;
+
+//             // Search for the movie in all genres
+//             for (const genre of genres) {
+//                 const movieList = data[genre];
+//                 if (movieList) {
+//                     movie = movieList.find(m => m.title && m.title.toLowerCase() === movieTitle.toLowerCase());
+//                     if (movie) break;
+//                 }
+//             }
+
+//             if (movie) {
+//                 const crew = movie.crew || {};
+//                 const imageUrl = movie.image_url || 'placeholder.jpg';
+//                 document.getElementById('movie-details-container').innerHTML = `
+//                     <div class="movie-details-card">
+//                         <img class="movie-details-image" src="${imageUrl}" alt="${movie.title}" loading="lazy">
+//                         <div class="movie-details-info">
+//                             <h2>${movie.title}</h2>
+//                             <p><strong>Genre:</strong> ${movie.genre || 'Unknown'}</p>
+//                             <p><strong>Director:</strong> ${movie.director || 'N/A'}</p>
+//                             <p><strong>Release Year:</strong> ${movie.release_date || 'Unknown'}</p>
+//                             <p><strong>Play Time:</strong> ${movie.play_time || 'Unknown'}</p>
+//                             <p><strong>Rating:</strong> ${movie.rating || 'N/A'}</p>
+//                             <p><strong>Description:</strong> ${movie.description || 'No description available.'}</p>
+//                             <p><strong>Cast:</strong> ${movie.cast ? movie.cast.join(', ') : 'N/A'}</p>
+//                             <h3>Crew:</h3>
+//                             <p><strong>Music:</strong> ${crew.music || 'N/A'}</p>
+//                             <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
+//                             <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
+//                             <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
+//                             <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
+//                             <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
+//                             <button class="wishlist-btn">Add to Wishlist</button>
+//                             <button class="rent-btn">Rent now</button>
+//                         </div>
+//                     </div>`;
+
+//                 // Add event listener for "Watch Trailer" button
+//                 const trailerButton = document.querySelector('.trailer-now-btn');
+//                 if (trailerButton) {
+//                     trailerButton.addEventListener('click', () => {
+//                         const trailerUrl = movie.trailer_url;
+//                         showTrailer(trailerUrl);
+//                     });
+//                 }
+//             } else {
+//                 document.getElementById('movie-details-container').innerHTML = '<p>Movie details not available.</p>';
+//                 console.warn(`Movie titled "${movieTitle}" not found in the JSON data.`);
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error loading movie details:', error);
+//             document.getElementById('movie-details-container').innerHTML = '<p>Failed to load movie details.</p>';
+//         });
+// }
+
+// // Function to show trailer in a modal
+// function showTrailer(trailerUrl) {
+//     const modal = document.getElementById('trailer-modal');
+//     const trailerVideo = document.getElementById('trailer-video');
+
+//     if (!trailerUrl) {
+//         console.error('Trailer URL is not available.');
+//         return;
+//     }
+
+//     trailerVideo.src = trailerUrl;
+//     modal.style.display = 'block'; // Show the modal
+
+//     // Add event listener for close button inside the modal
+//     const closeBtn = document.querySelector('.close-btn');
+//     if (closeBtn) {
+//         closeBtn.addEventListener('click', () => {
+//             modal.style.display = 'none';
+//             trailerVideo.src = ''; // Stop the video
+//         });
+//     }
+
+//     // Close the modal when clicking outside the modal content
+//     window.addEventListener('click', (event) => {
+//         if (event.target === modal) {
+//             modal.style.display = 'none';
+//             trailerVideo.src = ''; // Stop the video
+//         }
+//     });
+// }
+
+// // Call the function to display movie details on page load
+// document.addEventListener('DOMContentLoaded', displayMovieDetails);
+
+// // Movie search functionality (optional)
+// document.addEventListener("DOMContentLoaded", function () {
+//     const searchInput = document.getElementById('search-input');
+//     const resultsContainer = document.getElementById("search-results");
+
+//     const jsonFilePath = '/assets/json/main1.json';
+
+//     // Function to fetch all movies from the JSON file
+//     async function loadMovies() {
+//         try {
+//             const response = await fetch(jsonFilePath);
+//             if (!response.ok) {
+//                 throw new Error("Network response was not ok: " + response.statusText);
+//             }
+//             const data = await response.json();
+
+//             let allMovies = [];
+//             for (const section in data) {
+//                 if (Array.isArray(data[section])) {
+//                     allMovies = allMovies.concat(data[section]);
+//                 }
+//             }
+//             return allMovies;
+//         } catch (error) {
+//             console.error("Error fetching movie data:", error);
+//             return [];
+//         }
+//     }
+
+//     // Function to display results based on the first letter of the movie name
+//     function displayResults(results) {
+//         resultsContainer.innerHTML = ''; // Clear previous results
+
+//         if (results.length === 0) {
+//             resultsContainer.innerHTML = '<p>No movies found</p>';
+//             return;
+//         }
+
+//         results.forEach(movie => {
+//             const movieDiv = document.createElement('div');
+//             movieDiv.classList.add('movie-result');
+//             const imageUrl = movie.image_url || 'placeholder.jpg';
+
+//             movieDiv.innerHTML = `
+//                     <img src="${imageUrl}" alt="${movie.title}" width="100">
+//                     <div>
+//                         <h3>${movie.title}</h3>
+//                     </div>
+//                 `;
+
+//             // Handle movie click event to redirect to the movie details page
+//             movieDiv.addEventListener('click', function () {
+//                 window.location.href = `movie-details.html?title=${encodeURIComponent(movie.title)}`;
+//             });
+
+//             resultsContainer.appendChild(movieDiv);
+//         });
+//     }
+
+//     // Handle dynamic search as the user types
+//     searchInput.addEventListener('input', async function () {
+//         const searchQuery = searchInput.value.trim().toLowerCase();
+
+//         if (searchQuery.length === 0) {
+//             resultsContainer.innerHTML = ''; // Clear results if no search query
+//             return;
+//         }
+
+//         const movies = await loadMovies();
+//         const filteredMovies = movies.filter(movie => {
+//             return movie.title && movie.title.toLowerCase().startsWith(searchQuery);
+//         });
+
+//         displayResults(filteredMovies);
+//     });
+// });
 
 
 
