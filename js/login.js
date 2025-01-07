@@ -228,6 +228,7 @@ if (form) {
                     const user = userCredential.user;
                     console.log("Logged in as:", user.email);
                     alert("Login Successful");
+                    sessionStorage.setItem("login","true");
                     window.location.href = '../index.html'; // Redirect to home page
                     localStorage.setItem('user', true);
                 })

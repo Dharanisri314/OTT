@@ -1,6 +1,3 @@
-
-
-
 const displayWishlist = () => {
     const wishlistContainer = document.getElementById('wishlist-container');
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];

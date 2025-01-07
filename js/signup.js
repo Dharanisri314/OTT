@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log('User created successfully:', user.email);
+                    sessionStorage.setItem("login","true");
 
                     // Store user data in Firestore
                     setDoc(doc(db, "users", user.uid), {

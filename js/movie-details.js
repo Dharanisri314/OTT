@@ -56,31 +56,40 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
         console.error('Error loading movie list:', error);
     });
 
-// Function to check if the user is logged in
-function isUserLoggedIn() {
-    return localStorage.getItem('user') !== null; // Adjust this based on your login mechanism
-}
+// // Function to check if the user is logged in
+// function isUserLoggedIn() {
+//     return localStorage.getItem('user') !== null; // Adjust this based on your login mechanism
+// }
 
 // Function to update the button state based on the wishlist
 function updateButtonState(movie) {
-    const addToWishlistButton = document.querySelector('.wishlist-btn');
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const loggedIn = sessionStorage.getItem("login");
+    if (loggedIn == "true") {
+        const addToWishlistButton = document.querySelector('.wishlist-btn');
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-    // Check if the movie is already in the wishlist
-    if (wishlist.some(item => item.title === movie.title)) {
-        addToWishlistButton.textContent = 'Remove from Wishlist';  // Movie is in wishlist
-    } else {
-        addToWishlistButton.textContent = 'Add to Wishlist'; // Movie is not in wishlist
+        // Check if the movie is already in the wishlist
+        if (wishlist.some(item => item.title === movie.title)) {
+            addToWishlistButton.textContent = 'Remove from Wishlist';  // Movie is in wishlist
+        } else {
+            addToWishlistButton.textContent = 'Add to Wishlist'; // Movie is not in wishlist
+        }
+    }
+    else{
+        alert("Please Login to add the wishlist");
+        const addToWishlistButton = document.querySelector('.wishlist-btn');
+        addToWishlistButton.style.userSelect = "none";
     }
 }
 
 // Function to handle adding/removing the movie from the wishlist
 function handleWishlist(movie) {
-    if (!isUserLoggedIn()) {
+   
+    const loginned = sessionStorage.getItem("login");
+    if (!loginned) {
         alert('You must log in to add movies to your wishlist.');
-        return;
     }
-
+    else{
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
     if (!wishlist.some(item => item.title === movie.title)) {
@@ -97,18 +106,10 @@ function handleWishlist(movie) {
 
     // Update the button state after modifying the wishlist
     updateButtonState(movie);
-}
-
-// Function to handle the "Watch Now" button click
-function handleWatchNow(movie) {
-    if (!isUserLoggedIn()) {
-        alert('You must rent in to watch the movie.');
-        return;
     }
-
-    // Proceed to play the movie or redirect the user to a streaming service
-    window.open(movie.stream_url, '_blank');
 }
+
+
 
 // Function to display movie details
 function displayMovieDetails() {
@@ -159,10 +160,10 @@ function displayMovieDetails() {
                             <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
                             <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
                             <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
-                            <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
+                            <button id="watch-now" class="watch-now-btn">Watch Now</button>
                             <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
                             <button class="wishlist-btn">Add to Wishlist</button>
-                            <button class="rent-btn"></button>
+                            <button class="rent-btn">Rent now</button>
                         </div>
                     </div>`;
 
@@ -174,7 +175,23 @@ function displayMovieDetails() {
                         showTrailer(trailerUrl);
                     });
                 }
+                const watchNow = document.getElementById("watch-now");
 
+                watchNow.addEventListener("click", () => {
+                    const rented = localStorage.getItem(`${movieTitle}`);
+                    if (rented == "true") {
+                        window.open(movie.stream_url, '_blank');
+                    }
+                    else {
+
+                        alert("You Must Pay Rent to Watch Movie");
+                        localStorage.setItem(`${movieTitle}`, "false");
+                        localStorage.setItem("currentMovie", movieTitle);
+                        window.location.href = "checkout.html";
+
+                    }
+
+                })
                 // Update the button state based on the current movie
                 updateButtonState(movie);
 
@@ -188,48 +205,53 @@ function displayMovieDetails() {
                     watchNowButton.addEventListener('click', () => handleWatchNow(movie));
                 }
 
+
+
                 // Function to handle the "Rent Now" button click
-const rentNowButton = document.querySelector('.rent-btn');
-if (rentNowButton) {
-    rentNowButton.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent default link behavior
+                const rentNowButton = document.querySelector('.rent-btn');
+                if (rentNowButton) {
+                    rentNowButton.addEventListener('click', (e) => {
+                        e.preventDefault(); // Prevent default link behavior
 
-        // Check if the movie has already been rented by the user
-        const rentedMovie = localStorage.getItem('rentedMovie');
+                        // Check if the movie has already been rented by the user
+                        const rentedMovie = localStorage.getItem('rentedMovie');
 
-        console.log('Rented movie in localStorage:', rentedMovie);
-        console.log('Current movie title:', movie.title);
+                        console.log('Rented movie in localStorage:', rentedMovie);
+                        console.log('Current movie title:', movie.title);
 
-        if (rentedMovie && rentedMovie === movie.title) {
-            // If the movie is already rented, show an alert
-            alert(`${movie.title} has already been rented.`);
-        } else {
-            // If not rented, store movie details in localStorage
-            localStorage.setItem('rentedMovie', movie.title);
-            localStorage.setItem('rentedMoviePrice', movie.price || 'Unknown');
-            localStorage.setItem('rentedMovieImage', movie.image_url || 'placeholder.jpg');
-            localStorage.setItem('rentedMoviePlan', 'Monthly'); // Example plan type, can be dynamic
+                        if (rentedMovie && rentedMovie === movie.title) {
+                            // If the movie is already rented, show an alert
+                            alert(`${movie.title} has already been rented.`);
+                        } else {
+                            // If not rented, store movie details in localStorage
+                            localStorage.setItem('rentedMovie', movie.title);
+                            localStorage.setItem('rentedMoviePrice', movie.price || 'Unknown');
+                            localStorage.setItem('rentedMovieImage', movie.image_url || 'placeholder.jpg');
+                            localStorage.setItem('rentedMoviePlan', 'Monthly'); // Example plan type, can be dynamic
 
-            // Log the stored rental details for debugging purposes
-            console.log('Storing rental details for:', movie.title);
-            console.log('Price:', movie.price);
-            console.log('Image URL:', movie.image_url);
-            console.log('Rental Plan:', 'Monthly');
+                            // Log the stored rental details for debugging purposes
+                            console.log('Storing rental details for:', movie.title);
+                            console.log('Price:', movie.price);
+                            console.log('Image URL:', movie.image_url);
+                            console.log('Rental Plan:', 'Monthly');
 
-            // Redirect to the rent page
-            window.location.href = "checkout.html";
-        }
-    });
-} else {
-    document.getElementById('movie-details-container').innerHTML = '<p>Movie details not available.</p>';
-    console.warn(`Movie titled "${movieTitle}" not found in the JSON data.`);
-}}
+                            // Redirect to the rent page
+                            window.location.href = "checkout.html";
+                        }
+                    });
+                } else {
+                    document.getElementById('movie-details-container').innerHTML = '<p>Movie details not available.</p>';
+                    console.warn(`Movie titled "${movieTitle}" not found in the JSON data.`);
+                }
+            }
         })
         .catch(error => {
             console.error('Error loading movie details:', error);
             document.getElementById('movie-details-container').innerHTML = '<p>Failed to load movie details.</p>';
         });
 }
+
+
 
 // Function to show trailer in a modal
 function showTrailer(trailerUrl) {
@@ -349,8 +371,8 @@ document.addEventListener("DOMContentLoaded", function () {
 // Call the function to display movie details on page load
 document.addEventListener('DOMContentLoaded', displayMovieDetails);
 
-         
-            
-            
-            
-       
+
+
+
+
+

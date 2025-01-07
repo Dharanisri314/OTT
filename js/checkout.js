@@ -103,10 +103,12 @@ checkoutForm.addEventListener("submit", function (e) {
     // If all fields are valid, show success message
     if (valid) {
         rentedMessage.style.display = "block";
+        const current = localStorage.getItem("currentMovie");
+        localStorage.setItem(`${current}`,"true")
         setTimeout(function () {
             rentedMessage.style.display = "none";
             // Optionally, redirect to a confirmation page after a delay
-            window.location.href = "/html/Rent.html"; // Example redirect
+            window.location.href = `movie-details.html?title=${encodeURIComponent(current)}`; // Example redirect
         }, 2000); // Hide success message after 2 seconds
     } else {
         // If any field is invalid, don't submit form and show alert

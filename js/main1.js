@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     signOut(auth).then(() => {
                         alert("Thank you for visiting Filmki shamiksha.");
                         localStorage.removeItem('user');
+                        sessionStorage.clear();
 
                         updateButtonToLogin();
                     }).catch((error) => {
@@ -284,6 +285,8 @@ logoutButton.addEventListener("click", () => {
     logoutButton.style.display = "none"; // Hide logout button
     loginButton.style.display = "inline-block"; // Show login button
     usernameContainer.style.display = "none"; // Hide username
+    // sessionStorage.setItem("login","false");
+
 });
 
 
