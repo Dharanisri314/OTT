@@ -76,7 +76,7 @@ function updateButtonState(movie) {
         }
     }
     else{
-        alert("Please Login to add the wishlist");
+       
         const addToWishlistButton = document.querySelector('.wishlist-btn');
         addToWishlistButton.style.userSelect = "none";
     }
