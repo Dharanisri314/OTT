@@ -160,7 +160,7 @@ function displayMovieDetails() {
                             <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
                             <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
                             <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank"></a>
-                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
+                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Now</button>
                             <button class="wishlist-btn">Add to Wishlist</button>
                             <button class="rent-btn"></button>
                         </div>
