@@ -1,69 +1,71 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+const displayWishlist = () => {
+    const wishlistContainer = document.getElementById('wishlist-container');
+    const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyAL6dgKjaV_N-lneOwWri-N2Xm-bf6UJ7w",
-    authDomain: "ott-platform-cf43e.firebaseapp.com",
-    projectId: "ott-platform-cf43e",
-    storageBucket: "ott-platform-cf43e.appspot.com",
-    messagingSenderId: "844526974291",
-    appId: "1:844526974291:web:11268d750d39062db85da6"
-};
+    // Clear any existing content in the wishlist container
+    wishlistContainer.innerHTML = '';
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-
-// DOM elements
-const wishlistContainer = document.getElementById('wishlist-container');
-const logoutButton = document.getElementById('logout-button');
-
-// Fetch and display user's wishlist from Firestore
-const displayWishlist = async (userId) => {
-    try {
-        // Reference to the user's wishlist document in Firestore
-        const userDocRef = doc(db, "users", userId);
-        const userDoc = await getDoc(userDocRef);
-
-        if (userDoc.exists()) {
-            const wishlist = userDoc.data().wishlist || [];
-            wishlistContainer.innerHTML = ''; // Clear any existing content
-
-            if (wishlist.length > 0) {
-                wishlist.forEach((movie) => {
-                    const movieImage = movie.image || "https://via.placeholder.com/150";
-                    const movieTitle = movie.title || "Untitled Movie";
-                    const movieVideo = movie.video || "#";
-
-                    const movieElement = document.createElement('div');
-                    movieElement.className = 'wishlist-item';
-                    movieElement.innerHTML = `
-                        <img src="${movieImage}" alt="${movieTitle}" class="wishlist-item-image">
-                        <h3>${movieTitle}</h3>
-                        <a href="${movieVideo}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
-                        
-                    `;
-                    wishlistContainer.appendChild(movieElement);
-                });
-            } else {
-                wishlistContainer.innerHTML = '<p>No wishlist items found.</p>';
-            }
-        } else {
-            wishlistContainer.innerHTML = '<p>No wishlist items found.</p>';
-        }
-    } catch (error) {
-        console.error('Error fetching wishlist:', error);
-        alert('An error occurred while fetching the wishlist.');
+    // Check if the wishlist is empty
+    if (wishlist.length === 0) {
+        wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
+        return;
     }
+
+    // Loop through the wishlist and create an item element for each movie
+    wishlist.forEach((movie) => {
+        const movieElement = document.createElement('div');
+        movieElement.classList.add('wishlist-item');
+
+        // Use the correct image URL from the movie object
+        const imageUrl = movie.image_url || 'https://via.placeholder.com/150'; // Fallback image
+        // Use the trailer URL from the movie object
+        const videoUrl = movie.trailer_url || '#'; // Fallback URL
+
+        movieElement.innerHTML = `
+          <img src="${imageUrl}" alt="${movie.title}" class="wishlist-item-image">
+          <h3>${movie.title}</h3>
+          <a href="${videoUrl}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
+          <button class="remove-btn" data-title="${movie.title}">Remove</button>
+        `;
+
+        // Append the movie item to the wishlist container
+        wishlistContainer.appendChild(movieElement);
+    });
+
+    // Add event listeners to the "Remove" buttons in the wishlist
+    const removeButtons = document.querySelectorAll('.remove-btn');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const movieTitle = e.target.getAttribute('data-title');
+            removeMovieFromWishlist(movieTitle);
+        });
+    });
 };
+
+// Function to remove a movie from the wishlist
+const removeMovieFromWishlist = (movieTitle) => {
+    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+    // Filter out the movie that needs to be removed
+    wishlist = wishlist.filter(item => item.title !== movieTitle);
+
+    // Save the updated wishlist back to localStorage
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+
+    // Refresh the displayed wishlist
+    displayWishlist();
+
+    // Optional: Notify the user that the movie was removed
+    alert(`${movieTitle} has been removed from your wishlist.`);
+};
+
+// Initially display the wishlist when the page loads
+document.addEventListener('DOMContentLoaded', displayWishlist);
 
 
 
 // Monitor authentication state
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, (user) => {  // Use the imported onAuthStateChanged
     if (user) {
         // User is logged in
         console.log("User logged in:", user.uid);
@@ -86,3 +88,82 @@ logoutButton.addEventListener('click', () => {
             console.error("Error logging out:", error.message);
         });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -118,14 +118,7 @@ header .header-login button {
   font-size: 1rem;
 }
 
-.movie-details-info a {
-  padding: 10px;
-  background-color: #e5a100;
-  color: #fff;
-  font-weight: 700;
-  border-radius: 50px;
-  font-size: 10px;
-}
+
 
 /* Movie List Section */
 #movie-list-container {
@@ -611,22 +604,7 @@ iframe {
   line-height: 1.5;
 }
 
-.movie-details-info a {
-  display: inline-block;
-  margin-top: 10px; /* Add spacing above the button */
-  padding: 10px 20px;
-  background-color: #e5a100;
-  color: #fff;
-  border-radius: 50px;
-  text-transform: uppercase;
-  font-weight: 700;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
 
-.movie-details-info a:hover {
-  background-color: #ffcc33;
-}
 .back-button{
   width: 100px;
   border-radius:5px;
@@ -680,4 +658,19 @@ iframe {
 #user-display a:hover {
   text-decoration: underline; /* Underline on hover for better interactivity */
   color: #000000; /* Change to black when hovered */
+}
+
+.trailer-now-btn{
+  background-color: #e5a100;
+  padding: 10px;
+  border-radius: 20px;
+  color: #ccc;
+  border: none;
+}
+.wishlist-btn{
+  background-color: #e5a100;
+  padding: 10px;
+  border-radius: 20px;
+  color: #ccc;
+  border: none;
 }
