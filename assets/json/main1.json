@@ -148,12 +148,13 @@
     {
       "id": 5,
       "title": "Valimai",
+      "trailer_url":"https://www.youtube.com/embed/n2HiLyWHrWc?si=QgXRXBr99vf7SpvL",
       "genre": "Action/Thriller",
       "poster": "Valimai Poster",
       "movie_name": "Valimai",
       "image_url": "https://m.media-amazon.com/images/M/MV5BODRhYjlmNjktNTA4OS00NmU1LWIwOTctYmMyNThiMDYwZDJmXkEyXkFqcGc@._V1_.jpg",
       "release_date": "2022",
-      "stream_url": "https://example.com/valimai-stream",
+      "stream_url": "https://www.youtube.com/embed/n2HiLyWHrWc?si=QgXRXBr99vf7SpvL",
       "play_time": "2h 58m",
       "rating": "6.1 / 10",
       "description": "A high-octane thriller centered around an officer confronting a gang involved in organized crime and corruption.",
@@ -166,12 +167,21 @@
         "Pallavi",
         "Raj Ayyappa"
       ],
+      
       "crew": {
         "music": "Yuvan Shankar Raja",
         "cinematography": "Nirav Shah",
         "editing": "Bhuvan Srinivasan",
         "production": "Boney Kapoor"
-      }
+      },
+      "wishlist": [
+        {
+          "id": 5,
+          "title": "Valimai",
+          "image_url":  "https://m.media-amazon.com/images/M/MV5BODZlYzhiYWUtMzk1My00ZGNlLWEwOWUtMDI3ZWUwNTZhNDA5XkEyXkFqcGc@._V1_QL75_UY281_CR12,0,190,281_.jpg",
+          "trailer_url":"https://www.youtube.com/embed/n2HiLyWHrWc?si=QgXRXBr99vf7SpvL"
+        }
+      ]
     }
     ,
     {
@@ -452,11 +462,12 @@
   "horror": [
     {
       "title": "Demonte Colony 2",
+      "trailer_url":"https://www.youtube.com/embed/uV0qdWQmQjc?si=XnhLH5JJbgk9bFSI",
       "genre": "Horror/Thriller",
       "poster": "Demonte Colony 2",
       "movie_name": "Demonte Colony 2",
       "release_date": "2024-08-15",
-      "stream_url": "https://example.com/demonte-colony2-stream",
+      "stream_url": "https://www.youtube.com/embed/uV0qdWQmQjc?si=XnhLH5JJbgk9bFSI",
       "play_time": "2h 22m",
       "rating": "7.5 / 10",
       "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBt_YaPGBkERaQ0CMjuVyGa0Pjt-bQrZANaw&s",
@@ -473,11 +484,20 @@
         "cinematography": "Cinematographer Name",
         "editing": "Editor Name",
         "production": "Production Company Name"
-      }
+      },
+      "wishlist": [
+        {
+        
+          "title": "Ratsasan",
+          "image_url": "https://m.media-amazon.com/images/M/MV5BMjM4MThmMzEtN2VkYy00ZjdlLWJlMWUtNDY0NTUxMmM5YzRkXkEyXkFqcGc@._V1_.jpg",
+          "trailer_url": "https://www.youtube.com/embed/uV0qdWQmQjc?si=XnhLH5JJbgk9bFSI"
+        }
+      ]
     }
     ,
     {
       "title": "Airaa",
+      "trailer_url":"https://www.youtube.com/embed/CWjR0ddXUDo?si=puosWnsER1hw8wQM",
       "genre": "Horror/Thriller",
       "poster": "Airaa",
       "movie_name": "Airaa",
