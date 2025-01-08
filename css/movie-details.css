@@ -674,3 +674,17 @@ iframe {
   color: #ccc;
   border: none;
 }
+.rent-btn{
+  background-color: #e5a100;
+  padding: 3px;
+  border-radius: 20px;
+  color: #ccc;
+  border: none;
+}
+.watch-now-btn{
+  background-color: #e5a100;
+  padding: 10px;
+  border-radius: 20px;
+  color: #ccc;
+  border: none;
+}

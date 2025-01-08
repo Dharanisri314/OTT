@@ -163,7 +163,7 @@ function displayMovieDetails() {
                             <button id="watch-now" class="watch-now-btn">Watch Now</button>
                             <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
                             <button class="wishlist-btn">Add to Wishlist</button>
-                            <button class="rent-btn">Rent now</button>
+                            <button class="rent-btn"></button>
                         </div>
                     </div>`;
 
