@@ -286,7 +286,6 @@ logoutButton.addEventListener("click", () => {
     loginButton.style.display = "inline-block"; // Show login button
     usernameContainer.style.display = "none"; // Hide username
     // sessionStorage.setItem("login","false");
-
 });
 
 

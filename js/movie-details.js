@@ -183,12 +183,10 @@ function displayMovieDetails() {
                         window.open(movie.stream_url, '_blank');
                     }
                     else {
-
                         alert("You Must Pay Rent to Watch Movie");
                         localStorage.setItem(`${movieTitle}`, "false");
                         localStorage.setItem("currentMovie", movieTitle);
                         window.location.href = "checkout.html";
-
                     }
 
                 })
