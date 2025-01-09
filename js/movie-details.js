@@ -176,18 +176,26 @@ function displayMovieDetails() {
                     });
                 }
                 const watchNow = document.getElementById("watch-now");
-
+                const logged = sessionStorage.getItem("login");
                 watchNow.addEventListener("click", () => {
-                    const rented = localStorage.getItem(`${movieTitle}`);
-                    if (rented == "true") {
-                        window.open(movie.stream_url, '_blank');
+                    if(logged == "true"){
+                        const rented = localStorage.getItem(`${movieTitle}`);
+                        if (rented == "true") {
+                            window.open(movie.stream_url, '_blank');
+                        }
+                        else {
+                            alert("You Must Pay Rent to Watch Movie");
+                            localStorage.setItem(`${movieTitle}`, "false");
+                            localStorage.setItem("currentMovie", movieTitle);
+                            window.location.href = "checkout.html";
+                        }
+                    }else{
+                        alert("Please login")
+                        window.location = "signup.html"
                     }
-                    else {
-                        alert("You Must Pay Rent to Watch Movie");
-                        localStorage.setItem(`${movieTitle}`, "false");
-                        localStorage.setItem("currentMovie", movieTitle);
-                        window.location.href = "checkout.html";
-                    }
+
+
+                    
 
                 })
                 // Update the button state based on the current movie
@@ -197,11 +205,11 @@ function displayMovieDetails() {
                 const addToWishlistButton = document.querySelector('.wishlist-btn');
                 addToWishlistButton.addEventListener('click', () => handleWishlist(movie));
 
-                // Add event listener for "Watch Now" button
-                const watchNowButton = document.querySelector('.watch-now-btn');
-                if (watchNowButton) {
-                    watchNowButton.addEventListener('click', () => handleWatchNow(movie));
-                }
+                // // Add event listener for "Watch Now" button
+                // const watchNowButton = document.querySelector('.watch-now-btn');
+                // if (watchNowButton) {
+                //     watchNowButton.addEventListener('click', () => handleWatchNow(movie));
+                // }
 
 
 

@@ -266,12 +266,24 @@ function displayMovieDetails() {
                             <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
                             <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
                             <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
-                           <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
+                          <button id="watch-now" class="watch-now-btn">Watch Now</button>
                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
                           <button class="wishlist-btn">Add to Wishlist</button>
-                           <button class="rent-btn">Rent now</button>
+                          <button class="rent-btn"></button>
                         </div>
                     </div>`;
+
+                     const watchnow = document.getElementById("watch-now");
+                     const loggedstore = sessionStorage.getItem("login");
+                     watchnow.addEventListener("click",()=>{
+                        if(loggedstore !== "true"){
+                         alert("Please login")
+                         window.location = "signup.html"
+                        }else{
+                            alert("You Must Pay Rent to Watch Movie");
+                             window.location = "checkout.html"
+                        }
+                     });
 
                     document.querySelector('.rent-btn').addEventListener('click', function() {
                         window.location.href = '../html/checkout.html'; // Redirect to the checkout page
