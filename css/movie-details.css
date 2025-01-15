@@ -491,7 +491,7 @@ h4 {
 /* Image styles */
 .movie-list-image {
   width: 100%; /* Make the image responsive */
-  height: auto;
+  height: 250px;
   border-radius: 10px;
   transition: transform 0.3s ease; /* Smooth hover effect */
 }
