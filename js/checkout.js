@@ -10,9 +10,9 @@ movieTitleElement.textContent = "Inception"; // Example movie title, can be repl
 
 // Define prices for each subscription plan
 const prices = {
-    weekly: 750,
-    monthly: 2250,
-    "24hours": 375
+    weekly: 40,
+    monthly: 70,
+    "24hours": 20
 };
 
 // Update total price when subscription plan is changed
