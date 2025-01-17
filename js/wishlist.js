@@ -1,158 +1,3 @@
-// // Function to display the wishlist from Firestore
-// const displayWishlist = () => {
-//     const user = auth.currentUser;
-
-//     if (!user) {
-//         alert("You are not logged in.");
-//         return;
-//     }
-
-//     const wishlistContainer = document.getElementById('wishlist-container');
-//     const wishlistRef = doc(db, "wishlists", user.uid); // Reference to the user's wishlist in Firestore
-
-//     getDoc(wishlistRef)
-//         .then((docSnapshot) => {
-//             wishlistContainer.innerHTML = ''; // Clear previous content
-
-//             if (docSnapshot.exists()) {
-//                 const wishlistData = docSnapshot.data();
-//                 const wishlist = wishlistData.items || [];
-
-//                 // Check if the wishlist is empty
-//                 if (wishlist.length === 0) {
-//                     wishlistContainer.innerHTML = '<p>Your wishlist is empty.</p>';
-//                 } else {
-//                     wishlist.forEach((movie) => {
-//                         const movieElement = document.createElement('div');
-//                         movieElement.classList.add('wishlist-item');
-
-//                         const imageUrl = movie.image_url || 'https://via.placeholder.com/150';
-//                         const videoUrl = movie.trailer_url || '#';
-
-//                         movieElement.innerHTML = `
-//                             <img src="${imageUrl}" alt="${movie.title}" class="wishlist-item-image">
-//                             <h3>${movie.title}</h3>
-//                             <a href="${videoUrl}" target="_blank" class="wishlist-item-video">Watch Trailer</a>
-//                             <button class="remove-btn" data-title="${movie.title}">Remove</button>
-//                         `;
-
-//                         wishlistContainer.appendChild(movieElement);
-
-//                         // Add event listeners to the "Remove" buttons in the wishlist
-//                         const removeButton = movieElement.querySelector('.remove-btn');
-//                         removeButton.addEventListener('click', () => {
-//                             removeMovieFromWishlist(user.uid, movie.title);
-//                         });
-//                     });
-//                 }
-//             } else {
-//                 wishlistContainer.innerHTML = '<p>No wishlist data found.</p>';
-//             }
-//         })
-//         .catch((error) => {
-//             console.error("Error fetching wishlist:", error.message);
-//             wishlistContainer.innerHTML = 'An error occurred while fetching the wishlist.';
-//         });
-// };
-
-// // Function to remove a movie from the wishlist
-// const removeMovieFromWishlist = (userId, movieTitle) => {
-//     const wishlistRef = doc(db, "wishlists", userId);
-
-//     updateDoc(wishlistRef, {
-//         items: arrayRemove(movieTitle) // Remove the movie from the wishlist array
-//     })
-//         .then(() => {
-//             displayWishlist(); // Refresh the wishlist display
-//             alert(`${movieTitle} has been removed from your wishlist.`);
-//         })
-//         .catch((error) => {
-//             console.error("Error removing movie from wishlist:", error.message);
-//             alert("An error occurred while removing the movie.");
-//         });
-// };
-
-
-// // Monitor authentication state and fetch user data
-// onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//         // User is logged in
-//         console.log("User logged in:", user.uid);
-//         displayWishlist(); // Fetch and display the user's wishlist
-//     } else {
-//         // User is not logged in, redirect to login page
-//         alert("You are not logged in. Redirecting to login page.");
-//         window.location.href = "login.html"; // Redirect to the login page
-//     }
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const displayWishlist = () => {
     const wishlistContainer = document.getElementById('wishlist-container');
     const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -243,6 +88,18 @@ logoutButton.addEventListener('click', () => {
             console.error("Error logging out:", error.message);
         });
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

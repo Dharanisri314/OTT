@@ -375,18 +375,7 @@ function displayMovieDetails() {
 
 
 
-// Function to check if the user is logged in before performing actions
-function checkLoginAndPerformAction(action) {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // User is logged in, proceed with the action
-            action(user);
-        } else {
-            // User is not logged in, show alert
-            alert('You must be logged in to perform this action.');
-        }
-    });
-}
+
 
 // Function to save a movie to the user's wishlist
 async function saveToWishlist(movie) {
@@ -439,6 +428,12 @@ async function removeFromWishlist(movie) {
 
 // Function to handle adding/removing the movie from the wishlist
 function handleWishlist(movie) {
+   
+    const loginned = sessionStorage.getItem("login");
+    if (!loginned) {
+        alert('You must log in to add movies to your wishlist.');
+    }
+    else{
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
     if (!wishlist.some(item => item.title === movie.title)) {
@@ -455,6 +450,7 @@ function handleWishlist(movie) {
 
     // Update the button state after modifying the wishlist
     updateButtonState(movie);
+    }
 }
 
 
