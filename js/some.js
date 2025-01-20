@@ -269,7 +269,6 @@ function displayMovieDetails() {
                           <button id="watch-now" class="watch-now-btn">Watch Now</button>
                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
                           <button class="wishlist-btn">Add to Wishlist</button>
-                          <button class="rent-btn"></button>
                         </div>
                     </div>`;
 
@@ -284,11 +283,6 @@ function displayMovieDetails() {
                              window.location = "checkout.html"
                         }
                      });
-
-                    document.querySelector('.rent-btn').addEventListener('click', function() {
-                        window.location.href = '../html/checkout.html'; // Redirect to the checkout page
-                    });
-
 
                 // Update the button state based on the current movie
                 updateButtonState(movie);

@@ -163,7 +163,6 @@ function displayMovieDetails() {
                             <button id="watch-now" class="watch-now-btn">Watch Now</button>
                             <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
                             <button class="wishlist-btn">Add to Wishlist</button>
-                            <button class="rent-btn"></button>
                         </div>
                     </div>`;
 
@@ -210,45 +209,6 @@ function displayMovieDetails() {
                 // if (watchNowButton) {
                 //     watchNowButton.addEventListener('click', () => handleWatchNow(movie));
                 // }
-
-
-
-                // Function to handle the "Rent Now" button click
-                const rentNowButton = document.querySelector('.rent-btn');
-                if (rentNowButton) {
-                    rentNowButton.addEventListener('click', (e) => {
-                        e.preventDefault(); // Prevent default link behavior
-
-                        // Check if the movie has already been rented by the user
-                        const rentedMovie = localStorage.getItem('rentedMovie');
-
-                        console.log('Rented movie in localStorage:', rentedMovie);
-                        console.log('Current movie title:', movie.title);
-
-                        if (rentedMovie && rentedMovie === movie.title) {
-                            // If the movie is already rented, show an alert
-                            alert(`${movie.title} has already been rented.`);
-                        } else {
-                            // If not rented, store movie details in localStorage
-                            localStorage.setItem('rentedMovie', movie.title);
-                            localStorage.setItem('rentedMoviePrice', movie.price || 'Unknown');
-                            localStorage.setItem('rentedMovieImage', movie.image_url || 'placeholder.jpg');
-                            localStorage.setItem('rentedMoviePlan', 'Monthly'); // Example plan type, can be dynamic
-
-                            // Log the stored rental details for debugging purposes
-                            console.log('Storing rental details for:', movie.title);
-                            console.log('Price:', movie.price);
-                            console.log('Image URL:', movie.image_url);
-                            console.log('Rental Plan:', 'Monthly');
-
-                            // Redirect to the rent page
-                            window.location.href = "checkout.html";
-                        }
-                    });
-                } else {
-                    document.getElementById('movie-details-container').innerHTML = '<p>Movie details not available.</p>';
-                    console.warn(`Movie titled "${movieTitle}" not found in the JSON data.`);
-                }
             }
         })
         .catch(error => {
@@ -256,7 +216,6 @@ function displayMovieDetails() {
             document.getElementById('movie-details-container').innerHTML = '<p>Failed to load movie details.</p>';
         });
 }
-
 
 
 // Function to show trailer in a modal
@@ -376,6 +335,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Call the function to display movie details on page load
 document.addEventListener('DOMContentLoaded', displayMovieDetails);
+const userDisplay = document.getElementById("user-display");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

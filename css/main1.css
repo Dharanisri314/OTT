@@ -928,6 +928,7 @@ header.right-aligned #usernameDisplay {
     border-radius: 15px;
     outline: none;
     transition: border-color 0.3s;
+    margin-left: 30px;
 }
 
 #search-input:focus {
