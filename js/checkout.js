@@ -115,3 +115,8 @@ checkoutForm.addEventListener("submit", function (e) {
         alert("Please fix the errors and try again.");
     }
 });
+
+
+
+
+
