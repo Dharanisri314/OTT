@@ -56,12 +56,10 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
         console.error('Error loading movie list:', error);
     });
 
-// // Function to check if the user is logged in
-// function isUserLoggedIn() {
-//     return localStorage.getItem('user') !== null; // Adjust this based on your login mechanism
-// }
 
-// Function to update the button state based on the wishlist
+    
+// wishlist
+
 function updateButtonState(movie) {
     const loggedIn = sessionStorage.getItem("login");
     if (loggedIn == "true") {
@@ -204,11 +202,7 @@ function displayMovieDetails() {
                 const addToWishlistButton = document.querySelector('.wishlist-btn');
                 addToWishlistButton.addEventListener('click', () => handleWishlist(movie));
 
-                // // Add event listener for "Watch Now" button
-                // const watchNowButton = document.querySelector('.watch-now-btn');
-                // if (watchNowButton) {
-                //     watchNowButton.addEventListener('click', () => handleWatchNow(movie));
-                // }
+              
             }
         })
         .catch(error => {

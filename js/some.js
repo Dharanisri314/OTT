@@ -171,25 +171,7 @@ function updateButtonState(movie) {
     }
 }
 
-// // Function to handle adding/removing the movie from the wishlist
-// function handleWishlist(movie) {
-//     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-//     if (!wishlist.some(item => item.title === movie.title)) {
-//         // Movie is not in the wishlist, add it
-//         wishlist.push(movie);
-//         localStorage.setItem('wishlist', JSON.stringify(wishlist));
-//         alert(`${movie.title} has been added to your wishlist.`);
-//     } else {
-//         // Movie is in the wishlist, remove it
-//         wishlist = wishlist.filter(item => item.title !== movie.title);
-//         localStorage.setItem('wishlist', JSON.stringify(wishlist));
-//         alert(`${movie.title} has been removed from your wishlist.`);
-//     }
-
-//     // Update the button state after modifying the wishlist
-//     updateButtonState(movie);
-// }
 
 
 
@@ -272,17 +254,29 @@ function displayMovieDetails() {
                         </div>
                     </div>`;
 
-                     const watchnow = document.getElementById("watch-now");
-                     const loggedstore = sessionStorage.getItem("login");
-                     watchnow.addEventListener("click",()=>{
-                        if(loggedstore !== "true"){
-                         alert("Please login")
-                         window.location = "signup.html"
-                        }else{
-                            alert("You Must Pay Rent to Watch Movie");
-                             window.location = "checkout.html"
+                const watchNow = document.getElementById("watch-now");
+                const logged = sessionStorage.getItem("login");
+                watchNow.addEventListener("click", () => {
+                    if (logged == "true") {
+                        const rented = localStorage.getItem(`${movieTitle}`);
+                        if (rented == "true") {
+                            window.open(movie.stream_url, '_blank');
                         }
-                     });
+                        else {
+                            alert("You Must Pay Rent to Watch Movie");
+                            localStorage.setItem(`${movieTitle}`, "false");
+                            localStorage.setItem("currentMovie", movieTitle);
+                            window.location.href = "checkout.html";
+                        }
+                    } else {
+                        alert("Please login")
+                        window.location = "signup.html"
+                    }
+
+
+
+
+                });
 
                 // Update the button state based on the current movie
                 updateButtonState(movie);
@@ -422,28 +416,28 @@ async function removeFromWishlist(movie) {
 
 // Function to handle adding/removing the movie from the wishlist
 function handleWishlist(movie) {
-   
+
     const loginned = sessionStorage.getItem("login");
     if (!loginned) {
         alert('You must log in to add movies to your wishlist.');
     }
-    else{
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    else {
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-    if (!wishlist.some(item => item.title === movie.title)) {
-        // Movie is not in the wishlist, add it
-        wishlist.push(movie);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        alert(`${movie.title} has been added to your wishlist.`);
-    } else {
-        // Movie is in the wishlist, remove it
-        wishlist = wishlist.filter(item => item.title !== movie.title);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        alert(`${movie.title} has been removed from your wishlist.`);
-    }
+        if (!wishlist.some(item => item.title === movie.title)) {
+            // Movie is not in the wishlist, add it
+            wishlist.push(movie);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            alert(`${movie.title} has been added to your wishlist.`);
+        } else {
+            // Movie is in the wishlist, remove it
+            wishlist = wishlist.filter(item => item.title !== movie.title);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            alert(`${movie.title} has been removed from your wishlist.`);
+        }
 
-    // Update the button state after modifying the wishlist
-    updateButtonState(movie);
+        // Update the button state after modifying the wishlist
+        updateButtonState(movie);
     }
 }
 
@@ -464,11 +458,11 @@ onAuthStateChanged(auth, async (user) => {
         if (userData) {
             userDisplay.textContent = userData.username;
             userDisplay.style.display = "inline-block"; // Show user display
-            
+
         }
     } else {
         userDisplay.style.display = "none"; // Hide user display
-       
+
     }
 });
 
