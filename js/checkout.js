@@ -10,9 +10,9 @@ movieTitleElement.textContent = "Inception"; // Example movie title, can be repl
 
 // Define prices for each subscription plan
 const prices = {
-    weekly: 750,
-    monthly: 2250,
-    "24hours": 375
+    weekly: 40,
+    monthly: 70,
+    "24hours": 20
 };
 
 // Update total price when subscription plan is changed
@@ -103,13 +103,20 @@ checkoutForm.addEventListener("submit", function (e) {
     // If all fields are valid, show success message
     if (valid) {
         rentedMessage.style.display = "block";
+        const current = localStorage.getItem("currentMovie");
+        localStorage.setItem(`${current}`,"true")
         setTimeout(function () {
             rentedMessage.style.display = "none";
             // Optionally, redirect to a confirmation page after a delay
-            window.location.href = "/html/Rent.html"; // Example redirect
+            window.location.href = `movie-details.html?title=${encodeURIComponent(current)}`; // Example redirect
         }, 2000); // Hide success message after 2 seconds
     } else {
         // If any field is invalid, don't submit form and show alert
         alert("Please fix the errors and try again.");
     }
 });
+
+
+
+
+

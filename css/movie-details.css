@@ -66,6 +66,9 @@ header .heading {
   color: #b3b3b3;
   margin-left: 20px;
 }
+.heading:hover{
+  color: #e5a100;
+}
 
 header .header-login button {
   padding: 10px 25px;
@@ -111,7 +114,7 @@ header .header-login button {
 
 .movie-details-info h2 {
   font-size: 2rem;
-  color: #e5a100;
+  /* color: #e5a100; */
 }
 
 .movie-details-info p {
@@ -289,7 +292,7 @@ header .header-login button {
 
 .movie-details-info h2 {
   font-size: 2.5rem; /* Emphasize the movie title */
-  color: #e5a100;
+  /* color: #e5a100; */
   margin-bottom: 20px;
   text-transform: uppercase;
 }
@@ -491,7 +494,7 @@ h4 {
 /* Image styles */
 .movie-list-image {
   width: 100%; /* Make the image responsive */
-  height: auto;
+  height: 250px;
   border-radius: 10px;
   transition: transform 0.3s ease; /* Smooth hover effect */
 }
@@ -593,7 +596,7 @@ iframe {
 
 .movie-details-info h2 {
   font-size: 1.8rem; /* Slightly smaller than before */
-  color: #e5a100; /* Golden color for the title */
+   color:#e5a100; 
   margin-bottom: 10px;
 }
 
@@ -606,7 +609,7 @@ iframe {
 
 
 .back-button{
-  width: 100px;
+  width: 80px;
   border-radius:5px;
   margin-left: 10px;
   background-color: #e5a100;
@@ -669,6 +672,14 @@ iframe {
 }
 .wishlist-btn{
   background-color: #e5a100;
+  padding: 10px;
+  border-radius: 20px;
+  color: #ccc;
+  border: none;
+}
+
+.watch-now-btn{
+  background-color:#e5a100;
   padding: 10px;
   border-radius: 20px;
   color: #ccc;

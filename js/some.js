@@ -171,25 +171,7 @@ function updateButtonState(movie) {
     }
 }
 
-// // Function to handle adding/removing the movie from the wishlist
-// function handleWishlist(movie) {
-//     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-//     if (!wishlist.some(item => item.title === movie.title)) {
-//         // Movie is not in the wishlist, add it
-//         wishlist.push(movie);
-//         localStorage.setItem('wishlist', JSON.stringify(wishlist));
-//         alert(`${movie.title} has been added to your wishlist.`);
-//     } else {
-//         // Movie is in the wishlist, remove it
-//         wishlist = wishlist.filter(item => item.title !== movie.title);
-//         localStorage.setItem('wishlist', JSON.stringify(wishlist));
-//         alert(`${movie.title} has been removed from your wishlist.`);
-//     }
-
-//     // Update the button state after modifying the wishlist
-//     updateButtonState(movie);
-// }
 
 
 
@@ -266,17 +248,35 @@ function displayMovieDetails() {
                             <p><strong>Cinematography:</strong> ${crew.cinematography || 'N/A'}</p>
                             <p><strong>Editing:</strong> ${crew.editing || 'N/A'}</p>
                             <p><strong>Production:</strong> ${crew.production || 'N/A'}</p>
-                           <a href="${movie.stream_url || '#'}" class="watch-now-btn" target="_blank">Watch Now</a>
+                          <button id="watch-now" class="watch-now-btn">Watch Now</button>
                            <button class="trailer-now-btn" data-trailer-url="${movie.trailer_url || ''}">Watch Trailer</button>
                           <button class="wishlist-btn">Add to Wishlist</button>
-                           <button class="rent-btn">Rent now</button>
                         </div>
                     </div>`;
 
-                    document.querySelector('.rent-btn').addEventListener('click', function() {
-                        window.location.href = '../html/checkout.html'; // Redirect to the checkout page
-                    });
+                const watchNow = document.getElementById("watch-now");
+                const logged = sessionStorage.getItem("login");
+                watchNow.addEventListener("click", () => {
+                    if (logged == "true") {
+                        const rented = localStorage.getItem(`${movieTitle}`);
+                        if (rented == "true") {
+                            window.open(movie.stream_url, '_blank');
+                        }
+                        else {
+                            alert("You Must Pay Rent to Watch Movie");
+                            localStorage.setItem(`${movieTitle}`, "false");
+                            localStorage.setItem("currentMovie", movieTitle);
+                            window.location.href = "checkout.html";
+                        }
+                    } else {
+                        alert("Please login")
+                        window.location = "signup.html"
+                    }
 
+
+
+
+                });
 
                 // Update the button state based on the current movie
                 updateButtonState(movie);
@@ -363,18 +363,7 @@ function displayMovieDetails() {
 
 
 
-// Function to check if the user is logged in before performing actions
-function checkLoginAndPerformAction(action) {
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            // User is logged in, proceed with the action
-            action(user);
-        } else {
-            // User is not logged in, show alert
-            alert('You must be logged in to perform this action.');
-        }
-    });
-}
+
 
 // Function to save a movie to the user's wishlist
 async function saveToWishlist(movie) {
@@ -427,22 +416,29 @@ async function removeFromWishlist(movie) {
 
 // Function to handle adding/removing the movie from the wishlist
 function handleWishlist(movie) {
-    let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-    if (!wishlist.some(item => item.title === movie.title)) {
-        // Movie is not in the wishlist, add it
-        wishlist.push(movie);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        alert(`${movie.title} has been added to your wishlist.`);
-    } else {
-        // Movie is in the wishlist, remove it
-        wishlist = wishlist.filter(item => item.title !== movie.title);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        alert(`${movie.title} has been removed from your wishlist.`);
+    const loginned = sessionStorage.getItem("login");
+    if (!loginned) {
+        alert('You must log in to add movies to your wishlist.');
     }
+    else {
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
-    // Update the button state after modifying the wishlist
-    updateButtonState(movie);
+        if (!wishlist.some(item => item.title === movie.title)) {
+            // Movie is not in the wishlist, add it
+            wishlist.push(movie);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            alert(`${movie.title} has been added to your wishlist.`);
+        } else {
+            // Movie is in the wishlist, remove it
+            wishlist = wishlist.filter(item => item.title !== movie.title);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            alert(`${movie.title} has been removed from your wishlist.`);
+        }
+
+        // Update the button state after modifying the wishlist
+        updateButtonState(movie);
+    }
 }
 
 
@@ -462,11 +458,11 @@ onAuthStateChanged(auth, async (user) => {
         if (userData) {
             userDisplay.textContent = userData.username;
             userDisplay.style.display = "inline-block"; // Show user display
-            
+
         }
     } else {
         userDisplay.style.display = "none"; // Hide user display
-       
+
     }
 });
 
