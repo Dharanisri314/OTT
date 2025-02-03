@@ -25,3 +25,5 @@ localStorage.removeItem('rentedMovie');
 localStorage.removeItem('rentedMoviePrice');
 localStorage.removeItem('rentedMovieImage');
 localStorage.removeItem('rentedMoviePlan');
+
+
