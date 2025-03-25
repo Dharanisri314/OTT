@@ -6,10 +6,10 @@ const movieImageElement = document.getElementById("movie-image");
 const rentedMessage = document.getElementById("rented-success-message");
 
 // Retrieve rental details from localStorage
-const rentedMovieTitle = localStorage.getItem('rentedMovie'); // Movie title
-const rentedMoviePrice = localStorage.getItem('rentedMoviePrice'); // Movie price
-const rentedMovieImage = localStorage.getItem('rentedMovieImage'); // Movie image URL
-const rentedMoviePlan = localStorage.getItem('rentedMoviePlan'); // Movie plan type
+const rentedMovieTitle = localStorage.getItem('rentedMovie'); 
+const rentedMoviePrice = localStorage.getItem('rentedMoviePrice'); 
+const rentedMovieImage = localStorage.getItem('rentedMovieImage'); 
+const rentedMoviePlan = localStorage.getItem('rentedMoviePlan'); 
 
 if (rentedMovieTitle && rentedMoviePrice && rentedMovieImage && rentedMoviePlan) {
     // Display the movie title, price, and image dynamically

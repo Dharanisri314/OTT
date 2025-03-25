@@ -172,6 +172,7 @@ function displayMovieDetails() {
                         showTrailer(trailerUrl);
                     });
                 }
+
                 const watchNow = document.getElementById("watch-now");
                 const logged = sessionStorage.getItem("login");
                 watchNow.addEventListener("click", () => {
@@ -190,10 +191,7 @@ function displayMovieDetails() {
                         alert("Please login")
                         window.location = "signup.html"
                     }
-
-
-                    
-
+        
                 })
                 // Update the button state based on the current movie
                 updateButtonState(movie);
