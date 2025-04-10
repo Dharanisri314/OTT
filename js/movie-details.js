@@ -221,7 +221,7 @@ function showTrailer(trailerUrl) {
     }
 
     trailerVideo.src = trailerUrl;
-    modal.style.display = 'block'; // Show the modal
+    modal.style.display = 'block'; 
 
     // Add event listener for close button inside the modal
     const closeBtn = document.querySelector('.close-btn');
@@ -248,6 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const mainContainer = document.getElementById('mainContainer');
 
     const jsonFilePath = '../assets/json/main1.json'; // Path to your JSON file
+
 
     // Function to fetch all movies from the JSON file
     async function loadMovies() {
