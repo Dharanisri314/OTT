@@ -618,45 +618,45 @@ border: 1px solid #e5a100;
 
 /* User Display Container Styling */
 #user-display {
-display: none; /* Hidden by default */
-font-size: 10px; /* Increased font size for better readability */
-color: #fff; /* White text color */
-background: linear-gradient(135deg, #000000, #f7c600); /* Black to yellow gradient background */
-border-radius: 10px; /* Rounded corners for a smooth look */
-padding:15px; /* Generous padding for better spacing */
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
-transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for appearing */
-text-align: center; /* Center align text */
+display: none; 
+font-size: 10px; 
+color: #fff; 
+background: linear-gradient(135deg, #000000, #f7c600); 
+border-radius: 10px; 
+padding:15px; 
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
+transition: opacity 0.3s ease, transform 0.3s ease; 
+text-align: center; 
 }
 
 #user-display.show {
-display: block; /* Displayed when the class 'show' is added */
-opacity: 1; /* Make it visible */
-transform: translateY(0); /* Slide it into view */
+display: block; 
+opacity: 1; 
+transform: translateY(0); 
 }
 
 #user-display.hide {
-opacity: 0; /* Invisible when the 'hide' class is applied */
-transform: translateY(-20px); /* Slightly slide out of view */
+opacity: 0; 
+transform: translateY(-20px);
 }
 
 #user-display h2 {
-font-size: 18px; /* Slightly larger heading text */
-margin-bottom: 10px; /* Space between heading and text */
+font-size: 18px; 
+margin-bottom: 10px; 
 }
 
 #user-display p {
-font-size: 14px; /* Regular text size for description */
-margin-bottom: 15px; /* Space between paragraphs */
+font-size: 14px; 
+margin-bottom: 15px; 
 }
 
 #user-display a {
-color: #f7c600; /* Yellow links */
-font-weight: bold; /* Bold links for emphasis */
-text-decoration: none; /* Remove underline */
+color: #f7c600; 
+font-weight: bold; 
+text-decoration: none; 
 }
 
 #user-display a:hover {
-text-decoration: underline; /* Underline on hover for better interactivity */
-color: #000000; /* Change to black when hovered */
+text-decoration: underline; 
+color: #000000; 
 }

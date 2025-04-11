@@ -1,77 +1,7 @@
-/* checkout-styles.css
-
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-.checkout-container {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    padding: 20px;
-}
-
-.checkout-details h3 {
-    font-size: 1.5em;
-    margin: 20px 0;
-}
-
-.confirm-rent-btn {
-    background-color: #ffcc00;
-    color: #fff;
-    font-size: 1.2em;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.confirm-rent-btn:hover {
-    background-color: #ff9900;
-}
-
-.login-container, .payment-container {
-    margin-top: 30px;
-}
-
-input {
-    padding: 10px;
-    margin: 10px 0;
-    width: 80%;
-    max-width: 300px;
-    font-size: 1em;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-} */
-
-
-
-
-
-/* checkout-styles-black-yellow.css */
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #121212; /* Dark background for the page */
-    color: #f1f1f1; /* Light text color for contrast */
+    background-color: #121212; 
+    color: #f1f1f1; 
      margin: 0;
     padding: 0;
 } 
@@ -81,7 +11,7 @@ body {
     margin: 0 auto;
     text-align: center;
     padding: 30px;
-    background-color: #1e1e1e; /* Slightly lighter dark background for the container */
+    background-color: #1e1e1e; 
     border-radius: 10px;
     box-shadow: 0 4px 12px #f1c40f;;
 }
@@ -89,12 +19,12 @@ body {
 .checkout-details h3 {
     font-size: 1.5em;
     margin: 20px 0;
-    color: #f1c40f; /* Yellow color for the heading */
+    color: #f1c40f; 
 }
 
 .confirm-rent-btn {
-    background-color: #f1c40f; /* Yellow background */
-    color: #121212; /* Black text color */
+    background-color: #f1c40f; 
+    color: #121212; 
     font-size: 1.2em;
     padding: 12px 25px;
     border: none;
@@ -104,7 +34,7 @@ body {
 }
 
 .confirm-rent-btn:hover {
-    background-color: #f39c12; /* Darker yellow on hover */
+    background-color: #f39c12; 
 }
 
 .login-container, .payment-container {
@@ -116,21 +46,21 @@ input {
     margin: 12px 0;
     max-width: 350px;
     font-size: 1em;
-    border: 1px solid #f1c40f; /* Yellow border for inputs */
+    border: 1px solid #f1c40f; 
     border-radius: 5px;
-    background-color: #2d2d2d; /* Dark background for inputs */
-    color: #f1f1f1; /* Light text inside input fields */
+    background-color: #2d2d2d; 
+    color: #f1f1f1; 
 }
 
 input:focus {
     outline: none;
-    border-color: #f39c12; /* Darker yellow border on focus */
+    border-color: #f39c12; 
 }
 
 button {
     padding: 12px 25px;
-    background-color: #f1c40f; /* Yellow background */
-    color: #121212; /* Black text color */
+    background-color: #f1c40f; 
+    color: #121212; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -138,19 +68,19 @@ button {
 }
 
 button:hover {
-    background-color: #f39c12; /* Darker yellow on hover */
+    background-color: #f39c12; 
 }
 
 /* Additional styling for sections like login or payment container */
 .login-container, .payment-container {
-    background-color: #1e1e1e; /* Dark background for forms */
+    background-color: #1e1e1e; 
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 h3 {
-    color: #f1c40f; /* Yellow color for sub-headings */
+    color: #f1c40f; 
 }
 
 /* Adding footer styles for a complete look */

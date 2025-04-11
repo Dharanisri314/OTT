@@ -109,7 +109,7 @@ a:hover {
 }
 
 /* Media queries for responsiveness */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .video-container {
         width: 90%;
         padding: 15px;
@@ -137,4 +137,4 @@ a:hover {
         border-radius: 8px;
     }
 }
-
+ */

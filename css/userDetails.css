@@ -33,13 +33,13 @@ header {
 
 h1 {
     font-size: 1.8rem;
-    background: linear-gradient(to right, #f1c40f, #ffd700); /* Yellow gradient for text */
+    background: linear-gradient(to right, #f1c40f, #ffd700); 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .btn-logout {
-    background: #f1c40f; /* Yellow button */
+    background: #f1c40f; 
     color: #000;
     padding: 8px 15px;
     border: none;
@@ -50,7 +50,7 @@ h1 {
 }
 
 .btn-logout:hover {
-    background: #ffd700; /* Lighter yellow on hover */
+    background: #ffd700; 
     transform: scale(1.05);
 }
 
@@ -64,14 +64,14 @@ h1 {
 }
 
 .profile-card {
-    background: rgba(0, 0, 0, 0.9); /* Semi-transparent background */
+    background: rgba(0, 0, 0, 0.9); 
     border: 2px solid #f1c40f;
     border-radius: 10px;
     padding: 25px;
     text-align: center;
     width: 100%;
     max-width: 350px;
-    box-shadow: 0px 8px 15px rgba(241, 196, 15, 0.4); /* Yellow shadow */
+    box-shadow: 0px 8px 15px rgba(241, 196, 15, 0.4); 
     transition: 0.3s ease;
 }
 
@@ -180,45 +180,19 @@ h1 {
 
 /* Footer */
 footer {
-    
     color: #f1c40f;
     text-align: center;
     padding: 10px 0;
     box-shadow: 0 -2px 5px rgba(255, 255, 0, 0.2);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    .profile-card {
-        padding: 15px;
-    }
-
-    .btn-logout,
-    .btn-edit {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-    }
-
-    .watch-list-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-
-
-
-/* Style for Back Button */
 .back-button-container {
     text-align: center;
     /* margin-top: 20px; */
   }
   
   .back-button {
-    background-color: rgb(233, 173, 53); /* Yellow color */
+    background-color: rgb(233, 173, 53); 
     color: #000;
     padding: 10px;
     font-size: 13px;
@@ -234,19 +208,11 @@ footer {
   }
   
   .back-button:hover {
-    background-color: rgb(255, 215, 85); /* Lighter yellow on hover */
+    background-color: rgb(255, 215, 85); 
     transform: scale(1.05);
   }
 
-/* .back-button{
-    width: 100px;
-    border-radius:5px;
-    margin-left: 10px;
-    background-color: #e5a100;
-    color: white;
-    padding: 5px;
-    border: 1px solid #e5a100;
-} */
+
 
 
 
