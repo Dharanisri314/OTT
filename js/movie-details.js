@@ -13,7 +13,6 @@ function displayMovieList(data) {
 
     // Limit to 12 movies
     allMovies = allMovies.slice(0, 12);
-
     // Insert movies into the container dynamically
     const movieListContainer = document.getElementById('movie-list-container');
     movieListContainer.innerHTML = ''; // Clear any existing content
@@ -59,7 +58,6 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
 
     
 // wishlist
-
 function updateButtonState(movie) {
     const loggedIn = sessionStorage.getItem("login");
     if (loggedIn == "true") {
