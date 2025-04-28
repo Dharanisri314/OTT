@@ -668,18 +668,18 @@ h4 {
     text-align: center;
 }
 
-/* Hover effect for the movie card */
+
 .movie-card:hover {
     transform: scale(1.05); 
 }
 
-/* Hover effect for the image */
+
 .movie-card:hover img {
     transform: scale(1.1); 
     opacity: 0.8; 
 }
 
-/* Show name and description on hover */
+
 .movie-card:hover h3, .movie-card:hover p {
     opacity: 1;
     transform: translateY(0); 
