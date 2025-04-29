@@ -13,9 +13,9 @@ function displayMovieList(data) {
 
     // Limit to 12 movies
     allMovies = allMovies.slice(0, 12);
-    // Insert movies into the container dynamically
+    
     const movieListContainer = document.getElementById('movie-list-container');
-    movieListContainer.innerHTML = ''; // Clear any existing content
+    movieListContainer.innerHTML = ''; 
 
     allMovies.forEach(movie => {
         const movieItem = document.createElement('div');
@@ -77,6 +77,7 @@ function updateButtonState(movie) {
         addToWishlistButton.style.userSelect = "none";
     }
 }
+
 
 // Function to handle adding/removing the movie from the wishlist
 function handleWishlist(movie) {
