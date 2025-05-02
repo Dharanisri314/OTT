@@ -71,7 +71,7 @@ button:hover {
     background-color: #f39c12; 
 }
 
-/* Additional styling for sections like login or payment container */
+
 .login-container, .payment-container {
     background-color: #1e1e1e; 
     padding: 20px;
@@ -83,7 +83,7 @@ h3 {
     color: #f1c40f; 
 }
 
-/* Adding footer styles for a complete look */
+
 .footer {
     background-color: #121212;
     color: #f1f1f1;
