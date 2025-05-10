@@ -17,7 +17,7 @@ body {
     background-size: 100%;
 }
 
-/* Main container for the form */
+
 .login-container {
     background: white;
     width: 100%;
@@ -29,7 +29,7 @@ body {
     background-color: white;
 }
 
-/* Heading */
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -37,7 +37,7 @@ h2 {
     font-size: 20px;
 }
 
-/* Form styling */
+
 form {
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@ form {
     background-color: white;
 }
 
-/* Input group container */
+
 .input-group {
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@ label {
     margin-bottom: 8px;
 }
 
-/* Input fields */
+
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -69,28 +69,28 @@ input[type="password"] {
     transition: border-color 0.3s;
 }
 
-/* On focus, add a border color */
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     border-color: black;
 }
 
-/* Error message styling */
+
 .error {
     color: red;
     font-size: 15px;
     margin-top: 5px;
 }
 
-/* Success state */
+
 .success input[type="text"],
 .success input[type="email"],
 .success input[type="password"] {
     border-color: black;
 }
 
-/* Submit button */
+
 button[type="submit"] {
     padding: 10px;
     background-color: black;
@@ -110,7 +110,7 @@ button[type="submit"]:hover {
 
 }
 
-/* Link to the signup page */
+
 p {
     text-align: center;
     font-size: 15px;
@@ -127,7 +127,7 @@ p a:hover {
 
 }
 
-/* Responsive design */
+
 @media screen and (max-width: 500px) {
     .login-container {
         padding: 20px;
@@ -140,7 +140,6 @@ p a:hover {
     font-size: 14px;
     margin-top: 5px;
     display: none;
-    /* Initially hidden */
     border: 1px solid red;
     padding: 5px;
     border-radius: 3px;
@@ -149,7 +148,7 @@ p a:hover {
 
 
 
-/* Loading Overlay */
+
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -177,12 +176,3 @@ p a:hover {
     animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}

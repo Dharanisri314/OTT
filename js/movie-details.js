@@ -13,10 +13,9 @@ function displayMovieList(data) {
 
     // Limit to 12 movies
     allMovies = allMovies.slice(0, 12);
-
-    // Insert movies into the container dynamically
+    
     const movieListContainer = document.getElementById('movie-list-container');
-    movieListContainer.innerHTML = ''; // Clear any existing content
+    movieListContainer.innerHTML = ''; 
 
     allMovies.forEach(movie => {
         const movieItem = document.createElement('div');
@@ -59,7 +58,6 @@ fetch(`/assets/json/main1.json?timestamp=${Date.now()}`)
 
     
 // wishlist
-
 function updateButtonState(movie) {
     const loggedIn = sessionStorage.getItem("login");
     if (loggedIn == "true") {
@@ -79,6 +77,7 @@ function updateButtonState(movie) {
         addToWishlistButton.style.userSelect = "none";
     }
 }
+
 
 // Function to handle adding/removing the movie from the wishlist
 function handleWishlist(movie) {
@@ -172,6 +171,7 @@ function displayMovieDetails() {
                         showTrailer(trailerUrl);
                     });
                 }
+
                 const watchNow = document.getElementById("watch-now");
                 const logged = sessionStorage.getItem("login");
                 watchNow.addEventListener("click", () => {
@@ -190,10 +190,7 @@ function displayMovieDetails() {
                         alert("Please login")
                         window.location = "signup.html"
                     }
-
-
-                    
-
+        
                 })
                 // Update the button state based on the current movie
                 updateButtonState(movie);
@@ -223,7 +220,7 @@ function showTrailer(trailerUrl) {
     }
 
     trailerVideo.src = trailerUrl;
-    modal.style.display = 'block'; // Show the modal
+    modal.style.display = 'block'; 
 
     // Add event listener for close button inside the modal
     const closeBtn = document.querySelector('.close-btn');
@@ -250,6 +247,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const mainContainer = document.getElementById('mainContainer');
 
     const jsonFilePath = '../assets/json/main1.json'; // Path to your JSON file
+
 
     // Function to fetch all movies from the JSON file
     async function loadMovies() {

@@ -113,20 +113,20 @@ header form {
 #search-input {
     width: 310px;
     height: 50px;
-    border: 2px solid rgb(233, 173, 53); /* Yellow border */
+    border: 2px solid rgb(233, 173, 53); 
     border-radius: 30px;
-    background-color: #fff; /* White background */
-    color: black; /* Black text */
+    background-color: #fff; 
+    color: black; 
     font-size: 23px;
-    padding: 0 15px; /* Padding for comfortable typing */
-    transition: all 0.3s ease; /* Smooth focus animation */
+    padding: 0 15px; 
+    transition: all 0.3s ease; 
 }
 
 /* Input Focus Style */
 #search-input:focus {
     outline: none;
-    border-color: #ffa726; /* Orange border on focus */
-    box-shadow: 0 0 5px #ffa726; /* Glow effect */
+    border-color: #ffa726; 
+    box-shadow: 0 0 5px #ffa726; 
 }
 
 /* Search Button */
@@ -153,7 +153,7 @@ header form {
 #search-img {
     width: 20px;
     height: 20px;
-    filter: brightness(0) invert(1); /* Makes the icon white */
+    filter: brightness(0) invert(1); 
     transition: transform 0.2s ease;
 }
 
@@ -165,32 +165,32 @@ header form {
 /* Logout */
 
 #logout {
-    width: 7.5%; /* Full width of the parent container */
-    height: 60px; /* Set a reasonable height */
-    background-color: white; /* White background */
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    border: none; /* No border for the container */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transition */
+    width: 7.5%; 
+    height: 60px; 
+    background-color: white; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    border: none; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 /* Hover effect for the container */
 #logout:hover {
-    background-color:rgb(233, 173, 53);/* Yellow background on hover */
-    color: black; /* Black text on hover */
+    background-color:rgb(233, 173, 53);
+    color: black; 
 }
 
 /* Styling the button */
 #logout button {
-    font-size: 16px; /* Moderate text size */
-    color: black; /* Black text */
-    background: none; /* No background for the button */
-    border: none; /* No border */
-    font-weight: bold; /* Bold text */
-    text-transform: uppercase; /* Uppercase text */
-    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; 
+    color: black; 
+    background: none; 
+    border: none; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    cursor: pointer; 
     font-size: 17px;
 }
 
@@ -294,11 +294,11 @@ header form {
         scroll-snap-type: x mandatory;
         gap: 15px;
         padding: 10px;
-        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        scrollbar-width: none; 
     }
     
     .carousel::-webkit-scrollbar {
-        display: none; /* Hide scrollbar for Chrome, Safari, Edge */
+        display: none; 
     }
     
     .movie-card {
@@ -348,7 +348,7 @@ header form {
         
         .movie-card img {
             width: 100%;
-            height: 80%; /* Adjust for aspect ratio */
+            height: 80%; 
             border-bottom: 1px solid #444;
             transition: transform 0.3s ease;
         }
@@ -365,7 +365,7 @@ header form {
         }
         
         .movie-card:hover {
-            transform: scale(1.05); /* Slight zoom on hover */
+            transform: scale(1.05); 
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
         }
      
@@ -376,11 +376,11 @@ header form {
             scroll-snap-type: x mandatory;
             gap: 15px;
             padding: 20px;
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            scrollbar-width: none; 
         }
         
         .carousel::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome, Safari, and Edge */
+            display: none; 
         }
         
         .carousel .movie-card {
@@ -475,7 +475,7 @@ h4 {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 20px; /* 아이콘들 사이에 간격 */
+    gap: 20px; 
     padding: 0;
     margin: 0;
 }
@@ -487,12 +487,12 @@ h4 {
 .social-icons a {
     text-decoration: none;
     color: white;
-    font-size: 30px; /* 아이콘 크기 */
+    font-size: 30px; 
     transition: color 0.3s ease;
 }
 
 .social-icons a:hover {
-    color: rgb(233, 173, 53); /* 마우스 오버 시 색상 변경 */
+    color: rgb(233, 173, 53); 
 }
 
 /* Bottom Bar */
@@ -507,7 +507,7 @@ h4 {
 /* Style for movie card */
 .movie-card {
     position: relative;
-    width: 300px; /* Adjust size as needed */
+    width: 300px; 
     margin: 20px;
     overflow: hidden;
     border: 2px solid rgb(233, 173, 53);
@@ -532,7 +532,7 @@ h4 {
     color: white;
     padding: 20px;
     text-align: center;
-    visibility: hidden;  /* Initially hidden */
+    visibility: hidden;  
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -549,7 +549,7 @@ h4 {
 }
 .movie-card {
     position: relative;
-    width: 300px; /* Adjust size as needed */
+    width: 300px; 
     margin: 20px;
     overflow: hidden;
     border: 2px solid #ccc;
@@ -574,7 +574,7 @@ h4 {
     color: white;
     padding: 20px;
     text-align: center;
-    visibility: hidden;  /* Initially hidden */
+    visibility: hidden;  
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -592,7 +592,7 @@ h4 {
 /* Styling for the movie card */
 .movie-card {
     position: relative;
-    width: 200px; /* Adjust the width of the movie card */
+    width: 200px; 
     margin: 10px;
     overflow: hidden;
     border-radius: 8px;
@@ -618,7 +618,7 @@ h4 {
     background: rgba(0, 0, 0, 0.6);
     border-radius: 4px;
     font-size: 14px;
-    visibility: hidden; /* Initially hidden */
+    visibility: hidden; 
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     max-width: 90%;
@@ -626,7 +626,7 @@ h4 {
 
 /* Show description on hover */
 .movie-card:hover img {
-    opacity: 0.7; /* Fade out image on hover */
+    opacity: 0.7; 
 }
 
 .movie-card:hover h3, .movie-card:hover p {
@@ -638,26 +638,14 @@ h4 {
 .movie-card h3 {
     font-size: 35px;
     font-weight: bold;
-    bottom: 150px; /* Adjust to display movie name above description */
+    bottom: 150px; 
 }
 
 /* Styling for description */
 .movie-card p {
     font-size: 20px;
-    bottom: 10px; /* Adjust to position description at the bottom of the card */
+    bottom: 10px; 
 } 
-/* .slider{
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-}
-figure{
-    position: relative;
-    left:0;
-}
-.slider{
-    position:relative
-} */
 
 
 

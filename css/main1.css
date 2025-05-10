@@ -26,7 +26,7 @@ header {
 .nav-controls {
     display: flex;
     align-items: center;
-    gap: 20px; /* Space between buttons and user display */
+    gap: 20px; 
 }
 
 /* General Button Styling */
@@ -44,7 +44,7 @@ header {
 
 /* Login Button Styling */
 #login-button {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; 
     color: white;
 }
 
@@ -55,7 +55,7 @@ header {
 
 /* Logout Button Styling */
 #logout-button {
-    background-color: #f44336; /* Red */
+    background-color: #f44336; 
     color: white;
     margin-left: 20px;
 }
@@ -67,114 +67,113 @@ header {
 
 /* User Display Container Styling */
 #user-display {
-    display: none; /* Hidden by default */
-    font-size: 10px; /* Increased font size for better readability */
-    color: #fff; /* White text color */
-    background: linear-gradient(135deg, #000000, #f7c600); /* Black to yellow gradient background */
-    border-radius: 10px; /* Rounded corners for a smooth look */
-    padding:15px; /* Generous padding for better spacing */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth transition for appearing */
-    text-align: center; /* Center align text */
+    display: none; 
+    font-size: 10px; 
+    color: #fff; 
+    background: linear-gradient(135deg, #000000, #f7c600); 
+    border-radius: 10px; 
+    padding:15px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
+    transition: opacity 0.3s ease, transform 0.3s ease; 
+    text-align: center; 
 }
 
 #user-display.show {
-    display: block; /* Displayed when the class 'show' is added */
-    opacity: 1; /* Make it visible */
-    transform: translateY(0); /* Slide it into view */
+    display: block; 
+    opacity: 1; 
+    transform: translateY(0); 
 }
 
 #user-display.hide {
-    opacity: 0; /* Invisible when the 'hide' class is applied */
-    transform: translateY(-20px); /* Slightly slide out of view */
+    opacity: 0; 
+    transform: translateY(-20px); 
 }
 
 #user-display h2 {
-    font-size: 18px; /* Slightly larger heading text */
-    margin-bottom: 10px; /* Space between heading and text */
+    font-size: 18px; 
+    margin-bottom: 10px; 
 }
 
 #user-display p {
-    font-size: 14px; /* Regular text size for description */
-    margin-bottom: 15px; /* Space between paragraphs */
+    font-size: 14px; 
+    margin-bottom: 15px; 
 }
 
 #user-display a {
-    color: #f7c600; /* Yellow links */
-    font-weight: bold; /* Bold links for emphasis */
-    text-decoration: none; /* Remove underline */
+    color: #f7c600; 
+    font-weight: bold; 
+    text-decoration: none; 
 }
 
 #user-display a:hover {
-    text-decoration: underline; /* Underline on hover for better interactivity */
-    color: #000000; /* Change to black when hovered */
+    text-decoration: underline; 
+    color: #000000; 
 }
 
 
 /* Styling the search form container */
 #search-form {
-    display: flex; /* Align input and button horizontally */
-    justify-content: center; /* Center align the content */
-    align-items: center; /* Vertically align items */
-    gap: 10px; /* Space between the input and button */
-    margin: 20px auto; /* Center the form with margin */
-    width: 90%; /* Responsive width */
-    max-width: 500px; /* Maximum width for the form */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+    margin: 20px auto; 
+    width: 90%; 
+    max-width: 500px; 
 }
 
 /* Styling the search input field */
 #search-input {
-    flex-grow: 1; /* Make the input stretch to available space */
-    padding: 12px 15px; /* Inner spacing for the input */
-    font-size: 10px; /* Font size for readability */
-    border: 2px solid #ccc; /* Light border color */
-    border-radius: 25px; /* Rounded corners for modern look */
-    outline: none; /* Removes default outline */
-    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transitions */
+    flex-grow: 1; 
+    padding: 12px 15px; 
+    font-size: 10px; 
+    border: 2px solid #ccc; 
+    border-radius: 25px; 
+    outline: none; 
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
 }
 
 /* Focus effect for the search input */
 #search-input:focus {
-    border-color: rgb(214, 148, 16); /* Highlight border on focus */
-    box-shadow: 0 0 8px  rgb(214, 148, 16) /* Add subtle shadow */
+    border-color: rgb(214, 148, 16); 
+    box-shadow: 0 0 8px  rgb(214, 148, 16) 
 }
 
 /* Styling the search button */
 #search-btn {
-    background: linear-gradient(45deg, rgb(214, 148, 16),rgb(214, 148, 16)); /* Gradient background */
-    border: none; /* Removes border */
-    color: #fff; /* White icon color */
-    /* Inner spacing */
-    border-radius: 50%; /* Circular button */
-    cursor: pointer; /* Pointer cursor for hover */
-    display: flex; /* Centers the content */
-    justify-content: center; /* Centers the icon horizontally */
-    align-items: center; /* Centers the icon vertically */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+    background: linear-gradient(45deg, rgb(214, 148, 16),rgb(214, 148, 16)); 
+    border: none; 
+    color: #fff; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 /* Hover effect for the search button */
 #search-btn:hover {
-    transform: scale(1.1); /* Slightly enlarge the button on hover */
-    box-shadow: 0 5px 15px rgb(214, 148, 16); /* Add shadow effect */
+    transform: scale(1.1); 
+    box-shadow: 0 5px 15px rgb(214, 148, 16); 
 }
 
 /* Styling for the button background */
 #search-bg {
-    display: none; /* Not used in this alternative design */
+    display: none; 
 }
 
 /* Styling for the search image */
 #search-img {
-    width: 5px; /* Adjust size of the search icon */
-    height: auto; /* Maintain aspect ratio */
-    filter: brightness(0) invert(1); /* Makes the icon white */
-    transition: transform 0.3s ease; /* Smooth scaling */
+    width: 5px; 
+    height: auto; 
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease; 
 }
 
 /* Hover effect for the search image */
 #search-btn:hover #search-img {
-    transform: rotate(20deg) scale(1.1); /* Adds rotation and scaling on hover */
+    transform: rotate(20deg) scale(1.1); 
 }
 
 
@@ -262,11 +261,6 @@ header ul li a {
    
 }
 
-
-
-
-
-
 .carousel {
     display: flex;
     padding: 15px;
@@ -284,17 +278,13 @@ header ul li a {
     border-radius: 10px;
 }
 
-
 .movie-card {
-      
         border-radius: 10px;
         background-color: white;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         margin: 20px;
         transition: transform 0.3s, box-shadow 0.3s;
     }
-    
-  
     
     .movie-card h3 {
         padding: 15px;
@@ -359,11 +349,11 @@ header ul li a {
         scroll-snap-type: x mandatory;
         gap: 15px;
         padding: 10px;
-        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        scrollbar-width: none; 
     }
     
     .carousel::-webkit-scrollbar {
-        display: none; /* Hide scrollbar for Chrome, Safari, Edge */
+        display: none; 
     }
     
   
@@ -376,7 +366,7 @@ header ul li a {
     .movie-card h3 {
         margin: 10px 0;
         font-size: 15px;
-        color: #ffa726;/* General Reset */
+        color: #ffa726;
         * {
             margin: 0;
             padding: 0;
@@ -402,7 +392,7 @@ header ul li a {
         
         .movie-card img {
             width: 90%;
-            height: 80%; /* Adjust for aspect ratio */
+            height: 80%; 
             border-bottom: 1px solid #444;
             transition: transform 0.3s ease;
         }
@@ -415,11 +405,11 @@ header ul li a {
         
         /* Hover Effect: Shake and Zoom */
         .movie-card:hover img {
-            animation: shake 0.3s ease-in-out infinite alternate; /* Shake effect */
+            animation: shake 0.3s ease-in-out infinite alternate; 
         }
         
         .movie-card:hover {
-            transform: scale(1.05); /* Slight zoom on hover */
+            transform: scale(1.05); 
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
         }
      
@@ -430,11 +420,11 @@ header ul li a {
             scroll-snap-type: x mandatory;
             gap: 15px;
             padding: 20px;
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            scrollbar-width: none; 
         }
         
         .carousel::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome, Safari, and Edge */
+            display: none; 
         }
         
         .carousel .movie-card {
@@ -450,7 +440,7 @@ header ul li a {
         }
 
         /* Responsive Adjustments */
-        @media (max-width: 1000px) {
+        /* @media (max-width: 1000px) {
             header ul {
                 flex-direction: column;
                 position: fixed;
@@ -463,9 +453,9 @@ header ul li a {
             #search-input {
                 width: 200px;
             }
-        }
+        } */
         
-        @media (max-width: 600px) {
+        /* @media (max-width: 600px) {
             header #logo {
                 font-size: 14px;
             }
@@ -473,7 +463,7 @@ header ul li a {
             #search-input {
                 width: 150px;
             }
-        }
+        } */
         
     }
     
@@ -529,7 +519,7 @@ h4 {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 20px; /* 아이콘들 사이에 간격 */
+    gap: 20px; 
     padding: 0;
     margin: 0;
 }
@@ -565,7 +555,7 @@ h4 {
  /* Style for movie card */
 .movie-card {
     position: relative;
-    width: 300px; /* Adjust size as needed */
+    width: 300px; 
     margin: 20px;
     overflow: hidden;
     border: 2px solid rgb(233, 173, 53);
@@ -580,7 +570,7 @@ h4 {
     transition: transform 0.3s ease;
 }
 
-/* Description inside the movie card */
+
 .movie-card .description {
     position: absolute;
     top: 50%;
@@ -590,24 +580,24 @@ h4 {
     color: white;
     padding: 20px;
     text-align: center;
-    visibility: hidden;  /* Initially hidden */
+    visibility: hidden;  
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-/* Show the description when hovering over the movie card */
+
 .movie-card:hover .description {
     visibility: visible;
     opacity: 1;
 }
 
-/* Optionally, you can also scale the image slightly when hovering */
+
 .movie-card:hover img {
     transform: scale(1.1);
 }
 .movie-card {
     position: relative;
-    width: 300px; /* Adjust size as needed */
+    width: 300px; 
     margin: 20px;
     overflow: hidden;
     border: 2px solid #ccc;
@@ -635,7 +625,7 @@ h4 {
     color: white;
     padding: 20px;
     text-align: center;
-    visibility: hidden;  /* Initially hidden */
+    visibility: hidden;  
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -643,8 +633,8 @@ h4 {
 /* General styling for the movie card */
 .movie-card {
     position: relative;
-    width: 230px; /* Width of the movie card */
-    height: 305px; /* Height of the movie card */
+    width: 230px; 
+    height: 305px; 
     margin: 15px;
     overflow: hidden;
     border-radius: 12px;
@@ -657,7 +647,7 @@ h4 {
 .movie-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures the image covers the card */
+    object-fit: cover; 
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -678,21 +668,21 @@ h4 {
     text-align: center;
 }
 
-/* Hover effect for the movie card */
+
 .movie-card:hover {
-    transform: scale(1.05); /* Slight zoom effect on hover */
+    transform: scale(1.05); 
 }
 
-/* Hover effect for the image */
+
 .movie-card:hover img {
-    transform: scale(1.1); /* Zoom in the image */
-    opacity: 0.8; /* Fade the image slightly */
+    transform: scale(1.1); 
+    opacity: 0.8; 
 }
 
-/* Show name and description on hover */
+
 .movie-card:hover h3, .movie-card:hover p {
     opacity: 1;
-    transform: translateY(0); /* Slide up text into view */
+    transform: translateY(0); 
     padding-top: 20px;
 }
 
@@ -700,7 +690,7 @@ h4 {
  .movie-card h3 {
     font-size: 22px;
     font-weight: bold;
-    bottom: 60px; /* Adjust to place the name above the description */
+    bottom: 60px; 
     margin-top: -px;
 }  
 
@@ -711,79 +701,11 @@ h4 {
        bottom: 10px;      
 } 
 
-/* Optionally, a glowing border effect on hover */
 .movie-card:hover {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
-    border: 2px solid rgba(255, 215, 0, 0.8); /* Golden border effect */
-}
-/* 
-
-.slider-container {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
+    border: 2px solid rgba(255, 215, 0, 0.8); 
 }
 
-.movie_slide_container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
-}
-
-.carousel-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   width: 100%;
-   height: 100%;
-    flex-shrink: 0;
-    opacity: 0.5;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.carousel-image.center {
-    opacity: 1;
-}
-
-.carousel-image.left,
-.carousel-image.right {
-    opacity: 0.5;
-}
-
-#prevButton,
-#nextButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 2rem;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border-radius: 1000%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 10;
-}
-
-#nextButton {
-    right: 20px;
-}
-
-#prevButton {
-    left: 20px;
-}
-
-#prevButton:hover,
-#nextButton:hover {
-    background: white;
-    color: black;
-} */
-
-
-/* General styles for the carousel container */
 .slider-container {
   position: relative;
   width: 100%;
@@ -793,14 +715,12 @@ h4 {
   align-items: center;
 }
 
-/* Container for the slides (images) */
 .movie_slide_container {
   display: flex;
-  transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
+  transition: transform 0.5s ease-in-out; 
   width: 100%;
 }
 
-/* Individual carousel image */
 .carousel-image {
   flex-shrink: 0;
   width: 100%;
@@ -869,16 +789,16 @@ h4 {
 
 /* Styling for the username display */
 #usernameDisplay {
-    font-size: 20px;         /* Set font size */
-    font-weight: bold;       /* Make the text bold */
-    color: #333;             /* Set text color */
-    background-color: white; /* Light background color */
-    padding: 10px 5px;      /* Add padding around the text */
-    border-radius: 5px;      /* Rounded corners */
-    display: inline-block;   /* Inline block display to adjust with content */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-    margin-top: 10px;        /* Add some margin at the top */
-    text-align: center;      /* Align the text horizontally inside the element */
+    font-size: 20px;        
+    font-weight: bold;       
+    color: #333;            
+    background-color: white; 
+    padding: 10px 5px;     
+    border-radius: 5px;     
+    display: inline-block;   
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); 
+    margin-top: 10px;        
+    text-align: center;      
 }
 
 /* Optional: Hover effect */
@@ -1002,10 +922,6 @@ header.right-aligned #usernameDisplay {
   
 }
 
-
-
-
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -1025,7 +941,7 @@ body {
   }
 
   .carousel-image {
-    flex: 0 0 100%; /* Each slide takes up full width */
+    flex: 0 0 100%; 
     position: relative;
     opacity: 0.5;
     transition: opacity 0.5s ease-in-out, transform 0.5s;
